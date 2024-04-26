@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projet_java_2024.frontend.AccueilController">
+   <children>
+      <GridPane prefHeight="120.0" prefWidth="900.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="0.0" prefWidth="80.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.7999877929688" minWidth="10.0" prefWidth="695.3999938964844" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="80.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label alignment="CENTER" prefHeight="53.0" prefWidth="700.0" text="Gestionnaire JO" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Candara" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="81.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../TP9/logo_paris_JO.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="81.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </GridPane>
+      <VBox layoutY="120.0" prefHeight="580.0" prefWidth="900.0">
+         <children>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="50.0" style="-fx-background-color: #D6C278;">
+               <children>
+                  <SplitMenuButton mnemonicParsing="false" prefWidth="100.0" text="Athlète">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Ajouter" />
+                      <MenuItem mnemonicParsing="false" text="Supprimer" />
+                        <MenuItem mnemonicParsing="false" text="Modifier les informations" />
+                    </items>
+                  </SplitMenuButton>
+                  <SplitMenuButton mnemonicParsing="false" prefWidth="100.0" text="Discipline">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Ajouter" />
+                      <MenuItem mnemonicParsing="false" text="Supprimer" />
+                        <MenuItem mnemonicParsing="false" text="Attribuer à un athlète" />
+                    </items>
+                  </SplitMenuButton>
+                  <SplitMenuButton mnemonicParsing="false" prefWidth="100.0" text="Evènement">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Ajouter" />
+                        <MenuItem mnemonicParsing="false" text="Supprimer" />
+                      <MenuItem mnemonicParsing="false" text="Attribuer à un athlète" />
+                    </items>
+                  </SplitMenuButton>
+                  <SplitMenuButton mnemonicParsing="false" prefWidth="100.0" text="Résultats">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Ajouter" />
+                        <MenuItem mnemonicParsing="false" text="Supprimer" />
+                      <MenuItem mnemonicParsing="false" text="Classement" />
+                    </items>
+                  </SplitMenuButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="530.0" prefWidth="900.0">
+               <children>
+                  <ImageView fitHeight="459.0" fitWidth="805.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../TP9/img_paris_JO.jpg" />
+                     </image>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

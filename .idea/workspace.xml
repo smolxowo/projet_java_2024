@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="1er commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/Athlete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportive.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportif.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/Resultat.java" afterDir="false" />
+    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Implémentation UML tentative 1">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AccueilController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/AccueilScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +18,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -98,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713990201792</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Implémentation UML tentative 1">
+      <option name="closed" value="true" />
+      <created>1714119248038</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714119248038</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,6 +121,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1er commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="1er commit" />
+    <MESSAGE value="Implémentation UML tentative 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implémentation UML tentative 1" />
   </component>
 </project>
