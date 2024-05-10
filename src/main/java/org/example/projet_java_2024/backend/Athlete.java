@@ -8,16 +8,14 @@ public class Athlete {
     private String pays;
     private int age;
     private int nbParticipation;        //le nombre de participations aux JO précédents
-    private ArrayList<Resultat> resultats;
 
     //Constructeur
-    public Athlete(String nomAthlete, String sexe, String pays, int age, int nbParticipation, ArrayList<Resultat> resultats) {
+    public Athlete(String nomAthlete, String sexe, String pays, int age, int nbParticipation) {
         this.nomAthlete = nomAthlete;
         this.sexe = sexe;
         this.pays = pays;
         this.age = age;
         this.nbParticipation = nbParticipation;
-        this.resultats = resultats;
     }
 
     //Getters et Setters
@@ -31,8 +29,4 @@ public class Athlete {
     public void setAge(int age) {this.age = age;}
     public int getNbParticipation() {return nbParticipation;}
     public void setNbParticipation(int nbParticipation) {this.nbParticipation = nbParticipation;}
-
-    public ArrayList<Resultat> getResultats() {return resultats;}
-
-    public void setResultats(ArrayList<Resultat> resultats) {this.resultats = resultats;}
 }
