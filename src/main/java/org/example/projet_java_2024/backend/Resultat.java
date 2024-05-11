@@ -4,12 +4,14 @@ import java.time.LocalDateTime;
 
 public class Resultat {
     private Athlete athlete;
+    private EvenementSportif evenement;
     private int score;
     private LocalDateTime temps;
     private String medaille;
 
-    public Resultat(Athlete athlete, int score, LocalDateTime temps, String medaille) {
+    public Resultat(Athlete athlete, EvenementSportif evenement, int score, LocalDateTime temps, String medaille) {
         this.athlete = athlete;
+        this.evenement = evenement;
         this.score = score;
         this.temps = temps;
         this.medaille = medaille;
@@ -38,5 +40,11 @@ public class Resultat {
     }
     public void setMedaille(String medaille) {
         this.medaille = medaille;
+    }
+    public EvenementSportif getEvenement() {
+        return evenement;
+    }
+    public void setEvenement(EvenementSportif evenement) {
+        this.evenement = evenement;
     }
 }
