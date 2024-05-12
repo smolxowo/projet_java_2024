@@ -9,6 +9,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DisciplineSportive {
-    private String nomDS;
-    private List<Athlete> participantDS;
+    private int id;
+    private String nom;
+    private List<Integer> participantId;
 }

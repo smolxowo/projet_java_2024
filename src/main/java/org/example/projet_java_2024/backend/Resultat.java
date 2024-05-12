@@ -1,17 +1,17 @@
 package org.example.projet_java_2024.backend;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Resultat {
-    private Athlete athlete;
-    private EvenementSportif evenement;
+    private int id;
+    private int athleteId;
+    private int evenementSportifId;
     private int score;
-    private LocalDateTime temps;
+    private String date;
     private String medaille;
 }

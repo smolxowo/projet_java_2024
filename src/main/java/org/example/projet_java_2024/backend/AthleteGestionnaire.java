@@ -1,42 +1,23 @@
 package org.example.projet_java_2024.backend;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-public class AthleteStorage {
-    static final private String FILENAME = "/org/example/projet_java_2024/athletes.json";
-
+public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
     private final List<Athlete> athletes;
 
-    public AthleteStorage() {
-        ObjectMapper mapper = new ObjectMapper();
-        try (InputStream is = AthleteStorage.class.getResourceAsStream(FILENAME)) {
-            if (is == null) {
-                throw new RuntimeException("File not found: " + FILENAME);
-            } else {
-                this.athletes = mapper.readValue(is, new TypeReference<List<Athlete>>() {});
-            }
-        } catch (IOException e) {
-            throw new RuntimeException("Error occurred while reading JSON file: " + FILENAME, e);
-        }
+    public AthleteGestionnaire() {
+        super("/org/example/projet_java_2024/database/athletes.json");
+
+        // Reference parent items, to be named athletes. Easier to understand.
+        this.athletes = this.items;
     }
 
-    public void saveToJSON() {
-        ObjectMapper mapper = new ObjectMapper();
-        try {
-            FileWriter writer = new FileWriter("src/main/resources" + FILENAME, false);
-            mapper.writeValue(writer, athletes);
-            writer.close();
-        } catch (IOException e) {
-            throw new RuntimeException("Error occurred while writing JSON file: " + FILENAME, e);
-        }
+    @Override
+    protected TypeReference<List<Athlete>> getTypeReference() {
+        return new TypeReference<List<Athlete>>() {};
     }
 
     public List<Athlete> getAllAthletes() {
@@ -57,7 +38,7 @@ public class AthleteStorage {
         for (Athlete athlete : athletes) {
             switch (property) {
                 case "nomAthlete":
-                    if (athlete.getNomAthlete().equals(value)) {
+                    if (athlete.getNom().equals(value)) {
                         result.add(athlete);
                     }
                     break;
@@ -122,7 +103,7 @@ public class AthleteStorage {
     public int updateAthlete(int id, String nomAthlete, String sexe, String pays, int age, int nbParticipation) {
         for (Athlete athlete : athletes) {
             if (athlete.getId() == id) {
-                athlete.setNomAthlete(nomAthlete);
+                athlete.setNom(nomAthlete);
                 athlete.setSexe(sexe);
                 athlete.setPays(pays);
                 athlete.setAge(age);

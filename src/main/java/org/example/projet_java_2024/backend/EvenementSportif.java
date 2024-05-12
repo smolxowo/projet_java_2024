@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EvenementSportif extends DisciplineSportive {
-    private String nomEvnt;
-    private List<Participants> participantES;
+    private int id;
+    private String nom;
+    private List<Integer> participantsId;
 }

@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Participants {
-    private Athlete athlete;
-    private EvenementSportif evenementSportif;
+public class Participant {
+    private int id;
+    private int athleteId;
+    private int evenementSportifId;
 }
