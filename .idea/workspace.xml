@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Implémentation UML v3">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="lombok in module file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/Athlete.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/Athlete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportive.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +66,10 @@
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/James/OneDrive - ISEP/ISEP/Year 3 - A1/Algorithme et Programmation/projet_java_2024",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
     "vue.rearranger.settings.migration": "true"
@@ -108,7 +112,7 @@
       <option name="presentableId" value="Default" />
       <updated>1713989858730</updated>
       <workItem from="1715525483183" duration="27000" />
-      <workItem from="1715525520090" duration="306000" />
+      <workItem from="1715525520090" duration="620000" />
     </task>
     <task id="LOCAL-00001" summary="1er commit">
       <option name="closed" value="true" />
@@ -150,7 +154,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715352234154</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Adding lombok for automatic getter/setter">
+      <option name="closed" value="true" />
+      <created>1715525890728</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715525890728</updated>
+    </task>
+    <task id="LOCAL-00007" summary="lombok in module file">
+      <option name="closed" value="true" />
+      <created>1715525974206</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1715525974206</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +192,8 @@
     <MESSAGE value="Implémentation UML tentative 1" />
     <MESSAGE value="Implémentation UML tentat" />
     <MESSAGE value="Implémentation UML v3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implémentation UML v3" />
+    <MESSAGE value="Adding lombok for automatic getter/setter" />
+    <MESSAGE value="lombok in module file" />
+    <option name="LAST_COMMIT_MESSAGE" value="lombok in module file" />
   </component>
 </project>
