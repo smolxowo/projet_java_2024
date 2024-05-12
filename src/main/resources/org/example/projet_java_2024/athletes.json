@@ -1,0 +1,4 @@
+[{"id":1,"nomAthlete":"Usain Bolt","sexe":"M","pays":"Jamaica","age":34,"nbParticipation":3},
+  {"id":2,"nomAthlete":"Simone Biles","sexe":"F","pays":"USA","age":24,"nbParticipation":2},
+  {"id":3,"nomAthlete":"Michael Phelps","sexe":"M","pays":"USA","age":36,"nbParticipation":5}
+ ]

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.example.projet_java_2024.backend.AthleteStorage;
 
 import java.io.IOException;
 
@@ -18,6 +19,12 @@ public class HelloApplication extends Application {
     }
 
     public static void main(String[] args) {
+        AthleteStorage athleteStorage = new AthleteStorage();
+        // Test addition of an athlete
+        int billyId = athleteStorage.addAthlete("Billy Jackson", "M", "JP", 33, 2);
+        athleteStorage.updateAthlete(billyId, "BOBBIE Jackson", "M", "JP", 33, 3);
+
+        System.out.println(athleteStorage.getAllAthletes());
         launch();
     }
 }
