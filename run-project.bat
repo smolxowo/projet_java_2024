@@ -1,0 +1,1 @@
+mvn exec:java -Dexec.mainClass=org.example.projet_java_2024.HelloApplication
