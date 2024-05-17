@@ -13,9 +13,10 @@ import java.util.List;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("AccueilScene.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(
+                HelloApplication.class.getResource("/org/example/projet_java_2024/frontend/AthleteScene.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 900, 700);
-        stage.setTitle("Hello!");
+        stage.setTitle("Accueil");
         stage.setScene(scene);
         stage.show();
     }
