@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Adding a way to manage every entity">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="lombok in module file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/AccueilScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/AccueilScene.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" afterDir="false" />
@@ -44,13 +45,6 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="g651ff75" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHome" value="Use Maven wrapper" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -67,7 +61,6 @@
     &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/James/OneDrive - ISEP/ISEP/Year 3 - A1/Algorithme et Programmation/projet_java_2024&quot;,
@@ -80,11 +73,6 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\James\OneDrive - ISEP\ISEP\Year 3 - A1\Algorithme et Programmation\projet_java_2024\src\main\resources\org\example\projet_java_2024\database" />
-    </key>
-  </component>
   <component name="RunManager">
     <configuration name="HelloApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.projet_java_2024.HelloApplication" />
@@ -108,7 +96,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-f644763e9732-c0c073db" />
+        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
       </set>
     </attachedChunks>
   </component>
@@ -122,9 +110,6 @@
       <updated>1713989858730</updated>
       <workItem from="1715525483183" duration="27000" />
       <workItem from="1715525520090" duration="620000" />
-      <workItem from="1715529938949" duration="3314000" />
-      <workItem from="1715542518496" duration="3877000" />
-      <workItem from="1715607355165" duration="228000" />
     </task>
     <task id="LOCAL-00001" summary="1er commit">
       <option name="closed" value="true" />
@@ -182,43 +167,14 @@
       <option name="project" value="LOCAL" />
       <updated>1715525974206</updated>
     </task>
-    <task id="LOCAL-00008" summary="adding packages to module graph">
-      <option name="closed" value="true" />
-      <created>1715530085818</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1715530085818</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Simplifying every model">
-      <option name="closed" value="true" />
-      <created>1715530556876</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1715530556876</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Adding AthleteStorage to store Athletes">
-      <option name="closed" value="true" />
-      <created>1715533261821</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1715533261821</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Adding a way to manage every entity">
-      <option name="closed" value="true" />
-      <created>1715546367864</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1715546367864</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.bat" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -238,10 +194,6 @@
     <MESSAGE value="Implémentation UML v3" />
     <MESSAGE value="Adding lombok for automatic getter/setter" />
     <MESSAGE value="lombok in module file" />
-    <MESSAGE value="adding packages to module graph" />
-    <MESSAGE value="Simplifying every model" />
-    <MESSAGE value="Adding AthleteStorage to store Athletes" />
-    <MESSAGE value="Adding a way to manage every entity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding a way to manage every entity" />
+    <option name="LAST_COMMIT_MESSAGE" value="lombok in module file" />
   </component>
 </project>
