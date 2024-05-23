@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+
 public class Resultat {
     private int id;
     private int athleteId;

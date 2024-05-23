@@ -46,35 +46,35 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="50.0" style="-fx-background-color: #D6C278;">
                <children>
-                  <SplitMenuButton mnemonicParsing="false" prefWidth="100.0" text="Athlète">
+                  <SplitMenuButton fx:id="athleteMenuButton" mnemonicParsing="false" onAction="#onAthleteMenuButtonClick" prefWidth="100.0" text="Athlète">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Ajouter" />
-                      <MenuItem mnemonicParsing="false" text="Supprimer" />
-                        <MenuItem mnemonicParsing="false" text="Modifier les informations" />
+                      <MenuItem fx:id="addAthleteMenuItem" mnemonicParsing="false" onAction="#onAddAthleteMenuItemClick" text="Ajouter" />
+                      <MenuItem fx:id="deleteAthleteMenuItem" mnemonicParsing="false" onAction="#onDeleteAthleteMenuItemClick" text="Supprimer" />
+                        <MenuItem fx:id="updateAthleteMenuItem" mnemonicParsing="false" onAction="#onUpdateAthleteMenuItemClick" text="Modifier les informations" />
                     </items>
                      <font>
                         <Font name="Candara" size="12.0" />
                      </font>
                   </SplitMenuButton>
-                  <SplitMenuButton mnemonicParsing="false" prefWidth="100.0" text="Discipline">
+                  <SplitMenuButton fx:id="disciplineMenuButton" mnemonicParsing="false" onAction="#onDisciplineMenuButtonClick" prefWidth="100.0" text="Discipline">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Ajouter" />
-                      <MenuItem mnemonicParsing="false" text="Supprimer" />
-                        <MenuItem mnemonicParsing="false" text="Attribuer à un athlète" />
+                      <MenuItem fx:id="addDisciplineMenuItem" mnemonicParsing="false" onAction="#onAddDisciplineMenuItemClick" text="Ajouter" />
+                      <MenuItem fx:id="deleteDisciplineMenuItem" mnemonicParsing="false" onAction="#onDeleteDisciplineMenuItemClick" text="Supprimer" />
+                        <MenuItem fx:id="assignDisciplineMenuItem" mnemonicParsing="false" onAction="#onAssignDisciplineMenuItemClick" text="Attribuer à un athlète" />
                     </items>
                   </SplitMenuButton>
-                  <SplitMenuButton mnemonicParsing="false" prefWidth="100.0" text="Evènement">
+                  <SplitMenuButton fx:id="eventMenuButton" mnemonicParsing="false" onAction="#onEventMenuButtonClick" prefWidth="100.0" text="Evènement">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Ajouter" />
-                        <MenuItem mnemonicParsing="false" text="Supprimer" />
-                      <MenuItem mnemonicParsing="false" text="Attribuer à un athlète" />
+                      <MenuItem fx:id="addEventMenuItem" mnemonicParsing="false" onAction="#onAddEventMenuItemClick" text="Ajouter" />
+                        <MenuItem fx:id="deleteEventMenuItem" mnemonicParsing="false" onAction="#onDeleteEventMenuItemClick" text="Supprimer" />
+                      <MenuItem fx:id="assignEventMenuItem" mnemonicParsing="false" onAction="#onAssignEventMenuItemClick" text="Attribuer à un athlète" />
                     </items>
                   </SplitMenuButton>
-                  <SplitMenuButton mnemonicParsing="false" prefWidth="100.0" text="Résultats">
+                  <SplitMenuButton fx:id="resultatsMenuButton" mnemonicParsing="false" onAction="#onResultatsMenuButtonClick" prefWidth="100.0" text="Résultats">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Ajouter" />
-                        <MenuItem mnemonicParsing="false" text="Supprimer" />
-                      <MenuItem mnemonicParsing="false" text="Classement" />
+                      <MenuItem fx:id="addResultatMenuItem" mnemonicParsing="false" onAction="#onAddResultatMenuItemClick" text="Ajouter" />
+                        <MenuItem fx:id="deleteResultatMenuItem" mnemonicParsing="false" onAction="#onDeleteResultatMenuItemClick" text="Supprimer" />
+                      <MenuItem fx:id="classementResultatMenuItem" mnemonicParsing="false" onAction="#onClassementResultatMenuItemClick" text="Classement" />
                     </items>
                   </SplitMenuButton>
                </children>

@@ -2,6 +2,7 @@ package org.example.projet_java_2024.backend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<DisciplineSportive> {
@@ -30,8 +31,8 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         throw new IllegalArgumentException("Discipline Sportive not found: " + id);
     }
 
-    public int addDisciplineSportif(String nom, List<Integer> participantsId) {
-        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1, nom, participantsId);
+    public int addDisciplineSportif(String nom) {
+        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1, nom, new ArrayList<>()); // Nouvelle discipline sans participants
         disciplinesSportives.add(disciplineSportive);
         saveToJSON();
         return disciplineSportive.getId();
