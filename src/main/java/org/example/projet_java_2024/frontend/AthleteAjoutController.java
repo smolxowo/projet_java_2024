@@ -9,15 +9,7 @@ import java.io.IOException;
 
 public class AthleteAjoutController extends AccueilController {
     @FXML
-    private SplitMenuButton athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-    @FXML
-    private MenuItem addAthleteMenuItem, deleteAthleteMenuItem, updateAthleteMenuItem;
-    @FXML
-    private MenuItem addDisciplineMenuItem, deleteDisciplineMenuItem, assignDisciplineMenuItem;
-    @FXML
-    private MenuItem addEventMenuItem, deleteEventMenuItem, assignEventMenuItem;
-    @FXML
-    private MenuItem addResultatMenuItem, deleteResultatMenuItem, classementResultatMenuItem;
+    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 
     @FXML
     private Label nomLabel, sexeLabel, paysLabel, ageLabel, nbParticipLabel, successLabel;
@@ -33,8 +25,6 @@ public class AthleteAjoutController extends AccueilController {
         AthleteController athleteController = new AthleteController();
         //On ajoute un nouvel Athlete
         athleteController.ajoutAthlete(nomInput.getText(), sexeInput.getText(), paysInput.getText(), Integer.parseInt(ageInput.getText()),Integer.parseInt(nbParticipInput.getText()));
-        //Mettre à jour la liste des athlètes dans AthleteController
-        athleteController.updateAthleteList();
         loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
     }
 
@@ -45,4 +35,5 @@ public class AthleteAjoutController extends AccueilController {
         ageInput.clear();
         nbParticipInput.clear();
     }
+
 }

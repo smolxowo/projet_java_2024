@@ -1,13 +1,15 @@
 package org.example.projet_java_2024.frontend;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.projet_java_2024.backend.Athlete;
 import org.example.projet_java_2024.backend.AthleteGestionnaire;
+
+import java.io.IOException;
 
 public class AthleteController extends AccueilController {
     private AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
@@ -17,7 +19,7 @@ public class AthleteController extends AccueilController {
 
 
     @FXML
-    private TableView<Athlete> athleteTableView;
+    protected TableView<Athlete> athleteTableView;
     @FXML
     private TableColumn<Athlete, String> nomColumn, sexeColumn, paysColumn;
     @FXML
@@ -41,12 +43,32 @@ public class AthleteController extends AccueilController {
         athleteTableView.getItems().addAll(athleteGestionnaire.getAllAthletes());
     }
 
-    public void updateAthleteList() {
-        loadAthletes();
+    public int ajoutAthlete(String nom, String sexe, String pays, int age, int nbParticip) {
+        int newAthleteId = athleteGestionnaire.addAthlete(nom, sexe, pays, age, nbParticip);
+        return newAthleteId;
     }
 
-    public int ajoutAthlete(String nom, String sexe, String pays, int age, int nbParticip){
-        int newAthleteId = athleteGestionnaire.addAthlete(nom,sexe,pays,age,nbParticip);
+    public void supprAthlete(Athlete athlete) {
+        athleteGestionnaire.deleteAthlete(athlete.getId());
+    }
+
+    public int modifAthlete(String nom, String sexe, String pays, int age, int nbParticip) {
+        Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
+        int id = selectedAthlete.getId();
+        int newAthleteId = athleteGestionnaire.updateAthlete(id, nom, sexe, pays, age, nbParticip);
         return newAthleteId;
+    }
+
+    public void onAjouterClick(ActionEvent e) throws IOException {
+        loadScene("/org/example/projet_java_2024/frontend/AthleteAjoutScene.fxml", "Ajouter un athlète", e);
+    }
+
+    public void onSupprClick(ActionEvent e) throws IOException {
+        Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
+        supprAthlete(selectedAthlete);
+    }
+
+    public void onModifClick(ActionEvent e) throws IOException {
+        loadScene("/org/example/projet_java_2024/frontend/AthleteModifScene.fxml", "Modifier un athlète", e);
     }
 }
