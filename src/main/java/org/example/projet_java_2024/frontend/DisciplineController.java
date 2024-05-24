@@ -47,8 +47,8 @@ public class DisciplineController extends AccueilController {
         loadDiscipline();
     }
 
-    public int ajoutDiscipline(String nom){
-        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportif(nom);
+    /*public int ajoutDiscipline(String nom){
+        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportif(nom, );
         return newDisciplineId;
-    }
+    }*/
 }

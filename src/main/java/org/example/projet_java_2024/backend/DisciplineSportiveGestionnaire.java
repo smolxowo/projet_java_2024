@@ -31,31 +31,12 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         throw new IllegalArgumentException("Discipline Sportive not found: " + id);
     }
 
-    public int addDisciplineSportif(String nom) {
-        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1, nom, new ArrayList<>()); // Nouvelle discipline sans participants
-        disciplinesSportives.add(disciplineSportive);
-        saveToJSON();
-        return disciplineSportive.getId();
-    }
-
     public void deleteDisciplineSportif(int id) {
         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
             if (disciplineSportive.getId() == id) {
                 disciplinesSportives.remove(disciplineSportive);
                 saveToJSON();
                 return;
-            }
-        }
-        throw new IllegalArgumentException("Discipline Sportive not found: " + id);
-    }
-
-    public int updateDisciplineSportif(int id, String nom, List<Integer> participantsId) {
-        for (DisciplineSportive disciplineSportive : disciplinesSportives) {
-            if (disciplineSportive.getId() == id) {
-                disciplineSportive.setNom(nom);
-                disciplineSportive.setParticipantId(participantsId);
-                saveToJSON();
-                return id;
             }
         }
         throw new IllegalArgumentException("Discipline Sportive not found: " + id);

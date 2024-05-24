@@ -1,0 +1,599 @@
+Index: src/main/java/org/example/projet_java_2024/backend/EvenementSportif.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024.backend;\r\n\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.EqualsAndHashCode;\r\nimport lombok.NoArgsConstructor;\r\nimport java.util.List;\r\n\r\n@Data\r\n@EqualsAndHashCode(callSuper = true)\r\n@NoArgsConstructor\r\n@AllArgsConstructor\r\npublic class EvenementSportif extends DisciplineSportive {\r\n    private int id;\r\n    private String nom;\r\n    private List<Integer> participantsId;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/backend/EvenementSportif.java b/src/main/java/org/example/projet_java_2024/backend/EvenementSportif.java
+--- a/src/main/java/org/example/projet_java_2024/backend/EvenementSportif.java	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/java/org/example/projet_java_2024/backend/EvenementSportif.java	(date 1716536668987)
+@@ -2,16 +2,15 @@
+ 
+ import lombok.AllArgsConstructor;
+ import lombok.Data;
+-import lombok.EqualsAndHashCode;
+ import lombok.NoArgsConstructor;
+ import java.util.List;
+ 
+ @Data
+-@EqualsAndHashCode(callSuper = true)
+ @NoArgsConstructor
+ @AllArgsConstructor
+-public class EvenementSportif extends DisciplineSportive {
++public class EvenementSportif {
+     private int id;
+     private String nom;
++    private int disciplineSportifId;
+     private List<Integer> participantsId;
+ }
+\ No newline at end of file
+Index: src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024.backend;\r\n\r\nimport com.fasterxml.jackson.core.type.TypeReference;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<DisciplineSportive> {\r\n    private final List<DisciplineSportive> disciplinesSportives;\r\n\r\n    public DisciplineSportiveGestionnaire() {\r\n        super(\"/org/example/projet_java_2024/database/disciplines-sportives.json\");\r\n        this.disciplinesSportives = this.items;\r\n    }\r\n\r\n    @Override\r\n    protected TypeReference<List<DisciplineSportive>> getTypeReference() {\r\n        return new TypeReference<List<DisciplineSportive>>() {};\r\n    }\r\n\r\n    public List<DisciplineSportive> getAllDisciplinesSportives() {\r\n        return disciplinesSportives;\r\n    }\r\n\r\n    public DisciplineSportive getDisciplineSportiveById(int id) {\r\n        for (DisciplineSportive disciplineSportive : disciplinesSportives) {\r\n            if (disciplineSportive.getId() == id) {\r\n                return disciplineSportive;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Discipline Sportive not found: \" + id);\r\n    }\r\n\r\n    public int addDisciplineSportif(String nom) {\r\n        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1, nom, new ArrayList<>()); // Nouvelle discipline sans participants\r\n        disciplinesSportives.add(disciplineSportive);\r\n        saveToJSON();\r\n        return disciplineSportive.getId();\r\n    }\r\n\r\n    public void deleteDisciplineSportif(int id) {\r\n        for (DisciplineSportive disciplineSportive : disciplinesSportives) {\r\n            if (disciplineSportive.getId() == id) {\r\n                disciplinesSportives.remove(disciplineSportive);\r\n                saveToJSON();\r\n                return;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Discipline Sportive not found: \" + id);\r\n    }\r\n\r\n    public int updateDisciplineSportif(int id, String nom, List<Integer> participantsId) {\r\n        for (DisciplineSportive disciplineSportive : disciplinesSportives) {\r\n            if (disciplineSportive.getId() == id) {\r\n                disciplineSportive.setNom(nom);\r\n                disciplineSportive.setParticipantId(participantsId);\r\n                saveToJSON();\r\n                return id;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Discipline Sportive not found: \" + id);\r\n    }\r\n\r\n    public int addParticipantToDisciplineSportif(int disciplineSportifId, int participantId) {\r\n        for (DisciplineSportive disciplineSportive : disciplinesSportives) {\r\n            if (disciplineSportive.getId() == disciplineSportifId) {\r\n                disciplineSportive.getParticipantId().add(participantId);\r\n                saveToJSON();\r\n                return disciplineSportifId;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Discipline Sportive not found: \" + disciplineSportifId);\r\n    }\r\n\r\n    public int removeParticipantFromDisciplineSportif(int disciplineSportifId, int participantId) {\r\n        for (DisciplineSportive disciplineSportive : disciplinesSportives) {\r\n            if (disciplineSportive.getId() == disciplineSportifId) {\r\n                disciplineSportive.getParticipantId().remove(participantId);\r\n                saveToJSON();\r\n                return disciplineSportifId;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Discipline Sportive not found: \" + disciplineSportifId);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java b/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java
+--- a/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java	(date 1716536588681)
+@@ -31,13 +31,6 @@
+         throw new IllegalArgumentException("Discipline Sportive not found: " + id);
+     }
+ 
+-    public int addDisciplineSportif(String nom) {
+-        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1, nom, new ArrayList<>()); // Nouvelle discipline sans participants
+-        disciplinesSportives.add(disciplineSportive);
+-        saveToJSON();
+-        return disciplineSportive.getId();
+-    }
+-
+     public void deleteDisciplineSportif(int id) {
+         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
+             if (disciplineSportive.getId() == id) {
+@@ -48,18 +41,6 @@
+         }
+         throw new IllegalArgumentException("Discipline Sportive not found: " + id);
+     }
+-
+-    public int updateDisciplineSportif(int id, String nom, List<Integer> participantsId) {
+-        for (DisciplineSportive disciplineSportive : disciplinesSportives) {
+-            if (disciplineSportive.getId() == id) {
+-                disciplineSportive.setNom(nom);
+-                disciplineSportive.setParticipantId(participantsId);
+-                saveToJSON();
+-                return id;
+-            }
+-        }
+-        throw new IllegalArgumentException("Discipline Sportive not found: " + id);
+-    }
+ 
+     public int addParticipantToDisciplineSportif(int disciplineSportifId, int participantId) {
+         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
+Index: src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024.frontend;\r\n\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.MenuItem;\r\nimport javafx.scene.control.SplitMenuButton;\r\nimport javafx.scene.control.TableColumn;\r\nimport javafx.scene.control.TableView;\r\nimport javafx.scene.control.cell.PropertyValueFactory;\r\nimport org.example.projet_java_2024.backend.DisciplineSportive;\r\nimport org.example.projet_java_2024.backend.DisciplineSportiveGestionnaire;\r\n\r\npublic class DisciplineController extends AccueilController {\r\n    private DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();\r\n\r\n    @FXML\r\n    private SplitMenuButton athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;\r\n    @FXML\r\n    private MenuItem addAthleteMenuItem, deleteAthleteMenuItem, updateAthleteMenuItem;\r\n    @FXML\r\n    private MenuItem addDisciplineMenuItem, deleteDisciplineMenuItem, assignDisciplineMenuItem;\r\n    @FXML\r\n    private MenuItem addEventMenuItem, deleteEventMenuItem, assignEventMenuItem;\r\n    @FXML\r\n    private MenuItem addResultatMenuItem, deleteResultatMenuItem, classementResultatMenuItem;\r\n\r\n    @FXML\r\n    private TableView<DisciplineSportive> disciplineTableView;\r\n    @FXML\r\n    private TableColumn<DisciplineSportive, String> nomColumn, participantColumn;\r\n\r\n    @FXML\r\n    public void initialize() {\r\n        // Initialisation des colonnes du TableView\r\n        nomColumn.setCellValueFactory(new PropertyValueFactory<>(\"Discipline\"));\r\n        participantColumn.setCellValueFactory(new PropertyValueFactory<>(\"Participants\"));\r\n\r\n        // Charger les athlètes dans le TableView\r\n        loadDiscipline();\r\n    }\r\n\r\n    private void loadDiscipline() {\r\n        disciplineTableView.getItems().clear();\r\n        disciplineTableView.getItems().addAll();\r\n    }\r\n\r\n    public void updateDisciplineList() {\r\n        loadDiscipline();\r\n    }\r\n\r\n    public int ajoutDiscipline(String nom){\r\n        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportif(nom);\r\n        return newDisciplineId;\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java b/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java
+--- a/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java	(date 1716537313448)
+@@ -47,8 +47,8 @@
+         loadDiscipline();
+     }
+ 
+-    public int ajoutDiscipline(String nom){
+-        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportif(nom);
++    /*public int ajoutDiscipline(String nom){
++        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportif(nom, );
+         return newDisciplineId;
+-    }
++    }*/
+ }
+\ No newline at end of file
+Index: src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024.backend;\r\n\r\nimport com.fasterxml.jackson.core.type.TypeReference;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class EvenementSportifGestionnaire extends DatabaseGestionnaire<EvenementSportif> {\r\n    private final List<EvenementSportif> evenementsSportifs;\r\n\r\n    public EvenementSportifGestionnaire() {\r\n        super(\"/org/example/projet_java_2024/database/evenements-sportifs.json\");\r\n        this.evenementsSportifs = this.items;\r\n    }\r\n\r\n    @Override\r\n    protected TypeReference<List<EvenementSportif>> getTypeReference() {\r\n        return new TypeReference<List<EvenementSportif>>() {};\r\n    }\r\n\r\n    public List<EvenementSportif> getAllEvenementsSportifs() {\r\n        return evenementsSportifs;\r\n    }\r\n\r\n    public EvenementSportif getEvenementSportifById(int id) {\r\n        for (EvenementSportif evenementSportif : evenementsSportifs) {\r\n            if (evenementSportif.getId() == id) {\r\n                return evenementSportif;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Evenement Sportif not found: \" + id);\r\n    }\r\n\r\n    public int addEvenementSportif(String nom) {\r\n        EvenementSportif evenementSportif = new EvenementSportif(evenementsSportifs.size() + 1, nom, new ArrayList<>()); // Nouvelle discipline sans participants\r\n        evenementsSportifs.add(evenementSportif);\r\n        saveToJSON();\r\n        return evenementSportif.getId();\r\n    }\r\n\r\n    public void deleteEvenementSportif(int id) {\r\n        for (EvenementSportif evenementSportif : evenementsSportifs) {\r\n            if (evenementSportif.getId() == id) {\r\n                evenementsSportifs.remove(evenementSportif);\r\n                saveToJSON();\r\n                return;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Evenement Sportif not found: \" + id);\r\n    }\r\n\r\n    public int updateEvenementSportif(int id, String nom, List<Integer> participantsId) {\r\n        for (EvenementSportif evenementSportif : evenementsSportifs) {\r\n            if (evenementSportif.getId() == id) {\r\n                evenementSportif.setNom(nom);\r\n                evenementSportif.setParticipantsId(participantsId);\r\n                saveToJSON();\r\n                return id;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Evenement Sportif not found: \" + id);\r\n    }\r\n\r\n    public int addParticipantToEvenementSportif(int evenementSportifId, int participantId) {\r\n        for (EvenementSportif evenementSportif : evenementsSportifs) {\r\n            if (evenementSportif.getId() == evenementSportifId) {\r\n                evenementSportif.getParticipantsId().add(participantId);\r\n                saveToJSON();\r\n                return evenementSportifId;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Evenement Sportif not found: \" + evenementSportifId);\r\n    }\r\n\r\n    public int removeParticipantFromEvenementSportif(int evenementSportifId, int participantId) {\r\n        for (EvenementSportif evenementSportif : evenementsSportifs) {\r\n            if (evenementSportif.getId() == evenementSportifId) {\r\n                evenementSportif.getParticipantsId().remove(participantId);\r\n                saveToJSON();\r\n                return evenementSportifId;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(\"Evenement Sportif not found: \" + evenementSportifId);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java b/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java
+--- a/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java	(date 1716536800448)
+@@ -31,8 +31,8 @@
+         throw new IllegalArgumentException("Evenement Sportif not found: " + id);
+     }
+ 
+-    public int addEvenementSportif(String nom) {
+-        EvenementSportif evenementSportif = new EvenementSportif(evenementsSportifs.size() + 1, nom, new ArrayList<>()); // Nouvelle discipline sans participants
++    public int addEvenementSportif(String nom, int disciplineSportifId) {
++        EvenementSportif evenementSportif = new EvenementSportif(evenementsSportifs.size() + 1, nom, disciplineSportifId, new ArrayList<>()); // Nouvelle discipline sans participants
+         evenementsSportifs.add(evenementSportif);
+         saveToJSON();
+         return evenementSportif.getId();
+@@ -49,10 +49,11 @@
+         throw new IllegalArgumentException("Evenement Sportif not found: " + id);
+     }
+ 
+-    public int updateEvenementSportif(int id, String nom, List<Integer> participantsId) {
++    public int updateEvenementSportif(int id, String nom, int disciplineSportifId, List<Integer> participantsId) {
+         for (EvenementSportif evenementSportif : evenementsSportifs) {
+             if (evenementSportif.getId() == id) {
+                 evenementSportif.setNom(nom);
++                evenementSportif.setDisciplineSportifId(disciplineSportifId);
+                 evenementSportif.setParticipantsId(participantsId);
+                 saveToJSON();
+                 return id;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6fcb5b4b-653e-4b07-8af2-d8339e786f4a\" name=\"Changes\" comment=\"Réparation de la fonction load pour faire marcher AthleteAjoutController\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteModifController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteSupprController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAjoutController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineSupprController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventSupprController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteSupprScene.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineSupprScene.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAjoutScene.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAssignScene.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventSupprScene.fxml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatScene.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/HelloApplication.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/HelloApplication.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatsController.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatsScene.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteModifScene.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"FxmlFile\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;smolxowo&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/smolxowo/projet_java_2024&quot;,\r\n    &quot;accountId&quot;: &quot;5514e30a-6b53-43bc-bfca-88d8a08680da&quot;\r\n  }\r\n}</component>\r\n  <component name=\"MacroExpansionManager\">\r\n    <option name=\"directoryName\" value=\"g651ff75\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2fYtUmcEwZU4lDCK3CvAirxnnfI\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/BRdie/Desktop/ISEP/A1/Algorithmique/TP9&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\BRdie\\Desktop\\ISEP\\A1\\Algorithmique\\projet_java_2024\\src\\main\\resources\\org\\example\\projet_java_2024\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\BRdie\\Desktop\\ISEP\\A1\\Algorithmique\\projet_java_2024\\src\\main\\resources\\org\\example\\projet_java_2024\\frontend\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"HelloApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.projet_java_2024.HelloApplication\" />\r\n      <module name=\"projet_java_2024\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.example.projet_java_2024.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.HelloApplication\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6fcb5b4b-653e-4b07-8af2-d8339e786f4a\" name=\"Changes\" comment=\"\" />\r\n      <created>1713989858730</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1713989858730</updated>\r\n      <workItem from=\"1715525483183\" duration=\"27000\" />\r\n      <workItem from=\"1715525520090\" duration=\"620000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"1er commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713990041596</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713990041596</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"1er commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713990201792</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713990201792</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Implémentation UML tentative 1\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714119248038</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714119248038</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Implémentation UML tentat\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714125761554</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714125761554</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Implémentation UML v3\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715352234154</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715352234154</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Adding lombok for automatic getter/setter\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715525890728</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715525890728</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"lombok in module file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715525974206</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715525974206</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"AccueilScene changement\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715933144757</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715933144757</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"AccueilScene changement\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715933914154</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715933914154</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Update module-info.java + AthleteAjoutController + AthleteController (affichage et ajout fonctionnel)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716464963080</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716464963080</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Tentative pour le header + ajout des autres controller (AthleteAjout marche plus mais Athlete fonctionne aled)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716478832379</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716478832379</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Réparation de la fonction load pour faire marcher AthleteAjoutController\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716533351102</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716533351103</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"13\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\"*.bat\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"1er commit\" />\r\n    <MESSAGE value=\"Implémentation UML tentative 1\" />\r\n    <MESSAGE value=\"Implémentation UML tentat\" />\r\n    <MESSAGE value=\"Implémentation UML v3\" />\r\n    <MESSAGE value=\"Adding lombok for automatic getter/setter\" />\r\n    <MESSAGE value=\"lombok in module file\" />\r\n    <MESSAGE value=\"Update du module-info.java + AthleteAjoutController (fonctionnel) + AthleteController (affichage des données fonctionnel)\" />\r\n    <MESSAGE value=\"AccueilScene changement\" />\r\n    <MESSAGE value=\"Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/org/example/projet_java_2024/frontend/AthleteController.java&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/athletes.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/participants.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/resultats.json\" />\r\n    <MESSAGE value=\"Update module-info.java + AthleteAjoutController + AthleteController (affichage et ajout fonctionnel)\" />\r\n    <MESSAGE value=\"Tentative pour le header + ajout des autres controller (AthleteAjout marche plus mais Athlete fonctionne aled)\" />\r\n    <MESSAGE value=\"Réparation de la fonction load pour faire marcher AthleteAjoutController\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Réparation de la fonction load pour faire marcher AthleteAjoutController\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/.idea/workspace.xml	(date 1716537260011)
+@@ -5,27 +5,16 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Réparation de la fonction load pour faire marcher AthleteAjoutController">
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteModifController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteSupprController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAjoutController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineSupprController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventSupprController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteSupprScene.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineSupprScene.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAjoutScene.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAssignScene.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventSupprScene.fxml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatScene.fxml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/HelloApplication.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatsController.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatsScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteModifScene.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportif.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportif.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/resultats.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/resultats.json" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+Index: src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[{\"id\":1,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":2,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":3,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":4,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":5,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":6,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":7,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":8,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":9,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":10,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":11,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":12,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":13,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":14,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":15,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":16,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":17,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":18,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":19,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":20,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":21,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":22,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":23,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":24,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":25,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":26,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":27,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":28,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":29,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":30,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":31,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":32,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":33,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":34,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":35,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":36,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":37,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":38,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":39,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":40,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":41,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":42,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":43,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":44,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]},{\"id\":45,\"nom\":\"Updated Discipline\",\"participantId\":[1,2,3]}]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json b/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json
+--- a/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json	(date 1716536972666)
+@@ -1,1 +1,4 @@
+-[{"id":1,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":2,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":3,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":4,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":5,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":6,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":7,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":8,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":9,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":10,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":11,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":12,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":13,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":14,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":15,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":16,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":17,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":18,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":19,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":20,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":21,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":22,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":23,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":24,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":25,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":26,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":27,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":28,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":29,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":30,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":31,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":32,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":33,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":34,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":35,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":36,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":37,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":38,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":39,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":40,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":41,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":42,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":43,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":44,"nom":"Updated Discipline","participantId":[1,2,3]},{"id":45,"nom":"Updated Discipline","participantId":[1,2,3]}]
+\ No newline at end of file
++[
++	{ "id": 1, "nom": "Updated Discipline", "participantId": [1, 2, 3] },
++	{ "id": 2, "nom": "Updated Discipline", "participantId": [1, 2, 3] }
++]
+Index: src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[{\"id\":1,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":2,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":3,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":4,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":5,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":6,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":7,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":8,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":9,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":10,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":11,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":12,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":13,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":14,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":15,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":16,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":17,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":18,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":19,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":20,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":21,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":22,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":23,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":24,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":25,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":26,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":27,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":28,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":29,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":30,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":31,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":32,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":33,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":34,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":35,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":36,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":37,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":38,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":39,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":40,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":41,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":42,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":43,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":44,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]},{\"id\":45,\"nom\":\"Updated Event\",\"participantId\":null,\"participantsId\":[1,2,3]}]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json b/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json
+--- a/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json	(date 1716537121912)
+@@ -1,1 +1,8 @@
+-[{"id":1,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":2,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":3,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":4,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":5,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":6,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":7,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":8,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":9,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":10,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":11,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":12,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":13,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":14,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":15,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":16,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":17,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":18,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":19,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":20,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":21,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":22,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":23,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":24,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":25,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":26,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":27,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":28,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":29,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":30,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":31,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":32,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":33,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":34,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":35,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":36,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":37,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":38,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":39,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":40,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":41,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":42,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":43,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":44,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]},{"id":45,"nom":"Updated Event","participantId":null,"participantsId":[1,2,3]}]
+\ No newline at end of file
++[
++	{
++		"id": 1,
++		"nom": "Updated Event",
++		"disciplineSportifId": 1,
++		"participantsId": [1, 2, 3]
++	}
++]
+Index: src/main/java/org/example/projet_java_2024/HelloApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024;\r\n\r\nimport javafx.application.Application;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Scene;\r\nimport javafx.stage.Stage;\r\n\r\nimport java.io.IOException;\r\n\r\n\r\npublic class HelloApplication extends Application {\r\n    @Override\r\n    public void start(Stage stage) throws IOException {\r\n        FXMLLoader fxmlLoader = new FXMLLoader(\r\n                HelloApplication.class.getResource(\"/org/example/projet_java_2024/frontend/AccueilScene.fxml\"));\r\n        Scene scene = new Scene(fxmlLoader.load(), 900, 700);\r\n        stage.setTitle(\"Accueil\");\r\n        stage.setScene(scene);\r\n        stage.show();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/HelloApplication.java b/src/main/java/org/example/projet_java_2024/HelloApplication.java
+--- a/src/main/java/org/example/projet_java_2024/HelloApplication.java	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/java/org/example/projet_java_2024/HelloApplication.java	(date 1716535134411)
+@@ -4,6 +4,7 @@
+ import javafx.fxml.FXMLLoader;
+ import javafx.scene.Scene;
+ import javafx.stage.Stage;
++import org.example.projet_java_2024.backend.AthleteGestionnaire;
+ 
+ import java.io.IOException;
+ 
+@@ -11,6 +12,16 @@
+ public class HelloApplication extends Application {
+     @Override
+     public void start(Stage stage) throws IOException {
++        AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
++        athleteGestionnaire.addAthlete(
++                "bob",
++                "m",
++                "france",
++                4,
++                8
++        );
++
++
+         FXMLLoader fxmlLoader = new FXMLLoader(
+                 HelloApplication.class.getResource("/org/example/projet_java_2024/frontend/AccueilScene.fxml"));
+         Scene scene = new Scene(fxmlLoader.load(), 900, 700);
+Index: src/main/resources/org/example/projet_java_2024/database/resultats.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[{\"id\":1,\"athleteId\":9,\"evenementSportifId\":6,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":2,\"athleteId\":10,\"evenementSportifId\":7,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":3,\"athleteId\":11,\"evenementSportifId\":8,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":4,\"athleteId\":12,\"evenementSportifId\":9,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":5,\"athleteId\":13,\"evenementSportifId\":10,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":6,\"athleteId\":14,\"evenementSportifId\":11,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":7,\"athleteId\":15,\"evenementSportifId\":12,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":8,\"athleteId\":16,\"evenementSportifId\":13,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":9,\"athleteId\":17,\"evenementSportifId\":14,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":10,\"athleteId\":18,\"evenementSportifId\":15,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":11,\"athleteId\":19,\"evenementSportifId\":16,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":12,\"athleteId\":20,\"evenementSportifId\":17,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":13,\"athleteId\":21,\"evenementSportifId\":18,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":14,\"athleteId\":22,\"evenementSportifId\":19,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":15,\"athleteId\":23,\"evenementSportifId\":20,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":16,\"athleteId\":24,\"evenementSportifId\":21,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":17,\"athleteId\":25,\"evenementSportifId\":22,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":18,\"athleteId\":26,\"evenementSportifId\":23,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":19,\"athleteId\":27,\"evenementSportifId\":24,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":20,\"athleteId\":28,\"evenementSportifId\":25,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":21,\"athleteId\":29,\"evenementSportifId\":26,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":22,\"athleteId\":30,\"evenementSportifId\":27,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":23,\"athleteId\":31,\"evenementSportifId\":28,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":24,\"athleteId\":32,\"evenementSportifId\":29,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":25,\"athleteId\":33,\"evenementSportifId\":30,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":26,\"athleteId\":34,\"evenementSportifId\":31,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":27,\"athleteId\":35,\"evenementSportifId\":32,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":28,\"athleteId\":36,\"evenementSportifId\":33,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":29,\"athleteId\":37,\"evenementSportifId\":34,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":30,\"athleteId\":38,\"evenementSportifId\":35,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":31,\"athleteId\":39,\"evenementSportifId\":36,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":32,\"athleteId\":40,\"evenementSportifId\":37,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":33,\"athleteId\":41,\"evenementSportifId\":38,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":34,\"athleteId\":42,\"evenementSportifId\":39,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":35,\"athleteId\":43,\"evenementSportifId\":40,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":36,\"athleteId\":44,\"evenementSportifId\":41,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":37,\"athleteId\":45,\"evenementSportifId\":42,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":38,\"athleteId\":1,\"evenementSportifId\":43,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":39,\"athleteId\":2,\"evenementSportifId\":44,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"},{\"id\":40,\"athleteId\":46,\"evenementSportifId\":45,\"score\":333,\"date\":\"2024-05-12 22:22:22\",\"medaille\":\"Updated Medaille\"}]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/example/projet_java_2024/database/resultats.json b/src/main/resources/org/example/projet_java_2024/database/resultats.json
+--- a/src/main/resources/org/example/projet_java_2024/database/resultats.json	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/resources/org/example/projet_java_2024/database/resultats.json	(date 1716537061050)
+@@ -1,1 +1,322 @@
+-[{"id":1,"athleteId":9,"evenementSportifId":6,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":2,"athleteId":10,"evenementSportifId":7,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":3,"athleteId":11,"evenementSportifId":8,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":4,"athleteId":12,"evenementSportifId":9,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":5,"athleteId":13,"evenementSportifId":10,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":6,"athleteId":14,"evenementSportifId":11,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":7,"athleteId":15,"evenementSportifId":12,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":8,"athleteId":16,"evenementSportifId":13,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":9,"athleteId":17,"evenementSportifId":14,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":10,"athleteId":18,"evenementSportifId":15,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":11,"athleteId":19,"evenementSportifId":16,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":12,"athleteId":20,"evenementSportifId":17,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":13,"athleteId":21,"evenementSportifId":18,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":14,"athleteId":22,"evenementSportifId":19,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":15,"athleteId":23,"evenementSportifId":20,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":16,"athleteId":24,"evenementSportifId":21,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":17,"athleteId":25,"evenementSportifId":22,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":18,"athleteId":26,"evenementSportifId":23,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":19,"athleteId":27,"evenementSportifId":24,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":20,"athleteId":28,"evenementSportifId":25,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":21,"athleteId":29,"evenementSportifId":26,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":22,"athleteId":30,"evenementSportifId":27,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":23,"athleteId":31,"evenementSportifId":28,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":24,"athleteId":32,"evenementSportifId":29,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":25,"athleteId":33,"evenementSportifId":30,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":26,"athleteId":34,"evenementSportifId":31,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":27,"athleteId":35,"evenementSportifId":32,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":28,"athleteId":36,"evenementSportifId":33,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":29,"athleteId":37,"evenementSportifId":34,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":30,"athleteId":38,"evenementSportifId":35,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":31,"athleteId":39,"evenementSportifId":36,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":32,"athleteId":40,"evenementSportifId":37,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":33,"athleteId":41,"evenementSportifId":38,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":34,"athleteId":42,"evenementSportifId":39,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":35,"athleteId":43,"evenementSportifId":40,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":36,"athleteId":44,"evenementSportifId":41,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":37,"athleteId":45,"evenementSportifId":42,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":38,"athleteId":1,"evenementSportifId":43,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":39,"athleteId":2,"evenementSportifId":44,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"},{"id":40,"athleteId":46,"evenementSportifId":45,"score":333,"date":"2024-05-12 22:22:22","medaille":"Updated Medaille"}]
+\ No newline at end of file
++[
++	{
++		"id": 1,
++		"athleteId": 9,
++		"evenementSportifId": 6,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 2,
++		"athleteId": 10,
++		"evenementSportifId": 7,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 3,
++		"athleteId": 11,
++		"evenementSportifId": 8,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 4,
++		"athleteId": 12,
++		"evenementSportifId": 9,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 5,
++		"athleteId": 13,
++		"evenementSportifId": 10,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 6,
++		"athleteId": 14,
++		"evenementSportifId": 11,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 7,
++		"athleteId": 15,
++		"evenementSportifId": 12,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 8,
++		"athleteId": 16,
++		"evenementSportifId": 13,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 9,
++		"athleteId": 17,
++		"evenementSportifId": 14,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 10,
++		"athleteId": 18,
++		"evenementSportifId": 15,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 11,
++		"athleteId": 19,
++		"evenementSportifId": 16,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 12,
++		"athleteId": 20,
++		"evenementSportifId": 17,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 13,
++		"athleteId": 21,
++		"evenementSportifId": 18,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 14,
++		"athleteId": 22,
++		"evenementSportifId": 19,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 15,
++		"athleteId": 23,
++		"evenementSportifId": 20,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 16,
++		"athleteId": 24,
++		"evenementSportifId": 21,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 17,
++		"athleteId": 25,
++		"evenementSportifId": 22,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 18,
++		"athleteId": 26,
++		"evenementSportifId": 23,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 19,
++		"athleteId": 27,
++		"evenementSportifId": 24,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 20,
++		"athleteId": 28,
++		"evenementSportifId": 25,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 21,
++		"athleteId": 29,
++		"evenementSportifId": 26,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 22,
++		"athleteId": 30,
++		"evenementSportifId": 27,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 23,
++		"athleteId": 31,
++		"evenementSportifId": 28,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 24,
++		"athleteId": 32,
++		"evenementSportifId": 29,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 25,
++		"athleteId": 33,
++		"evenementSportifId": 30,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 26,
++		"athleteId": 34,
++		"evenementSportifId": 31,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 27,
++		"athleteId": 35,
++		"evenementSportifId": 32,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 28,
++		"athleteId": 36,
++		"evenementSportifId": 33,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 29,
++		"athleteId": 37,
++		"evenementSportifId": 34,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 30,
++		"athleteId": 38,
++		"evenementSportifId": 35,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 31,
++		"athleteId": 39,
++		"evenementSportifId": 36,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 32,
++		"athleteId": 40,
++		"evenementSportifId": 37,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 33,
++		"athleteId": 41,
++		"evenementSportifId": 38,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 34,
++		"athleteId": 42,
++		"evenementSportifId": 39,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 35,
++		"athleteId": 43,
++		"evenementSportifId": 40,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 36,
++		"athleteId": 44,
++		"evenementSportifId": 41,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 37,
++		"athleteId": 45,
++		"evenementSportifId": 42,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 38,
++		"athleteId": 1,
++		"evenementSportifId": 43,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 39,
++		"athleteId": 2,
++		"evenementSportifId": 44,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	},
++	{
++		"id": 40,
++		"athleteId": 46,
++		"evenementSportifId": 45,
++		"score": 333,
++		"date": "2024-05-12 22:22:22",
++		"medaille": "Updated Medaille"
++	}
++]
+Index: src/main/resources/org/example/projet_java_2024/database/athletes.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[{\"id\":1,\"nom\":\"Usain Bolt\",\"sexe\":\"M\",\"pays\":\"Jamaica\",\"age\":34,\"nbParticipation\":3},{\"id\":2,\"nom\":\"Simone Biles\",\"sexe\":\"F\",\"pays\":\"USA\",\"age\":24,\"nbParticipation\":2},{\"id\":3,\"nom\":\"Michael Phelps\",\"sexe\":\"M\",\"pays\":\"USA\",\"age\":36,\"nbParticipation\":5},{\"id\":4,\"nom\":\"Serena WILLIAMS\",\"sexe\":\"F\",\"pays\":\"USA\",\"age\":42,\"nbParticipation\":4},{\"id\":5,\"nom\":\"Neeraj Chopra\",\"sexe\":\"M\",\"pays\":\"Inde\",\"age\":27,\"nbParticipation\":1},{\"id\":6,\"nom\":\"Kaylee McKeown\",\"sexe\":\"F\",\"pays\":\"Australie\",\"age\":25,\"nbParticipation\":1},{\"id\":7,\"nom\":\"Kristof Milak\",\"sexe\":\"M\",\"pays\":\"Hongrie\",\"age\":24,\"nbParticipation\":1}]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/example/projet_java_2024/database/athletes.json b/src/main/resources/org/example/projet_java_2024/database/athletes.json
+--- a/src/main/resources/org/example/projet_java_2024/database/athletes.json	(revision 7704a1b4d953bfbc074afae09fd065739ccd1783)
++++ b/src/main/resources/org/example/projet_java_2024/database/athletes.json	(date 1716535586437)
+@@ -1,1 +1,1 @@
+-[{"id":1,"nom":"Usain Bolt","sexe":"M","pays":"Jamaica","age":34,"nbParticipation":3},{"id":2,"nom":"Simone Biles","sexe":"F","pays":"USA","age":24,"nbParticipation":2},{"id":3,"nom":"Michael Phelps","sexe":"M","pays":"USA","age":36,"nbParticipation":5},{"id":4,"nom":"Serena WILLIAMS","sexe":"F","pays":"USA","age":42,"nbParticipation":4},{"id":5,"nom":"Neeraj Chopra","sexe":"M","pays":"Inde","age":27,"nbParticipation":1},{"id":6,"nom":"Kaylee McKeown","sexe":"F","pays":"Australie","age":25,"nbParticipation":1},{"id":7,"nom":"Kristof Milak","sexe":"M","pays":"Hongrie","age":24,"nbParticipation":1}]
+\ No newline at end of file
++[{"id":1,"nom":"Usain Bolt","sexe":"M","pays":"Jamaica","age":34,"nbParticipation":3}]
+\ No newline at end of file
