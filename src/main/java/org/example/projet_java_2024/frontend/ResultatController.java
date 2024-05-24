@@ -1,27 +1,19 @@
 package org.example.projet_java_2024.frontend;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.example.projet_java_2024.backend.Resultat;
-import org.example.projet_java_2024.backend.ResultatGestionnaire;
+import org.example.projet_java_2024.backend.*;
 
-public class ResultatController {
+import java.io.IOException;
+
+public class ResultatController extends AccueilController{
     private ResultatGestionnaire resultatGestionnaire = new ResultatGestionnaire();
 
     @FXML
-    private SplitMenuButton athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-    @FXML
-    private MenuItem addAthleteMenuItem, deleteAthleteMenuItem, updateAthleteMenuItem;
-    @FXML
-    private MenuItem addDisciplineMenuItem, deleteDisciplineMenuItem, assignDisciplineMenuItem;
-    @FXML
-    private MenuItem addEventMenuItem, deleteEventMenuItem, assignEventMenuItem;
-    @FXML
-    private MenuItem addResultatMenuItem, deleteResultatMenuItem, classementResultatMenuItem;
+    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 
     @FXML
     private TableView<Resultat> resultatsTableView;
@@ -33,8 +25,18 @@ public class ResultatController {
     @FXML
     public void initialize() {
         // Initialisation des colonnes du TableView
-        athleteColumn.setCellValueFactory(new PropertyValueFactory<>("Athlète"));
-        eventColumn.setCellValueFactory(new PropertyValueFactory<>("Evènement"));
+        athleteColumn.setCellValueFactory(cellData -> {
+            int athleteId = cellData.getValue().getAthleteId();
+            AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
+            Athlete athlete = athleteGestionnaire.getAthleteById(athleteId);
+            return new SimpleStringProperty(athlete.getNom());
+        });
+        eventColumn.setCellValueFactory(cellData -> {
+            int evenementSportifId = cellData.getValue().getEvenementSportifId();
+            EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
+            EvenementSportif evenementSportif = evenementSportifGestionnaire.getEvenementSportifById(evenementSportifId);
+            return new SimpleStringProperty(evenementSportif.getNom());
+        });
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("Date"));
         medailleColumn.setCellValueFactory(new PropertyValueFactory<>("Médaille"));
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("Score"));
@@ -48,8 +50,22 @@ public class ResultatController {
         resultatsTableView.getItems().addAll();
     }
 
-    public void updateResultatList() {
-        loadResultat();
+    public int ajoutResultat(int athleteId, int evenementSportifId, int score, String temps, String medaille) {
+        int newResultatId = resultatGestionnaire.addResultat(athleteId, evenementSportifId, score, temps, medaille);
+        return newResultatId;
+    }
+
+    public void supprResultat(Resultat resultat) {
+        resultatGestionnaire.deleteResultat(resultat.getId());
+    }
+
+    public void onAjouterClick(ActionEvent e) throws IOException {
+        loadScene("/org/example/projet_java_2024/frontend/ResultatAjoutScene.fxml", "Ajouter un résultat", e);
+    }
+
+    public void onSupprClick(ActionEvent e) throws IOException {
+        Resultat selectedResultat = resultatsTableView.getSelectionModel().getSelectedItem();
+        supprResultat(selectedResultat);
     }
 }
 

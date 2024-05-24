@@ -31,6 +31,15 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         throw new IllegalArgumentException("Discipline Sportive not found: " + id);
     }
 
+    public DisciplineSportive getDisciplineSportiveByName(String name) {
+    for (DisciplineSportive disciplineSportive : disciplinesSportives) {
+        if (disciplineSportive.getNom().equals(name)) {
+            return disciplineSportive;
+        }
+    }
+    throw new IllegalArgumentException("Discipline Sportive not found: " + name);
+    }
+
     public int addDisciplineSportive(String nom, List<Integer> participantId) {
         DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1,
                 nom, participantId);

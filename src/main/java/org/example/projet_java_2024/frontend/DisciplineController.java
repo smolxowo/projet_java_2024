@@ -24,6 +24,9 @@ public class DisciplineController extends AccueilController {
     private TableColumn<DisciplineSportive, String> nomColumn, participantColumn;
 
     @FXML
+    private Button ajouterButton, supprButton, assignButton;
+
+    @FXML
     public void initialize() {
         // Initialisation des colonnes du TableView
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("Discipline"));
@@ -52,6 +55,12 @@ public class DisciplineController extends AccueilController {
         int newParticipantId = disciplineSportiveGestionnaire.addParticipantToDisciplineSportif(disciplineSportifId, participantId);
         return newParticipantId;
     }
+
+    public int removeParticipant(int disciplineSportifId, int participantId) {
+        int newParticipantId = disciplineSportiveGestionnaire.removeParticipantFromDisciplineSportif(disciplineSportifId, participantId);
+        return newParticipantId;
+    }
+
 
     public void onAjouterClick(ActionEvent e) throws IOException {
         loadScene("/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml", "Ajouter une discipline", e);

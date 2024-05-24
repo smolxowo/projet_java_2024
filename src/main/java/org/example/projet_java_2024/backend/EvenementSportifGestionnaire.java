@@ -30,6 +30,14 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
         }
         throw new IllegalArgumentException("Evenement Sportif not found: " + id);
     }
+    public EvenementSportif getEvenementSportifByName(String name) {
+        for (EvenementSportif evenementSportif : evenementsSportifs) {
+            if (evenementSportif.getNom().equals(name)) {
+                return evenementSportif;
+            }
+        }
+        throw new IllegalArgumentException("Discipline Sportive not found: " + name);
+    }
 
     public int addEvenementSportif(String nom, int disciplineSportifId) {
         EvenementSportif evenementSportif = new EvenementSportif(evenementsSportifs.size() + 1, nom, disciplineSportifId, new ArrayList<>()); // Nouvelle discipline sans participants

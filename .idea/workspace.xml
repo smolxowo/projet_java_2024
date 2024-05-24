@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Ajouter/Supprimer/Modifier Athlete v56779">
+    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Ajouter/Supprimer Discipline">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_10_09_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_10_09__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_10_19_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_10_19__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAjoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineSupprController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventSupprController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatSupprController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineSupprScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventSupprScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatSupprScene.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,6 +85,7 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -221,7 +239,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716541879731</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Ajouter/Supprimer Discipline">
+      <option name="closed" value="true" />
+      <created>1716543991937</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1716543991937</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -261,6 +287,7 @@
     <MESSAGE value="Tentative pour le header + ajout des autres controller (AthleteAjout marche plus mais Athlete fonctionne aled)" />
     <MESSAGE value="Réparation de la fonction load pour faire marcher AthleteAjoutController" />
     <MESSAGE value="Ajouter/Supprimer/Modifier Athlete v56779" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajouter/Supprimer/Modifier Athlete v56779" />
+    <MESSAGE value="Ajouter/Supprimer Discipline" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajouter/Supprimer Discipline" />
   </component>
 </project>
