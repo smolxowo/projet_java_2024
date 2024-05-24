@@ -1,27 +1,22 @@
 package org.example.projet_java_2024.frontend;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.projet_java_2024.backend.Athlete;
 import org.example.projet_java_2024.backend.DisciplineSportive;
 import org.example.projet_java_2024.backend.DisciplineSportiveGestionnaire;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisciplineController extends AccueilController {
     private DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
 
     @FXML
-    private SplitMenuButton athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-    @FXML
-    private MenuItem addAthleteMenuItem, deleteAthleteMenuItem, updateAthleteMenuItem;
-    @FXML
-    private MenuItem addDisciplineMenuItem, deleteDisciplineMenuItem, assignDisciplineMenuItem;
-    @FXML
-    private MenuItem addEventMenuItem, deleteEventMenuItem, assignEventMenuItem;
-    @FXML
-    private MenuItem addResultatMenuItem, deleteResultatMenuItem, classementResultatMenuItem;
+    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 
     @FXML
     private TableView<DisciplineSportive> disciplineTableView;
@@ -43,12 +38,31 @@ public class DisciplineController extends AccueilController {
         disciplineTableView.getItems().addAll();
     }
 
-    public void updateDisciplineList() {
-        loadDiscipline();
+    public int ajoutDiscipline(String nom) {
+        List<Integer> participantId = new ArrayList<>();
+        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportive(nom,participantId);
+        return newDisciplineId;
     }
 
-    /*public int ajoutDiscipline(String nom){
-        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportif(nom, );
-        return newDisciplineId;
-    }*/
+    public void supprDiscipline(DisciplineSportive disciplineSportive) {
+        disciplineSportiveGestionnaire.deleteDisciplineSportif(disciplineSportive.getId());
+    }
+
+    public int ajoutParticipant(int disciplineSportifId, int participantId) {
+        int newParticipantId = disciplineSportiveGestionnaire.addParticipantToDisciplineSportif(disciplineSportifId, participantId);
+        return newParticipantId;
+    }
+
+    public void onAjouterClick(ActionEvent e) throws IOException {
+        loadScene("/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml", "Ajouter une discipline", e);
+    }
+
+    public void onSupprClick(ActionEvent e) throws IOException {
+        DisciplineSportive selectedDiscipline = disciplineTableView.getSelectionModel().getSelectedItem();
+        supprDiscipline(selectedDiscipline);
+    }
+
+    public void onAssignClick(ActionEvent e) throws IOException {
+        loadScene("/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml", "", e);
+    }
 }

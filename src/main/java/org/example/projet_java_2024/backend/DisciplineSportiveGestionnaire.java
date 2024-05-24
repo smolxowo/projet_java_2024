@@ -31,6 +31,17 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         throw new IllegalArgumentException("Discipline Sportive not found: " + id);
     }
 
+    public int addDisciplineSportive(String nom, List<Integer> participantId) {
+        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1,
+                nom, participantId);
+
+        disciplinesSportives.add(disciplineSportive);
+
+        saveToJSON();
+
+        return disciplineSportive.getId();
+    }
+
     public void deleteDisciplineSportif(int id) {
         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
             if (disciplineSportive.getId() == id) {
