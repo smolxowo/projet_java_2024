@@ -47,8 +47,8 @@ public class EventController extends AccueilController {
         loadDiscipline();
     }
 
-    public int ajoutDiscipline(String nom){
-        int newEventId = evenementSportifGestionnaire.addEvenementSportif(nom);
+    public int ajoutDiscipline(String nom, int disciplineSportiveId){
+        int newEventId = evenementSportifGestionnaire.addEvenementSportif(nom, disciplineSportiveId);
         return newEventId;
     }
 }
