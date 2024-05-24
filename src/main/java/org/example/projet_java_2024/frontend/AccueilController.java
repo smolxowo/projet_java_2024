@@ -31,9 +31,16 @@ public class AccueilController {
         stage.setTitle(title);
         stage.show();
         // Fermeture de la scène précédente
-        Node source = (Node) e.getSource();
-        Stage previousStage = (Stage) source.getScene().getWindow();
-        previousStage.close();
+        Object source = e.getSource();
+        if (source instanceof Node) {
+            Stage previousStage = (Stage) ((Node) source).getScene().getWindow();
+            previousStage.close();
+        } else if (source instanceof MenuItem) {
+            MenuItem menuItem = (MenuItem) source;
+            Scene menuItemScene = menuItem.getParentPopup().getOwnerWindow().getScene();
+            Stage previousStage = (Stage) menuItemScene.getWindow();
+            previousStage.close();
+        }
     }
 
     public void onAthleteMenuButtonClick(ActionEvent e) throws IOException {
