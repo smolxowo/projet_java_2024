@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitMenuButton;
 import javafx.stage.Stage;
@@ -13,15 +14,8 @@ import java.io.IOException;
 
 public class AccueilController {
     @FXML
-    private SplitMenuButton athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-    @FXML
-    private MenuItem addAthleteMenuItem, deleteAthleteMenuItem, updateAthleteMenuItem;
-    @FXML
-    private MenuItem addDisciplineMenuItem, deleteDisciplineMenuItem, assignDisciplineMenuItem;
-    @FXML
-    private MenuItem addEventMenuItem, deleteEventMenuItem, assignEventMenuItem;
-    @FXML
-    private MenuItem addResultatMenuItem, deleteResultatMenuItem, classementResultatMenuItem;
+    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+
 
     public void loadScene(String fxmlFile, String title, ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));

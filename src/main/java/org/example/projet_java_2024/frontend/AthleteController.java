@@ -2,7 +2,7 @@ package org.example.projet_java_2024.frontend;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.SplitMenuButton;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,15 +13,8 @@ public class AthleteController extends AccueilController {
     private AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
 
     @FXML
-    private SplitMenuButton athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-    @FXML
-    private MenuItem addAthleteMenuItem, deleteAthleteMenuItem, updateAthleteMenuItem;
-    @FXML
-    private MenuItem addDisciplineMenuItem, deleteDisciplineMenuItem, assignDisciplineMenuItem;
-    @FXML
-    private MenuItem addEventMenuItem, deleteEventMenuItem, assignEventMenuItem;
-    @FXML
-    private MenuItem addResultatMenuItem, deleteResultatMenuItem, classementResultatMenuItem;
+    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+
 
     @FXML
     private TableView<Athlete> athleteTableView;

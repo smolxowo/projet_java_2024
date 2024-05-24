@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -46,45 +45,29 @@
         </GridPane>
         <VBox layoutY="120.0" prefHeight="580.0" prefWidth="900.0">
             <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="50.0" style="-fx-background-color: #D6C278;">
+                <HBox alignment="CENTER" prefHeight="72.0" prefWidth="900.0" spacing="50.0" style="-fx-background-color: #D6C278;">
                     <children>
-                        <SplitMenuButton fx:id="athleteMenuButton" mnemonicParsing="false" onAction="#onAthleteMenuButtonClick" prefWidth="100.0" text="Athlète">
-                            <items>
-                                <MenuItem fx:id="addAthleteMenuItem" mnemonicParsing="false" onAction="#onAddAthleteMenuItemClick" text="Ajouter" />
-                                <MenuItem fx:id="deleteAthleteMenuItem" mnemonicParsing="false" onAction="#onDeleteAthleteMenuItemClick" text="Supprimer" />
-                                <MenuItem fx:id="updateAthleteMenuItem" mnemonicParsing="false" onAction="#onUpdateAthleteMenuItemClick" text="Modifier les informations" />
-                            </items>
-                            <font>
-                                <Font name="Candara" size="12.0" />
-                            </font>
-                        </SplitMenuButton>
-                        <SplitMenuButton fx:id="disciplineMenuButton" mnemonicParsing="false" onAction="#onDisciplineMenuButtonClick" prefWidth="100.0" text="Discipline">
-                            <items>
-                                <MenuItem fx:id="addDisciplineMenuItem" mnemonicParsing="false" onAction="#onAddDisciplineMenuItemClick" text="Ajouter" />
-                                <MenuItem fx:id="deleteDisciplineMenuItem" mnemonicParsing="false" onAction="#onDeleteDisciplineMenuItemClick" text="Supprimer" />
-                                <MenuItem fx:id="assignDisciplineMenuItem" mnemonicParsing="false" onAction="#onAssignDisciplineMenuItemClick" text="Attribuer à un athlète" />
-                            </items>
-                        </SplitMenuButton>
-                        <SplitMenuButton fx:id="eventMenuButton" mnemonicParsing="false" onAction="#onEventMenuButtonClick" prefWidth="100.0" text="Evènement">
-                            <items>
-                                <MenuItem fx:id="addEventMenuItem" mnemonicParsing="false" onAction="#onAddEventMenuItemClick" text="Ajouter" />
-                                <MenuItem fx:id="deleteEventMenuItem" mnemonicParsing="false" onAction="#onDeleteEventMenuItemClick" text="Supprimer" />
-                                <MenuItem fx:id="assignEventMenuItem" mnemonicParsing="false" onAction="#onAssignEventMenuItemClick" text="Attribuer à un athlète" />
-                            </items>
-                        </SplitMenuButton>
-                        <SplitMenuButton fx:id="resultatsMenuButton" mnemonicParsing="false" onAction="#onResultatsMenuButtonClick" prefWidth="100.0" text="Résultats">
-                            <items>
-                                <MenuItem fx:id="addResultatMenuItem" mnemonicParsing="false" onAction="#onAddResultatMenuItemClick" text="Ajouter" />
-                                <MenuItem fx:id="deleteResultatMenuItem" mnemonicParsing="false" onAction="#onDeleteResultatMenuItemClick" text="Supprimer" />
-                                <MenuItem fx:id="classementResultatMenuItem" mnemonicParsing="false" onAction="#onClassementResultatMenuItemClick" text="Classement" />
-                            </items>
-                        </SplitMenuButton>
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Accueil" />
+                  <Button fx:id="athleteMenuButton" mnemonicParsing="false" onAction="#onAthleteMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Athlètes" />
+                  <Button fx:id="disciplineMenuButton" mnemonicParsing="false" onAction="#onDisciplineMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Disciplines" />
+                  <Button fx:id="eventMenuButton" mnemonicParsing="false" onAction="#onEventMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Évènements" />
+                  <Button fx:id="resultatsMenuButton" mnemonicParsing="false" onAction="#onResultatsMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Résultats" />
                     </children>
                     <padding>
                         <Insets left="20.0" />
                     </padding>
                 </HBox>
-            <TableView fx:id="athleteTableView" prefHeight="532.0" prefWidth="900.0">
+            <HBox alignment="CENTER" prefHeight="56.0" prefWidth="900.0" spacing="50.0" style="-fx-background-color: 0;">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Ajouter" />
+                  <Button fx:id="athleteMenuButton1" mnemonicParsing="false" onAction="#onAthleteMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Modifier" />
+                  <Button fx:id="disciplineMenuButton1" mnemonicParsing="false" onAction="#onDisciplineMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Supprimer" />
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </HBox>
+            <TableView fx:id="athleteTableView" prefHeight="468.0" prefWidth="901.0">
               <columns>
                   <TableColumn fx:id="nomColumn" prefWidth="125.59996795654297" text="Nom" />
                   <TableColumn fx:id="sexeColumn" prefWidth="34.39996337890625" text="Sexe" />
