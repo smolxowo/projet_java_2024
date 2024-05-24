@@ -6,12 +6,10 @@ import javafx.scene.control.SplitMenuButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import org.example.projet_java_2024.backend.EvenementSportif;
-import org.example.projet_java_2024.backend.EvenementSportifGestionnaire;
 import org.example.projet_java_2024.backend.Resultat;
 import org.example.projet_java_2024.backend.ResultatGestionnaire;
 
-public class ResultatsController extends AccueilController {
+public class ResultatController {
     private ResultatGestionnaire resultatGestionnaire = new ResultatGestionnaire();
 
     @FXML
@@ -53,5 +51,5 @@ public class ResultatsController extends AccueilController {
     public void updateResultatList() {
         loadResultat();
     }
-
 }
+
