@@ -39,7 +39,7 @@ public class AthleteController extends AccueilController {
         loadAthletes();
     }
 
-    private void loadAthletes() {
+    public void loadAthletes() {
         athleteTableView.getItems().clear();
         athleteTableView.getItems().addAll(athleteGestionnaire.getAllAthletes());
     }
