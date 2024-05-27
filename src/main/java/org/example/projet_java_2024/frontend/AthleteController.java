@@ -16,7 +16,8 @@ public class AthleteController extends AccueilController {
 
     @FXML
     private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-
+    @FXML
+    private Button ajouter, modifier, supprimer;
 
     @FXML
     protected TableView<Athlete> athleteTableView;

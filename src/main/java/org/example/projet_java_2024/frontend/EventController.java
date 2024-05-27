@@ -14,7 +14,9 @@ public class EventController extends AccueilController {
     private EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
 
     @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    @FXML
+    private Button ajouter, assign, supprimer;
 
     @FXML
     private Button ajouterButton, supprButton, assignButton;

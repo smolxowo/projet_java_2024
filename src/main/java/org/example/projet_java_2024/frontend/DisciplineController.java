@@ -16,7 +16,9 @@ public class DisciplineController extends AccueilController {
     private DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
 
     @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    @FXML
+    private Button ajouter, assign, supprimer;
 
     @FXML
     private TableView<DisciplineSportive> disciplineTableView;

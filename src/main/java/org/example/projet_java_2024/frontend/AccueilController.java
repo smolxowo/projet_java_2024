@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class AccueilController {
     @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    private Button accueilMenuButton ,athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 
 
     public void loadScene(String fxmlFile, String title, ActionEvent e) throws IOException {
@@ -37,6 +37,9 @@ public class AccueilController {
         }
     }
 
+    public void onAccueilMenuButtonClick(ActionEvent e) throws IOException {
+        loadScene("/org/example/projet_java_2024/frontend/AccueilScene.fxml", "Accueil", e);
+    }
     public void onAthleteMenuButtonClick(ActionEvent e) throws IOException {
         loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
     }

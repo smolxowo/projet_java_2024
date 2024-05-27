@@ -4,28 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Ajouter/Supprimer Discipline">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_10_09_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_10_09__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_10_19_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_17_05_2024_10_19__Changes_.xml" beforeDir="false" />
+    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Plupart des controllers fait (à tester)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AccueilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AccueilController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineSupprController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventSupprController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatSupprController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineSupprScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventSupprScene.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatSupprScene.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AccueilScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AccueilScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteAjoutScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteAjoutScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -247,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716543991937</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Plupart des controllers fait (à tester)">
+      <option name="closed" value="true" />
+      <created>1716564457274</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1716564457274</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -288,6 +286,7 @@
     <MESSAGE value="Réparation de la fonction load pour faire marcher AthleteAjoutController" />
     <MESSAGE value="Ajouter/Supprimer/Modifier Athlete v56779" />
     <MESSAGE value="Ajouter/Supprimer Discipline" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajouter/Supprimer Discipline" />
+    <MESSAGE value="Plupart des controllers fait (à tester)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Plupart des controllers fait (à tester)" />
   </component>
 </project>

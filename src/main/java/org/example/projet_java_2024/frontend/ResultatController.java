@@ -13,7 +13,9 @@ public class ResultatController extends AccueilController{
     private ResultatGestionnaire resultatGestionnaire = new ResultatGestionnaire();
 
     @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    @FXML
+    private Button ajouter, supprimer, classement;
 
     @FXML
     private TableView<Resultat> resultatsTableView;
