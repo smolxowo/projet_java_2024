@@ -14,8 +14,6 @@ import java.util.List;
 
 public class EventController extends AccueilController {
     @FXML
-    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-    @FXML
     private Button ajouter, assign, supprimer;
 
     @FXML
@@ -24,6 +22,8 @@ public class EventController extends AccueilController {
     protected TableColumn<EvenementSportif, String> eventColumn, athleteColumn;
     @FXML
     protected TableColumn<EvenementSportif, String> disciplineColumn;
+
+    protected static EvenementSportif SELECTED_EVENT = null;
 
     @FXML
     public void initialize() {
@@ -72,11 +72,29 @@ public class EventController extends AccueilController {
 
     public void onSupprClick(ActionEvent e) throws IOException {
         EvenementSportif selectedEvent = eventTableView.getSelectionModel().getSelectedItem();
-        supprEvent(selectedEvent);
+        if (selectedEvent == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucun évènement sélectionné");
+            alert.setContentText("Veuillez sélectionner un évènement à supprimer");
+            alert.showAndWait();
+        } else {
+            supprEvent(selectedEvent);
+            loadEvenements();
+        }
     }
 
     public void onAssignClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/EventAssignScene.fxml", "Assigner un évènement", e);
-    }
+        SELECTED_EVENT = eventTableView.getSelectionModel().getSelectedItem();
 
+        if (SELECTED_EVENT == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucun évènement sélectionné");
+            alert.setContentText("Veuillez sélectionner un évènement à assigner");
+            alert.showAndWait();
+        } else {
+            loadScene("/org/example/projet_java_2024/frontend/EventAssignScene.fxml", "Assigner un évènement", e);
+        }
+    }
 }

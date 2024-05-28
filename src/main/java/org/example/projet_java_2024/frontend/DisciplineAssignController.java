@@ -30,11 +30,11 @@ public class DisciplineAssignController extends DisciplineController {
 
     for (Athlete athlete : allAthletes) {
         CheckBox checkBox = new CheckBox(athlete.getNom());
-        athleteChecks.add(checkBox); // Ajoute chaque CheckBox à la liste
-        checkBoxContainer.getChildren().add(checkBox); // Ajoute la CheckBox à la VBox
+        athleteChecks.add(checkBox);
+        checkBoxContainer.getChildren().add(checkBox);
 
-        // Add a left margin to the CheckBox
-        VBox.setMargin(checkBox, new Insets(0, 0, 0, 10)); // 10 units of left margin
+        // left margin for the eyes
+        VBox.setMargin(checkBox, new Insets(0, 0, 0, 10));
 
         // check the box if athlete is in this discipline
         if (athletesId.contains(athlete.getId())) {
@@ -60,20 +60,7 @@ public class DisciplineAssignController extends DisciplineController {
                 DISCIPLINE_GESTIONNAIRE.addAthleteToDisciplineSportive(SELECTED_DISCIPLINE.getId(), selectedAthlete.getId());
             }
         }
-        loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);
-    }
 
-    public void onRemoveClick(ActionEvent e) throws IOException {
-        String selectedDisciplineName = SELECTED_DISCIPLINE.getNom();
-        DisciplineSportive selectedDiscipline = DISCIPLINE_GESTIONNAIRE.getDisciplineSportiveByName(selectedDisciplineName);
-
-        for (CheckBox checkBox : athleteChecks) {
-            if (checkBox.isSelected()) {
-                String athleteName = checkBox.getText();
-                Athlete selectedAthlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
-                removeAthlete(selectedDiscipline.getId(), selectedAthlete.getId());
-            }
-        }
         loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);
     }
 }
