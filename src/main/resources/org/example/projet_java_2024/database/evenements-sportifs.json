@@ -5,5 +5,7 @@
 		"disciplineSportifId": 1,
 		"participantsId": [1, 2, 3]
 	},
-	{ "id": 2, "nom": "course", "disciplineSportifId": 1, "participantsId": [] }
+	{
+		"id": 2, "nom": "course", "disciplineSportifId": 1, "participantsId": []
+	}
 ]
