@@ -66,7 +66,7 @@ public class AccueilController {
 
     @FXML
     public void onResultatsMenuButtonClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/ResultatsScene.fxml", "Résultats", e);
+        loadScene("/org/example/projet_java_2024/frontend/ResultatScene.fxml", "Résultats", e);
     }
 }
 
