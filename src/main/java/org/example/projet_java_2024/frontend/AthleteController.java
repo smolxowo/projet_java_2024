@@ -2,12 +2,13 @@ package org.example.projet_java_2024.frontend;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.projet_java_2024.backend.Athlete;
-import org.example.projet_java_2024.backend.AthleteGestionnaire;
+import org.example.projet_java_2024.frontend.SelectedAthlete;
 
 import java.io.IOException;
 
@@ -49,7 +50,7 @@ public class AthleteController extends AccueilController {
     }
 
     public int modifAthlete(String nom, String sexe, String pays, int age, int nbParticip) {
-        Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
+        Athlete selectedAthlete = SelectedAthlete.getSelectedAthlete();
         int id = selectedAthlete.getId();
         int newAthleteId = athleteGestionnaire.updateAthlete(id, nom, sexe, pays, age, nbParticip);
         return newAthleteId;
@@ -62,9 +63,21 @@ public class AthleteController extends AccueilController {
     public void onSupprClick(ActionEvent e) throws IOException {
         Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
         supprAthlete(selectedAthlete);
+        loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
     }
 
     public void onModifClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/AthleteModifScene.fxml", "Modifier un athlète", e);
+        Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
+        if (selectedAthlete == null) {
+            // Afficher un message d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de sélection");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner un athlète à modifier.");
+            alert.showAndWait();
+        } else {
+            SelectedAthlete.setSelectedAthlete(selectedAthlete);
+            loadScene("/org/example/projet_java_2024/frontend/AthleteModifScene.fxml", "Modifier un athlète", e);
+        }
     }
 }
