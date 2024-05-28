@@ -29,7 +29,7 @@ public class DisciplineController extends AccueilController {
                 List<Integer> athletesId = cellData.getValue().getAthletesId();
                 List<String> athletesNames = new ArrayList<>();
                 for (Integer id : athletesId) {
-                    String name = athleteGestionnaire.getAthleteNameById(id);
+                    String name = ATHLETE_GESTIONNAIRE.getAthleteNameById(id);
                     athletesNames.add(name);
                 }
                 return new SimpleStringProperty(String.join(", ", athletesNames));
@@ -43,28 +43,28 @@ public class DisciplineController extends AccueilController {
     protected void loadDiscipline() {
         if (disciplineTableView != null) {
             disciplineTableView.getItems().clear();
-            List<DisciplineSportive> disciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();
+            List<DisciplineSportive> disciplines = DISCIPLINE_GESTIONNAIRE.getAllDisciplinesSportives();
             disciplineTableView.getItems().addAll(disciplines);
         }
     }
 
     public int ajoutDiscipline(String nom) {
         List<Integer> athletesId = new ArrayList<>();
-        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportive(nom, athletesId);
+        int newDisciplineId = DISCIPLINE_GESTIONNAIRE.addDisciplineSportive(nom, athletesId);
         return newDisciplineId;
     }
 
     public void supprDiscipline(DisciplineSportive disciplineSportive) {
-        disciplineSportiveGestionnaire.deleteDisciplineSportif(disciplineSportive.getId());
+        DISCIPLINE_GESTIONNAIRE.deleteDisciplineSportif(disciplineSportive.getId());
     }
 
     public int ajoutAthlete(int disciplineSportifId, int athleteId) {
-        int newAthleteId = disciplineSportiveGestionnaire.addAthleteToDisciplineSportif(disciplineSportifId, athleteId);
+        int newAthleteId = DISCIPLINE_GESTIONNAIRE.addAthleteToDisciplineSportif(disciplineSportifId, athleteId);
         return newAthleteId;
     }
 
     public int removeAthlete(int disciplineSportifId, int athleteId) {
-        int newAthleteId = disciplineSportiveGestionnaire.removeAthleteFromDisciplineSportif(disciplineSportifId, athleteId);
+        int newAthleteId = DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportif(disciplineSportifId, athleteId);
         return newAthleteId;
     }
 

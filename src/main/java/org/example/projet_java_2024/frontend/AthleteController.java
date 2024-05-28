@@ -20,6 +20,8 @@ public class AthleteController extends AccueilController {
     @FXML
     protected TableColumn<Athlete, Integer> ageColumn, participationColumn;
 
+    protected static Athlete SELECTED_ATHLETE = null;
+
     @FXML
     public void initialize() {
         // Initialisation des colonnes du TableView
@@ -35,22 +37,22 @@ public class AthleteController extends AccueilController {
 
     public void loadAthletes() {
         athleteTableView.getItems().clear();
-        athleteTableView.getItems().addAll(athleteGestionnaire.getAllAthletes());
+        athleteTableView.getItems().addAll(ATHLETE_GESTIONNAIRE.getAllAthletes());
     }
 
     public int ajoutAthlete(String nom, String sexe, String pays, int age, int nbParticip) {
-        int newAthleteId = athleteGestionnaire.addAthlete(nom, sexe, pays, age, nbParticip);
+        int newAthleteId = ATHLETE_GESTIONNAIRE.addAthlete(nom, sexe, pays, age, nbParticip);
         return newAthleteId;
     }
 
     public void supprAthlete(Athlete athlete) {
-        athleteGestionnaire.deleteAthlete(athlete.getId());
+        ATHLETE_GESTIONNAIRE.deleteAthlete(athlete.getId());
     }
 
     public int modifAthlete(String nom, String sexe, String pays, int age, int nbParticip) {
-        Athlete selectedAthlete = SelectedAthlete.getSelectedAthlete();
+        Athlete selectedAthlete = SELECTED_ATHLETE;
         int id = selectedAthlete.getId();
-        int newAthleteId = athleteGestionnaire.updateAthlete(id, nom, sexe, pays, age, nbParticip);
+        int newAthleteId = ATHLETE_GESTIONNAIRE.updateAthlete(id, nom, sexe, pays, age, nbParticip);
         return newAthleteId;
     }
 
@@ -74,7 +76,7 @@ public class AthleteController extends AccueilController {
             alert.setContentText("Veuillez sélectionner un athlète à modifier.");
             alert.showAndWait();
         } else {
-            SelectedAthlete.setSelectedAthlete(selectedAthlete);
+            SELECTED_ATHLETE = selectedAthlete;
             loadScene("/org/example/projet_java_2024/frontend/AthleteModifScene.fxml", "Modifier un athlète", e);
         }
     }

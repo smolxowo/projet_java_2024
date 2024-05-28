@@ -8,17 +8,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
-import org.example.projet_java_2024.backend.Athlete;
 import org.example.projet_java_2024.backend.AthleteGestionnaire;
 import org.example.projet_java_2024.backend.DisciplineSportiveGestionnaire;
 import org.example.projet_java_2024.backend.EvenementSportifGestionnaire;
+import org.example.projet_java_2024.backend.ResultatGestionnaire;
 
 import java.io.IOException;
 
 public class AccueilController {
-    protected static AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
-    protected static DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
-    protected static EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
+    protected static AthleteGestionnaire ATHLETE_GESTIONNAIRE = new AthleteGestionnaire();
+    protected static DisciplineSportiveGestionnaire DISCIPLINE_GESTIONNAIRE = new DisciplineSportiveGestionnaire();
+    protected static EvenementSportifGestionnaire EVENEMENT_GESTIONNAIRE = new EvenementSportifGestionnaire();
+    protected static ResultatGestionnaire RESULTAT_GESTIONNAIRE = new ResultatGestionnaire();
 
     @FXML
     protected Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;

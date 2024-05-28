@@ -7,19 +7,13 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import org.example.projet_java_2024.backend.Athlete;
-import org.example.projet_java_2024.backend.AthleteGestionnaire;
 import org.example.projet_java_2024.backend.DisciplineSportive;
-import org.example.projet_java_2024.backend.DisciplineSportiveGestionnaire;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplineAssignController extends DisciplineController {
-    //Faire un select des disciplines et une checklist des athlètes
-    DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
-    AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
-
     @FXML
     private ComboBox<String> disciplineSelect;
 
@@ -35,11 +29,11 @@ public class DisciplineAssignController extends DisciplineController {
 
     @FXML
     public void initialize() {
-        List<DisciplineSportive> allDisciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();
+        List<DisciplineSportive> allDisciplines = DISCIPLINE_GESTIONNAIRE.getAllDisciplinesSportives();
         for (DisciplineSportive discipline : allDisciplines) {
             disciplineSelect.getItems().add(discipline.getNom());
         }
-        List<Athlete> allAthletes = athleteGestionnaire.getAllAthletes();
+        List<Athlete> allAthletes = ATHLETE_GESTIONNAIRE.getAllAthletes();
         for (Athlete athlete : allAthletes) {
             CheckBox checkBox = new CheckBox(athlete.getNom());
             athleteChecks.add(checkBox); // Ajoute chaque CheckBox à la liste
@@ -55,7 +49,7 @@ public class DisciplineAssignController extends DisciplineController {
 
     private void updateDisciplineList() {
         disciplineSelect.getItems().clear();
-        List<DisciplineSportive> allDisciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();
+        List<DisciplineSportive> allDisciplines = DISCIPLINE_GESTIONNAIRE.getAllDisciplinesSportives();
         for (DisciplineSportive discipline : allDisciplines) {
             disciplineSelect.getItems().add(discipline.getNom());
         }
@@ -63,12 +57,13 @@ public class DisciplineAssignController extends DisciplineController {
 
     public void onAssignerClick(ActionEvent e) throws IOException {
         String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();
-        DisciplineSportive selectedDiscipline = disciplineSportiveGestionnaire.getDisciplineSportiveByName(selectedDisciplineName);
+        System.out.println("SELECTED: " + selectedDisciplineName);
+        DisciplineSportive selectedDiscipline = DISCIPLINE_GESTIONNAIRE.getDisciplineSportiveByName(selectedDisciplineName);
 
         for (CheckBox checkBox : athleteChecks) {
             if (checkBox.isSelected()) {
                 String athleteName = checkBox.getText();
-                Athlete selectedAthlete = athleteGestionnaire.getAthleteByName(athleteName);
+                Athlete selectedAthlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
                 ajoutAthlete(selectedDiscipline.getId(), selectedAthlete.getId());
             }
         }
@@ -77,12 +72,12 @@ public class DisciplineAssignController extends DisciplineController {
 
     public void onRemoveClick(ActionEvent e) throws IOException {
         String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();
-        DisciplineSportive selectedDiscipline = disciplineSportiveGestionnaire.getDisciplineSportiveByName(selectedDisciplineName);
+        DisciplineSportive selectedDiscipline = DISCIPLINE_GESTIONNAIRE.getDisciplineSportiveByName(selectedDisciplineName);
 
         for (CheckBox checkBox : athleteChecks) {
             if (checkBox.isSelected()) {
                 String athleteName = checkBox.getText();
-                Athlete selectedAthlete = athleteGestionnaire.getAthleteByName(athleteName);
+                Athlete selectedAthlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
                 removeAthlete(selectedDiscipline.getId(), selectedAthlete.getId());
             }
         }

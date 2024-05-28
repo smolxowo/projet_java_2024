@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.example.projet_java_2024.backend.Athlete;
-import org.example.projet_java_2024.frontend.SelectedAthlete;
 
 import java.io.IOException;
 
@@ -23,7 +22,8 @@ public class AthleteModifController extends AthleteController{
     private Button annuler;
 
     public void initialize() {
-        Athlete selectedAthlete = SelectedAthlete.getSelectedAthlete();
+        Athlete selectedAthlete = SELECTED_ATHLETE;
+
         // Définir les informations de l'athlète sélectionné dans les TextField
         if (selectedAthlete != null) {
             nomInput.setText(selectedAthlete.getNom());
