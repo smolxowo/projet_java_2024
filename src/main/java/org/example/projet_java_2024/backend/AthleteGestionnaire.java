@@ -92,18 +92,23 @@ public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
                           String pays,
                           int age,
                           int nbParticipation) {
-        Athlete athlete = new Athlete(athletes.size() + 1,
+
+        int nextId = getNextId();
+
+        Athlete athlete = new Athlete(
+                nextId,
                 nomAthlete,
                 sexe,
                 pays,
                 age,
-                nbParticipation);
+                nbParticipation
+        );
 
         athletes.add(athlete);
 
         saveToJSON();
 
-        return athlete.getId();
+        return nextId;
     }
 
     // Please don't
