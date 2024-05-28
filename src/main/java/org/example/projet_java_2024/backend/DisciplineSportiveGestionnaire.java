@@ -32,22 +32,18 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
     }
 
     public DisciplineSportive getDisciplineSportiveByName(String name) {
-    for (DisciplineSportive disciplineSportive : disciplinesSportives) {
-        if (disciplineSportive.getNom().equals(name)) {
-            return disciplineSportive;
+        for (DisciplineSportive disciplineSportive : disciplinesSportives) {
+            if (disciplineSportive.getNom().equals(name)) {
+                return disciplineSportive;
+            }
         }
-    }
-    throw new IllegalArgumentException("Discipline Sportive not found: " + name);
+        throw new IllegalArgumentException("Discipline Sportive not found: " + name);
     }
 
     public int addDisciplineSportive(String nom, List<Integer> participantId) {
-        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1,
-                nom, participantId);
-
+        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1, nom, participantId);
         disciplinesSportives.add(disciplineSportive);
-
         saveToJSON();
-
         return disciplineSportive.getId();
     }
 
@@ -76,7 +72,7 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
     public int removeParticipantFromDisciplineSportif(int disciplineSportifId, int participantId) {
         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
             if (disciplineSportive.getId() == disciplineSportifId) {
-                disciplineSportive.getParticipantId().remove(participantId);
+                disciplineSportive.getParticipantId().remove(Integer.valueOf(participantId));
                 saveToJSON();
                 return disciplineSportifId;
             }
