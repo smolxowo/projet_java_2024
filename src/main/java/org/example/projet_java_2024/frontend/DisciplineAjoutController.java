@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class DisciplineAjoutController extends DisciplineController {
+public class DisciplineAjoutController extends AccueilController {
     @FXML
     private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 

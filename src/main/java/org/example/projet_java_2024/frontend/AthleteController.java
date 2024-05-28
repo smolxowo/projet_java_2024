@@ -12,19 +12,14 @@ import org.example.projet_java_2024.backend.AthleteGestionnaire;
 import java.io.IOException;
 
 public class AthleteController extends AccueilController {
-    private AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
-
-    @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-    @FXML
-    private Button ajouter, modifier, supprimer;
+    @FXML protected Button ajouter, modifier, supprimer;
 
     @FXML
     protected TableView<Athlete> athleteTableView;
     @FXML
-    private TableColumn<Athlete, String> nomColumn, sexeColumn, paysColumn;
+    protected TableColumn<Athlete, String> nomColumn, sexeColumn, paysColumn;
     @FXML
-    private TableColumn<Athlete, Integer> ageColumn, participationColumn;
+    protected TableColumn<Athlete, Integer> ageColumn, participationColumn;
 
     @FXML
     public void initialize() {
@@ -39,7 +34,7 @@ public class AthleteController extends AccueilController {
         loadAthletes();
     }
 
-    private void loadAthletes() {
+    public void loadAthletes() {
         athleteTableView.getItems().clear();
         athleteTableView.getItems().addAll(athleteGestionnaire.getAllAthletes());
     }

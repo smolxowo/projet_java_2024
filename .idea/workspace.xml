@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Différentes Scenes (tout ne fonctionne pas)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteModifController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteModifController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteModifScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteModifScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAjoutScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAjoutScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAssignScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAssignScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatAjoutScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatAjoutScene.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatScene.fxml" afterDir="false" />
+    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Vue athlete actualisée">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AccueilScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AccueilScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,16 +29,21 @@
     &quot;assignee&quot;: &quot;smolxowo&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="3ed79730-7b74-4a34-aeec-5549a5630d97" />
-        <option name="url" value="https://github.com/smolxowo/projet_java_2024" />
-      </UrlAndAccount>
-    </option>
-  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/smolxowo/projet_java_2024&quot;,
+    &quot;accountId&quot;: &quot;5514e30a-6b53-43bc-bfca-88d8a08680da&quot;
+  }
+}</component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="g651ff75" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -117,7 +105,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -131,6 +120,8 @@
       <updated>1713989858730</updated>
       <workItem from="1715525483183" duration="27000" />
       <workItem from="1715525520090" duration="620000" />
+      <workItem from="1716901171703" duration="143000" />
+      <workItem from="1716901414436" duration="3562000" />
     </task>
     <task id="LOCAL-00001" summary="1er commit">
       <option name="closed" value="true" />
@@ -244,23 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716543991937</updated>
     </task>
-    <task id="LOCAL-00015" summary="Plupart des controllers fait (à tester)">
+    <task id="LOCAL-00015" summary="Vue athlete actualisée">
       <option name="closed" value="true" />
-      <created>1716564457274</created>
+      <created>1716904854931</created>
       <option name="number" value="00015" />
       <option name="presentableId" value="LOCAL-00015" />
       <option name="project" value="LOCAL" />
-      <updated>1716564457274</updated>
+      <updated>1716904854931</updated>
     </task>
-    <task id="LOCAL-00016" summary="Différentes Scenes (tout ne fonctionne pas)">
-      <option name="closed" value="true" />
-      <created>1716831279142</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1716831279142</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,8 +284,7 @@
     <MESSAGE value="Réparation de la fonction load pour faire marcher AthleteAjoutController" />
     <MESSAGE value="Ajouter/Supprimer/Modifier Athlete v56779" />
     <MESSAGE value="Ajouter/Supprimer Discipline" />
-    <MESSAGE value="Plupart des controllers fait (à tester)" />
-    <MESSAGE value="Différentes Scenes (tout ne fonctionne pas)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Différentes Scenes (tout ne fonctionne pas)" />
+    <MESSAGE value="Vue athlete actualisée" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vue athlete actualisée" />
   </component>
 </project>
