@@ -25,8 +25,6 @@ public class DisciplineController extends AccueilController {
     @FXML
     private TableColumn<DisciplineSportive, String> nomColumn, participantColumn;
 
-    @FXML
-    private Button ajouterButton, supprButton, assignButton;
 
     @FXML
     public void initialize() {

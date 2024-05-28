@@ -19,9 +19,6 @@ public class EventController extends AccueilController {
     private Button ajouter, assign, supprimer;
 
     @FXML
-    private Button ajouterButton, supprButton, assignButton;
-
-    @FXML
     private TableView<EvenementSportif> eventTableView;
     @FXML
     private TableColumn<EvenementSportif, String> eventColumn, participantColumn;

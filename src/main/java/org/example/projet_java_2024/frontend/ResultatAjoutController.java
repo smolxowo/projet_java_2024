@@ -18,6 +18,8 @@ public class ResultatAjoutController extends ResultatController {
     private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 
     @FXML
+    private Button ajouter, supprimer, classement;
+    @FXML
     private ComboBox<String> athleteSelect, eventSelect, medailleSelect;
 
     @FXML
@@ -25,7 +27,7 @@ public class ResultatAjoutController extends ResultatController {
     @FXML
     private TextField scoreField, dateField;
     @FXML
-    private Button ajouter;
+    private Button ajouterResultat;
 
     @FXML
     public void initialize() {
@@ -43,7 +45,7 @@ public class ResultatAjoutController extends ResultatController {
         medailleSelect.getItems().addAll("Or", "Argent", "Bronze", "Aucune");
     }
 
-    public void onAjouterClick(ActionEvent e) throws IOException {
+    public void onAjouterResultatClick(ActionEvent e) throws IOException {
         String athleteName = athleteSelect.getSelectionModel().getSelectedItem();
         Athlete athlete = athleteGestionnaire.getAthleteByName(athleteName);
 

@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.layout.VBox;
 import org.example.projet_java_2024.backend.*;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class EventAssignController {
     private Button remove;
 
     @FXML
+    private VBox checkBoxContainer;
+
+    @FXML
     private List<CheckBox> participantChecks = new ArrayList<>(); // Liste pour stocker vos CheckBox
 
     @FXML
@@ -43,6 +47,7 @@ public class EventAssignController {
         for (Athlete athlete : allAthletes) {
             CheckBox checkBox = new CheckBox(athlete.getNom());
             participantChecks.add(checkBox); // Ajoute chaque CheckBox à la liste
+            checkBoxContainer.getChildren().add(checkBox); // Ajoute la CheckBox à la VBox
         }
     }
 

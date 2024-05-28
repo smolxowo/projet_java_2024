@@ -18,9 +18,9 @@ public class AthleteModifController extends AthleteController{
     private TextField nomInput, sexeInput, paysInput, ageInput, nbParticipInput;
 
     @FXML
-    private Button Modifier;
+    private Button modifier;
     @FXML
-    private Button Annuler;
+    private Button annuler;
 
 
     public void initialize() {

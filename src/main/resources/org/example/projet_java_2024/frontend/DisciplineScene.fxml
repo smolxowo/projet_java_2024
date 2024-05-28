@@ -60,7 +60,7 @@
     <HBox alignment="CENTER" prefHeight="56.0" prefWidth="900.0" spacing="50.0" style="-fx-background-color: 0;">
         <children>
             <Button fx:id="ajouter" mnemonicParsing="false" onAction="#onAjouterClick" prefHeight="31.0" prefWidth="100.0" text="Ajouter" />
-            <Button fx:id="assign" mnemonicParsing="false" onAction="#onAssignClick" prefHeight="31.0" prefWidth="100.0" text="Modifier" />
+            <Button fx:id="assign" mnemonicParsing="false" onAction="#onAssignClick" prefHeight="31.0" prefWidth="100.0" text="Gérer" />
             <Button fx:id="supprimer" mnemonicParsing="false" onAction="#onSupprClick" prefHeight="31.0" prefWidth="100.0" text="Supprimer" />
         </children>
         <padding>
@@ -70,7 +70,7 @@
             <TableView fx:id="disciplineTableView" prefHeight="452.0" prefWidth="900.0">
               <columns>
                 <TableColumn fx:id="nomColumn" prefWidth="75.0" text="Discipline" />
-                <TableColumn prefWidth="75.0" text="Participants" />
+                <TableColumn fx:id="participantColumn" prefWidth="75.0" text="Participants" />
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

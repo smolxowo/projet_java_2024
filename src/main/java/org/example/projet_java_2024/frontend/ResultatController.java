@@ -65,6 +65,10 @@ public class ResultatController extends AccueilController{
         loadScene("/org/example/projet_java_2024/frontend/ResultatAjoutScene.fxml", "Ajouter un résultat", e);
     }
 
+    public void onClassementClick(ActionEvent e) throws IOException {
+        loadScene("/org/example/projet_java_2024/frontend/ResultatClassementScene.fxml", "Classement", e);
+    }
+
     public void onSupprClick(ActionEvent e) throws IOException {
         Resultat selectedResultat = resultatsTableView.getSelectionModel().getSelectedItem();
         supprResultat(selectedResultat);

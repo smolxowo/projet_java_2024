@@ -16,7 +16,9 @@ public class EventAjoutController extends EventController{
     //Faire un select de discipline et un input du nom
     DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
     @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    @FXML
+    private Button ajouter, assign, supprimer;
 
     @FXML
     private Label nomLabel;
@@ -24,7 +26,7 @@ public class EventAjoutController extends EventController{
     private TextField nomInput;
 
     @FXML
-    private Button ajouter;
+    private Button soumettre;
 
     @FXML
     private ComboBox<String> disciplineSelect;
@@ -37,7 +39,7 @@ public class EventAjoutController extends EventController{
         }
     }
 
-    public void onAjouterClick(ActionEvent e) throws IOException {
+    public void onSoumettreClick(ActionEvent e) throws IOException {
         String nom = nomInput.getText();
         String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();
         DisciplineSportive selectedDiscipline = disciplineSportiveGestionnaire.getDisciplineSportiveByName(selectedDisciplineName);
