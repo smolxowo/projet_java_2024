@@ -30,7 +30,15 @@ public class ResultatGestionnaire extends DatabaseGestionnaire<Resultat> {
     }
 
     public int addResultat(int athleteId, int evenementSportifId, int score, String temps, String medaille) {
-        Resultat resultat = new Resultat(resultats.size() + 1, athleteId, evenementSportifId, score, temps, medaille);
+        int nextId = getNextId();
+        Resultat resultat = new Resultat(
+                nextId,
+                athleteId,
+                evenementSportifId,
+                score,
+                temps,
+                medaille
+        );
         resultats.add(resultat);
         saveToJSON();
         return resultat.getId();

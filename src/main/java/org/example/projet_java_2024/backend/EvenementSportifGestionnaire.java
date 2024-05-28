@@ -40,7 +40,13 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
     }
 
     public int addEvenementSportif(String nom, int disciplineSportifId) {
-        EvenementSportif evenementSportif = new EvenementSportif(evenementsSportifs.size() + 1, nom, disciplineSportifId, new ArrayList<>()); // Nouvelle discipline sans participants
+        int nextId = getNextId();
+        EvenementSportif evenementSportif = new EvenementSportif(
+                nextId,
+                nom,
+                disciplineSportifId,
+                new ArrayList<>()
+        ); // Nouvelle discipline sans participants
         evenementsSportifs.add(evenementSportif);
         saveToJSON();
         return evenementSportif.getId();

@@ -31,7 +31,11 @@ public class ParticipantGestionnaire extends DatabaseGestionnaire<Participant> {
     }
 
     public int addParticipant(int athleteId, int evenementSportifId) {
-        Participant participant = new Participant(participants.size() + 1, athleteId, evenementSportifId);
+        int nextId = getNextId();
+        Participant participant = new Participant(
+                nextId,
+                athleteId,
+                evenementSportifId);
         participants.add(participant);
         saveToJSON();
         return participant.getId();

@@ -41,10 +41,11 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
     }
 
     public int addDisciplineSportive(String nom, List<Integer> participantId) {
-        DisciplineSportive disciplineSportive = new DisciplineSportive(disciplinesSportives.size() + 1, nom, participantId);
+        int nextId = getNextId();
+        DisciplineSportive disciplineSportive = new DisciplineSportive(nextId, nom, participantId);
         disciplinesSportives.add(disciplineSportive);
         saveToJSON();
-        return disciplineSportive.getId();
+        return nextId;
     }
 
     public void deleteDisciplineSportif(int id) {
