@@ -21,7 +21,7 @@ public class EventController extends AccueilController {
     @FXML
     private TableView<EvenementSportif> eventTableView;
     @FXML
-    private TableColumn<EvenementSportif, String> eventColumn, participantColumn;
+    private TableColumn<EvenementSportif, String> eventColumn, athleteColumn;
     @FXML
     private TableColumn<DisciplineSportive, String> disciplineColumn;
 
@@ -30,7 +30,7 @@ public class EventController extends AccueilController {
         // Initialisation des colonnes du TableView
         disciplineColumn.setCellValueFactory(new PropertyValueFactory<>("Discipline"));
         eventColumn.setCellValueFactory(new PropertyValueFactory<>("Evènement"));
-        participantColumn.setCellValueFactory(new PropertyValueFactory<>("Participants"));
+        athleteColumn.setCellValueFactory(new PropertyValueFactory<>("Athlètes"));
 
         // Charger les athlètes dans le TableView
         loadDiscipline();
@@ -51,14 +51,14 @@ public class EventController extends AccueilController {
         evenementSportifGestionnaire.deleteEvenementSportif(evenementSportif.getId());
     }
 
-    public int ajoutParticipant(int evenementSportifId, int participantId) {
-        int newParticipantId = evenementSportifGestionnaire.addParticipantToEvenementSportif(evenementSportifId, participantId);
-        return newParticipantId;
+    public int ajoutAthlete(int evenementSportifId, int athleteId) {
+        int newAthleteId = evenementSportifGestionnaire.addAthleteToEvenementSportif(evenementSportifId, athleteId);
+        return newAthleteId;
     }
 
-    public int removeParticipant(int evenementSportifId, int participantId) {
-        int newParticipantId = evenementSportifGestionnaire.removeParticipantFromEvenementSportif(evenementSportifId, participantId);
-        return newParticipantId;
+    public int removeAthlete(int evenementSportifId, int athleteId) {
+        int newAthleteId = evenementSportifGestionnaire.removeAthleteFromEvenementSportif(evenementSportifId, athleteId);
+        return newAthleteId;
     }
 
     public void onAjouterClick(ActionEvent e) throws IOException {

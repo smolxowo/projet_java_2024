@@ -2,7 +2,6 @@ package org.example.projet_java_2024.backend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<DisciplineSportive> {
@@ -40,9 +39,9 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         throw new IllegalArgumentException("Discipline Sportive not found: " + name);
     }
 
-    public int addDisciplineSportive(String nom, List<Integer> participantId) {
+    public int addDisciplineSportive(String nom, List<Integer> athleteId) {
         int nextId = getNextId();
-        DisciplineSportive disciplineSportive = new DisciplineSportive(nextId, nom, participantId);
+        DisciplineSportive disciplineSportive = new DisciplineSportive(nextId, nom, athleteId);
         disciplinesSportives.add(disciplineSportive);
         saveToJSON();
         return nextId;
@@ -59,10 +58,10 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         throw new IllegalArgumentException("Discipline Sportive not found: " + id);
     }
 
-    public int addParticipantToDisciplineSportif(int disciplineSportifId, int participantId) {
+    public int addAthleteToDisciplineSportif(int disciplineSportifId, int athleteId) {
         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
             if (disciplineSportive.getId() == disciplineSportifId) {
-                disciplineSportive.getParticipantId().add(participantId);
+                disciplineSportive.getAthletesId().add(athleteId);
                 saveToJSON();
                 return disciplineSportifId;
             }
@@ -70,10 +69,10 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         throw new IllegalArgumentException("Discipline Sportive not found: " + disciplineSportifId);
     }
 
-    public int removeParticipantFromDisciplineSportif(int disciplineSportifId, int participantId) {
+    public int removeAthleteFromDisciplineSportif(int disciplineSportifId, int athleteId) {
         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
             if (disciplineSportive.getId() == disciplineSportifId) {
-                disciplineSportive.getParticipantId().remove(Integer.valueOf(participantId));
+                disciplineSportive.getAthletesId().remove(Integer.valueOf(athleteId));
                 saveToJSON();
                 return disciplineSportifId;
             }

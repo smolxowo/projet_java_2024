@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.projet_java_2024.backend.DisciplineSportive;
-import org.example.projet_java_2024.backend.DisciplineSportiveGestionnaire;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -19,21 +18,21 @@ public class DisciplineController extends AccueilController {
     @FXML
     protected TableView<DisciplineSportive> disciplineTableView;
     @FXML
-    protected TableColumn<DisciplineSportive, String> nomColumn, participantColumn;
+    protected TableColumn<DisciplineSportive, String> nomColumn, athleteColumn;
 
     @FXML
     public void initialize() {
         // Initialisation des colonnes du TableView
-        if (nomColumn != null && participantColumn != null) {
+        if (nomColumn != null && athleteColumn != null) {
             nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
-            participantColumn.setCellValueFactory(cellData -> {
-                List<Integer> participantIds = cellData.getValue().getParticipantId();
-                List<String> participantNames = new ArrayList<>();
-                for (Integer id : participantIds) {
+            athleteColumn.setCellValueFactory(cellData -> {
+                List<Integer> athletesId = cellData.getValue().getAthletesId();
+                List<String> athletesNames = new ArrayList<>();
+                for (Integer id : athletesId) {
                     String name = athleteGestionnaire.getAthleteNameById(id);
-                    participantNames.add(name);
+                    athletesNames.add(name);
                 }
-                return new SimpleStringProperty(String.join(", ", participantNames));
+                return new SimpleStringProperty(String.join(", ", athletesNames));
             });
         }
 
@@ -50,8 +49,8 @@ public class DisciplineController extends AccueilController {
     }
 
     public int ajoutDiscipline(String nom) {
-        List<Integer> participantId = new ArrayList<>();
-        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportive(nom, participantId);
+        List<Integer> athletesId = new ArrayList<>();
+        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportive(nom, athletesId);
         return newDisciplineId;
     }
 
@@ -59,14 +58,14 @@ public class DisciplineController extends AccueilController {
         disciplineSportiveGestionnaire.deleteDisciplineSportif(disciplineSportive.getId());
     }
 
-    public int ajoutParticipant(int disciplineSportifId, int participantId) {
-        int newParticipantId = disciplineSportiveGestionnaire.addParticipantToDisciplineSportif(disciplineSportifId, participantId);
-        return newParticipantId;
+    public int ajoutAthlete(int disciplineSportifId, int athleteId) {
+        int newAthleteId = disciplineSportiveGestionnaire.addAthleteToDisciplineSportif(disciplineSportifId, athleteId);
+        return newAthleteId;
     }
 
-    public int removeParticipant(int disciplineSportifId, int participantId) {
-        int newParticipantId = disciplineSportiveGestionnaire.removeParticipantFromDisciplineSportif(disciplineSportifId, participantId);
-        return newParticipantId;
+    public int removeAthlete(int disciplineSportifId, int athleteId) {
+        int newAthleteId = disciplineSportiveGestionnaire.removeAthleteFromDisciplineSportif(disciplineSportifId, athleteId);
+        return newAthleteId;
     }
 
     @FXML
@@ -85,6 +84,6 @@ public class DisciplineController extends AccueilController {
 
     @FXML
     public void onAssignClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml", "Ajouter ou supprimer des participants", e);
+        loadScene("/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml", "Ajouter ou supprimer des athlètes", e);
     }
 }

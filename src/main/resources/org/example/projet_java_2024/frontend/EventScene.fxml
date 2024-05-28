@@ -71,7 +71,7 @@
               <columns>
                 <TableColumn fx:id="disciplineColumn" prefWidth="75.0" text="Discipline" />
                 <TableColumn fx:id="eventColumn" prefWidth="75.0" text="Evènement" />
-                  <TableColumn fx:id="participantColumn" prefWidth="75.0" text="Participants" />
+                  <TableColumn fx:id="athleteColumn" prefWidth="75.0" text="Athlètes" />
               </columns>
                <padding>
                   <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />

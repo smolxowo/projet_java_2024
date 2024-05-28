@@ -12,5 +12,5 @@ public class EvenementSportif {
     private int id;
     private String nom;
     private int disciplineSportifId;
-    private List<Integer> participantsId;
+    private List<Integer> athletesId;
 }

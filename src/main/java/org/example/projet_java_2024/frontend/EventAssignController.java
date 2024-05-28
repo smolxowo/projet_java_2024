@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventAssignController {
-    //Faire une checklist des participants et un select des disciplines puis évènements
+    //Faire une checklist des athlètes et un select des disciplines puis évènements
     DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
     AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
     EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
@@ -31,7 +31,7 @@ public class EventAssignController {
     private VBox checkBoxContainer;
 
     @FXML
-    private List<CheckBox> participantChecks = new ArrayList<>(); // Liste pour stocker vos CheckBox
+    private List<CheckBox> athleteChecks = new ArrayList<>(); // Liste pour stocker vos CheckBox
 
     @FXML
     public void initialize() {
@@ -46,7 +46,7 @@ public class EventAssignController {
         List<Athlete> allAthletes = athleteGestionnaire.getAllAthletes();
         for (Athlete athlete : allAthletes) {
             CheckBox checkBox = new CheckBox(athlete.getNom());
-            participantChecks.add(checkBox); // Ajoute chaque CheckBox à la liste
+            athleteChecks.add(checkBox); // Ajoute chaque CheckBox à la liste
             checkBoxContainer.getChildren().add(checkBox); // Ajoute la CheckBox à la VBox
         }
     }
@@ -57,11 +57,11 @@ public class EventAssignController {
         String selectedEventName = eventSelect.getSelectionModel().getSelectedItem();
         EvenementSportif selectedEvent = evenementSportifGestionnaire.getEvenementSportifByName(selectedEventName);
 
-        for (CheckBox checkBox : participantChecks) {
+        for (CheckBox checkBox : athleteChecks) {
             if (checkBox.isSelected()) {
                 String athleteName = checkBox.getText();
                 Athlete selectedAthlete = athleteGestionnaire.getAthleteByName(athleteName);
-                evenementSportifGestionnaire.addParticipantToEvenementSportif(selectedEvent.getId(), selectedAthlete.getId());
+                evenementSportifGestionnaire.addAthleteToEvenementSportif(selectedEvent.getId(), selectedAthlete.getId());
             }
         }
     }
@@ -72,11 +72,11 @@ public class EventAssignController {
         String selectedEventName = eventSelect.getSelectionModel().getSelectedItem();
         EvenementSportif selectedEvent = evenementSportifGestionnaire.getEvenementSportifByName(selectedEventName);
 
-        for (CheckBox checkBox : participantChecks) {
+        for (CheckBox checkBox : athleteChecks) {
             if (checkBox.isSelected()) {
                 String athleteName = checkBox.getText();
                 Athlete selectedAthlete = athleteGestionnaire.getAthleteByName(athleteName);
-                evenementSportifGestionnaire.removeParticipantFromEvenementSportif(selectedEvent.getId(), selectedAthlete.getId());
+                evenementSportifGestionnaire.removeAthleteFromEvenementSportif(selectedEvent.getId(), selectedAthlete.getId());
             }
         }
     }

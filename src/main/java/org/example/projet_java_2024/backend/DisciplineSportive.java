@@ -11,5 +11,5 @@ import java.util.List;
 public class DisciplineSportive {
     private int id;
     private String nom;
-    private List<Integer> participantId;
+    private List<Integer> athletesId;
 }

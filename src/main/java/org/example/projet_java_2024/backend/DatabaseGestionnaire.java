@@ -65,10 +65,6 @@ abstract public class DatabaseGestionnaire<T> {
                     if (evenementSportif.getId() == nextId) {
                         nextId++;
                     }
-                } else if (item instanceof Participant participant) {
-                    if (participant.getId() == nextId) {
-                        nextId++;
-                    }
                 } else if (item instanceof Resultat resultat) {
                     if (resultat.getId() == nextId) {
                         nextId++;

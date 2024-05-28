@@ -70,7 +70,7 @@
                 <TableView fx:id="disciplineTableView" prefHeight="452.0" prefWidth="900.0">
                     <columns>
                         <TableColumn fx:id="nomColumn" prefWidth="75.0" text="Discipline" />
-                        <TableColumn fx:id="participantColumn" prefWidth="75.0" text="Participants" />
+                        <TableColumn fx:id="athleteColumn" prefWidth="75.0" text="Athlètes" />
                     </columns>
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
