@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import org.example.projet_java_2024.backend.Athlete;
 import org.example.projet_java_2024.backend.DisciplineSportive;
@@ -50,7 +49,7 @@ public class DisciplineAssignController extends DisciplineController {
         // remove all existing athletes from the discipline
         List<Integer> athletesId = new ArrayList<>(SELECTED_DISCIPLINE.getAthletesId());
         for (Integer athleteId : athletesId) {
-            DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportif(SELECTED_DISCIPLINE.getId(), athleteId);
+            DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportive(SELECTED_DISCIPLINE.getId(), athleteId);
         }
 
         // add the selected athletes to the discipline
@@ -58,7 +57,7 @@ public class DisciplineAssignController extends DisciplineController {
             if (checkBox.isSelected()) {
                 String athleteName = checkBox.getText();
                 Athlete selectedAthlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
-                DISCIPLINE_GESTIONNAIRE.addAthleteToDisciplineSportif(SELECTED_DISCIPLINE.getId(), selectedAthlete.getId());
+                DISCIPLINE_GESTIONNAIRE.addAthleteToDisciplineSportive(SELECTED_DISCIPLINE.getId(), selectedAthlete.getId());
             }
         }
         loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);

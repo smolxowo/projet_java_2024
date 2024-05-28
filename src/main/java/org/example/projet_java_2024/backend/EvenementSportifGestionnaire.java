@@ -39,12 +39,12 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
         throw new IllegalArgumentException("Discipline Sportive not found: " + name);
     }
 
-    public int addEvenementSportif(String nom, int disciplineSportifId) {
+    public int addEvenementSportif(String nom, int disciplineSportiveId) {
         int nextId = getNextId();
         EvenementSportif evenementSportif = new EvenementSportif(
                 nextId,
                 nom,
-                disciplineSportifId,
+                disciplineSportiveId,
                 new ArrayList<>()
         );
         evenementsSportifs.add(evenementSportif);
@@ -63,11 +63,11 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
         throw new IllegalArgumentException("Evenement Sportif not found: " + id);
     }
 
-    public int updateEvenementSportif(int id, String nom, int disciplineSportifId) {
+    public int updateEvenementSportif(int id, String nom, int disciplineSportiveId) {
         for (EvenementSportif evenementSportif : evenementsSportifs) {
             if (evenementSportif.getId() == id) {
                 evenementSportif.setNom(nom);
-                evenementSportif.setDisciplineSportifId(disciplineSportifId);
+                evenementSportif.setDisciplineSportiveId(disciplineSportiveId);
                 saveToJSON();
                 return id;
             }

@@ -57,16 +57,16 @@ public class DisciplineController extends AccueilController {
     }
 
     public void supprDiscipline(DisciplineSportive disciplineSportive) {
-        DISCIPLINE_GESTIONNAIRE.deleteDisciplineSportif(disciplineSportive.getId());
+        DISCIPLINE_GESTIONNAIRE.deleteDisciplineSportive(disciplineSportive.getId());
     }
 
-    public int ajoutAthlete(int disciplineSportifId, int athleteId) {
-        int newAthleteId = DISCIPLINE_GESTIONNAIRE.addAthleteToDisciplineSportif(disciplineSportifId, athleteId);
+    public int ajoutAthlete(int disciplineSportiveId, int athleteId) {
+        int newAthleteId = DISCIPLINE_GESTIONNAIRE.addAthleteToDisciplineSportive(disciplineSportiveId, athleteId);
         return newAthleteId;
     }
 
-    public int removeAthlete(int disciplineSportifId, int athleteId) {
-        int newAthleteId = DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportif(disciplineSportifId, athleteId);
+    public int removeAthlete(int disciplineSportiveId, int athleteId) {
+        int newAthleteId = DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportive(disciplineSportiveId, athleteId);
         return newAthleteId;
     }
 

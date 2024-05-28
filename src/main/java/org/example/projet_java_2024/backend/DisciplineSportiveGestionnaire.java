@@ -47,7 +47,7 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         return nextId;
     }
 
-    public void deleteDisciplineSportif(int id) {
+    public void deleteDisciplineSportive(int id) {
         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
             if (disciplineSportive.getId() == id) {
                 disciplinesSportives.remove(disciplineSportive);
@@ -58,25 +58,34 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         throw new IllegalArgumentException("Discipline Sportive not found: " + id);
     }
 
-    public int addAthleteToDisciplineSportif(int disciplineSportifId, int athleteId) {
+    public int addAthleteToDisciplineSportive(int disciplineSportiveId, int athleteId) {
         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
-            if (disciplineSportive.getId() == disciplineSportifId) {
+            if (disciplineSportive.getId() == disciplineSportiveId) {
                 disciplineSportive.getAthletesId().add(athleteId);
                 saveToJSON();
-                return disciplineSportifId;
+                return disciplineSportiveId;
             }
         }
-        throw new IllegalArgumentException("Discipline Sportive not found: " + disciplineSportifId);
+        throw new IllegalArgumentException("Discipline Sportive not found: " + disciplineSportiveId);
     }
 
-    public int removeAthleteFromDisciplineSportif(int disciplineSportifId, int athleteId) {
+    public int removeAthleteFromDisciplineSportive(int disciplineSportiveId, int athleteId) {
         for (DisciplineSportive disciplineSportive : disciplinesSportives) {
-            if (disciplineSportive.getId() == disciplineSportifId) {
+            if (disciplineSportive.getId() == disciplineSportiveId) {
                 disciplineSportive.getAthletesId().remove(Integer.valueOf(athleteId));
                 saveToJSON();
-                return disciplineSportifId;
+                return disciplineSportiveId;
             }
         }
-        throw new IllegalArgumentException("Discipline Sportive not found: " + disciplineSportifId);
+        throw new IllegalArgumentException("Discipline Sportive not found: " + disciplineSportiveId);
+    }
+
+    public String getDisciplineNameById(int disciplineId) {
+        for (DisciplineSportive disciplineSportive : disciplinesSportives) {
+            if (disciplineSportive.getId() == disciplineId) {
+                return disciplineSportive.getNom();
+            }
+        }
+        throw new IllegalArgumentException("Discipline Sportive not found: " + disciplineId);
     }
 }

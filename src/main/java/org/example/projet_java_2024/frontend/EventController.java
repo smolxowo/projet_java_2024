@@ -1,64 +1,69 @@
 package org.example.projet_java_2024.frontend;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.projet_java_2024.backend.DisciplineSportive;
 import org.example.projet_java_2024.backend.EvenementSportif;
-import org.example.projet_java_2024.backend.EvenementSportifGestionnaire;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EventController extends AccueilController {
-    private EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
-
     @FXML
     private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
     @FXML
     private Button ajouter, assign, supprimer;
 
     @FXML
-    private TableView<EvenementSportif> eventTableView;
+    protected TableView<EvenementSportif> eventTableView;
     @FXML
-    private TableColumn<EvenementSportif, String> eventColumn, athleteColumn;
+    protected TableColumn<EvenementSportif, String> eventColumn, athleteColumn;
     @FXML
-    private TableColumn<DisciplineSportive, String> disciplineColumn;
+    protected TableColumn<EvenementSportif, String> disciplineColumn;
 
     @FXML
     public void initialize() {
         // Initialisation des colonnes du TableView
-        disciplineColumn.setCellValueFactory(new PropertyValueFactory<>("Discipline"));
-        eventColumn.setCellValueFactory(new PropertyValueFactory<>("Evènement"));
-        athleteColumn.setCellValueFactory(new PropertyValueFactory<>("Athlètes"));
+        disciplineColumn.setCellValueFactory(cellData -> {
+            int disciplineId = cellData.getValue().getDisciplineSportiveId();
+            String disciplineName = DISCIPLINE_GESTIONNAIRE.getDisciplineNameById(disciplineId);
+            return new SimpleStringProperty(disciplineName);
+        });
+        eventColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        athleteColumn.setCellValueFactory(cellData -> {
+            List<Integer> athletesId = cellData.getValue().getAthletesId();
+            List<String> athletesNames = new ArrayList<>();
+            for (Integer id : athletesId) {
+                String name = ATHLETE_GESTIONNAIRE.getAthleteNameById(id);
+                athletesNames.add(name);
+            }
+            return new SimpleStringProperty(String.join(", ", athletesNames));
+        });
 
-        // Charger les athlètes dans le TableView
-        loadDiscipline();
+        // Charger les évènements dans le TableView
+        loadEvenements();
     }
 
-    private void loadDiscipline() {
-        eventTableView.getItems().clear();
-        eventTableView.getItems().addAll();
+    protected void loadEvenements() {
+        if (eventTableView != null) {
+            eventTableView.getItems().clear();
+            List<EvenementSportif> evenements = EVENEMENT_GESTIONNAIRE.getAllEvenementsSportifs();
+            eventTableView.getItems().addAll(evenements);
+        }
     }
 
 
     public int ajoutEvent(String nom, int disciplineSportiveId){
-        int newEventId = evenementSportifGestionnaire.addEvenementSportif(nom, disciplineSportiveId);
+        int newEventId = EVENEMENT_GESTIONNAIRE.addEvenementSportif(nom, disciplineSportiveId);
         return newEventId;
     }
 
     public void supprEvent(EvenementSportif evenementSportif) {
-        evenementSportifGestionnaire.deleteEvenementSportif(evenementSportif.getId());
-    }
-
-    public int ajoutAthlete(int evenementSportifId, int athleteId) {
-        int newAthleteId = evenementSportifGestionnaire.addAthleteToEvenementSportif(evenementSportifId, athleteId);
-        return newAthleteId;
-    }
-
-    public int removeAthlete(int evenementSportifId, int athleteId) {
-        int newAthleteId = evenementSportifGestionnaire.removeAthleteFromEvenementSportif(evenementSportifId, athleteId);
-        return newAthleteId;
+        EVENEMENT_GESTIONNAIRE.deleteEvenementSportif(evenementSportif.getId());
     }
 
     public void onAjouterClick(ActionEvent e) throws IOException {

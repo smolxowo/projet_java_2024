@@ -117,7 +117,7 @@ public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
     public void deleteAthlete(int athleteId) {
         // Cascade delete from discipline
         for (DisciplineSportive disciplineSportive : DISCIPLINE_GESTIONNAIRE.getAllDisciplinesSportives()) {
-            DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportif(disciplineSportive.getId(), athleteId);
+            DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportive(disciplineSportive.getId(), athleteId);
         }
 
         // Cascade delete from EvenementSportif
