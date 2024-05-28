@@ -43,7 +43,7 @@
         </GridPane>
         <VBox layoutY="120.0" prefHeight="580.0" prefWidth="900.0">
             <children>
-                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="50.0" style="-fx-background-color: #D6C278;">
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="50.0" style="-fx-background-color: #d6c278;">
                     <children>
                         <Button fx:id="accueilMenuButton" mnemonicParsing="false" onAction="#onAccueilMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Accueil" />
                         <Button fx:id="athleteMenuButton" mnemonicParsing="false" onAction="#onAthleteMenuButtonClick" prefHeight="31.0" prefWidth="101.0" text="Athlètes">
