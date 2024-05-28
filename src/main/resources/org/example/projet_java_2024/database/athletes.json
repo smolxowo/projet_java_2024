@@ -7,34 +7,20 @@
   "nbParticipation" : 3
 }, {
   "id" : 2,
-  "nom" : "bob",
-  "sexe" : "m",
-  "pays" : "france",
-  "age" : 4,
-  "nbParticipation" : 8
-}, {
-  "id" : 3,
-  "nom" : "bob",
-  "sexe" : "m",
-  "pays" : "france",
-  "age" : 4,
-  "nbParticipation" : 8
-}, {
-  "id" : 4,
   "nom" : "Rafael Nadal",
   "sexe" : "M",
   "pays" : "Espagne",
   "age" : 39,
   "nbParticipation" : 0
 }, {
-  "id" : 5,
+  "id" : 3,
   "nom" : "Roger Federer",
   "sexe" : "M",
   "pays" : "Suisse",
   "age" : 40,
   "nbParticipation" : 0
 }, {
-  "id" : 6,
+  "id" : 4,
   "nom" : "Wawrinka",
   "sexe" : "M",
   "pays" : "Suisse",
