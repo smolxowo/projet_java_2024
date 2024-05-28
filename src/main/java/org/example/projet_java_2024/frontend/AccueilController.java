@@ -16,10 +16,10 @@ import org.example.projet_java_2024.backend.ResultatGestionnaire;
 import java.io.IOException;
 
 public class AccueilController {
-    protected static AthleteGestionnaire ATHLETE_GESTIONNAIRE = new AthleteGestionnaire();
-    protected static DisciplineSportiveGestionnaire DISCIPLINE_GESTIONNAIRE = new DisciplineSportiveGestionnaire();
-    protected static EvenementSportifGestionnaire EVENEMENT_GESTIONNAIRE = new EvenementSportifGestionnaire();
-    protected static ResultatGestionnaire RESULTAT_GESTIONNAIRE = new ResultatGestionnaire();
+    public static AthleteGestionnaire ATHLETE_GESTIONNAIRE = new AthleteGestionnaire();
+    public static DisciplineSportiveGestionnaire DISCIPLINE_GESTIONNAIRE = new DisciplineSportiveGestionnaire();
+    public static EvenementSportifGestionnaire EVENEMENT_GESTIONNAIRE = new EvenementSportifGestionnaire();
+    public static ResultatGestionnaire RESULTAT_GESTIONNAIRE = new ResultatGestionnaire();
 
     @FXML
     protected Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;

@@ -20,6 +20,8 @@ public class DisciplineController extends AccueilController {
     @FXML
     protected TableColumn<DisciplineSportive, String> nomColumn, athleteColumn;
 
+    protected static DisciplineSportive SELECTED_DISCIPLINE = null;
+
     @FXML
     public void initialize() {
         // Initialisation des colonnes du TableView
@@ -84,6 +86,16 @@ public class DisciplineController extends AccueilController {
 
     @FXML
     public void onAssignClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml", "Ajouter ou supprimer des athlètes", e);
+        DisciplineSportive selectedDiscipline = disciplineTableView.getSelectionModel().getSelectedItem();
+        if (selectedDiscipline != null) {
+            SELECTED_DISCIPLINE = selectedDiscipline;
+            loadScene("/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml", "Ajouter ou supprimer des athlètes", e);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucune discipline sélectionnée");
+            alert.setContentText("Veuillez sélectionner une discipline pour ajouter ou supprimer des athlètes");
+            alert.showAndWait();
+        }
     }
 }

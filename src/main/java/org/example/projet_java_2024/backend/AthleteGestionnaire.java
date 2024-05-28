@@ -5,6 +5,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.example.projet_java_2024.frontend.AccueilController.DISCIPLINE_GESTIONNAIRE;
+import static org.example.projet_java_2024.frontend.AccueilController.EVENEMENT_GESTIONNAIRE;
+
 public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
     private final List<Athlete> athletes;
 
@@ -111,17 +114,24 @@ public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
         return nextId;
     }
 
-    // Please don't
-    public void deleteAthlete(int id) {
+    public void deleteAthlete(int athleteId) {
+        // Cascade delete from discipline
+        for (DisciplineSportive disciplineSportive : DISCIPLINE_GESTIONNAIRE.getAllDisciplinesSportives()) {
+            DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportif(disciplineSportive.getId(), athleteId);
+        }
+
+        // Cascade delete from EvenementSportif
+        for (EvenementSportif evenementSportif : EVENEMENT_GESTIONNAIRE.getAllEvenementsSportifs()) {
+            EVENEMENT_GESTIONNAIRE.removeAthleteFromEvenementSportif(evenementSportif.getId(), athleteId);
+        }
+
         for (Athlete athlete : athletes) {
-            if (athlete.getId() == id) {
+            if (athlete.getId() == athleteId) {
                 athletes.remove(athlete);
                 saveToJSON();
                 return;
             }
         }
-
-
     }
 
     public int updateAthlete(int id, String nomAthlete, String sexe, String pays, int age, int nbParticipation) {

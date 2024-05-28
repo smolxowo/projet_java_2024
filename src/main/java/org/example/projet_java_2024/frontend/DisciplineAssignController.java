@@ -2,6 +2,7 @@ package org.example.projet_java_2024.frontend;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -15,12 +16,7 @@ import java.util.List;
 
 public class DisciplineAssignController extends DisciplineController {
     @FXML
-    private ComboBox<String> disciplineSelect;
-
-    @FXML
     private Button assigner;
-    @FXML
-    private Button remove;
 
     @FXML
     private VBox checkBoxContainer;
@@ -29,49 +25,47 @@ public class DisciplineAssignController extends DisciplineController {
 
     @FXML
     public void initialize() {
-        List<DisciplineSportive> allDisciplines = DISCIPLINE_GESTIONNAIRE.getAllDisciplinesSportives();
-        for (DisciplineSportive discipline : allDisciplines) {
-            disciplineSelect.getItems().add(discipline.getNom());
-        }
-        List<Athlete> allAthletes = ATHLETE_GESTIONNAIRE.getAllAthletes();
-        for (Athlete athlete : allAthletes) {
-            CheckBox checkBox = new CheckBox(athlete.getNom());
-            athleteChecks.add(checkBox); // Ajoute chaque CheckBox à la liste
-            checkBoxContainer.getChildren().add(checkBox); // Ajoute la CheckBox à la VBox
-        }
-        // Ajoutez un écouteur de propriété à la propriété sceneProperty du ComboBox
-        disciplineSelect.sceneProperty().addListener((observable, oldScene, newScene) -> {
-            if (newScene != null) {
-                updateDisciplineList();
-            }
-        });
-    }
+    List<Athlete> allAthletes = ATHLETE_GESTIONNAIRE.getAllAthletes();
+    // get athletes for the selected discipline
+    List<Integer> athletesId = SELECTED_DISCIPLINE.getAthletesId();
 
-    private void updateDisciplineList() {
-        disciplineSelect.getItems().clear();
-        List<DisciplineSportive> allDisciplines = DISCIPLINE_GESTIONNAIRE.getAllDisciplinesSportives();
-        for (DisciplineSportive discipline : allDisciplines) {
-            disciplineSelect.getItems().add(discipline.getNom());
+    for (Athlete athlete : allAthletes) {
+        CheckBox checkBox = new CheckBox(athlete.getNom());
+        athleteChecks.add(checkBox); // Ajoute chaque CheckBox à la liste
+        checkBoxContainer.getChildren().add(checkBox); // Ajoute la CheckBox à la VBox
+
+        // Add a left margin to the CheckBox
+        VBox.setMargin(checkBox, new Insets(0, 0, 0, 10)); // 10 units of left margin
+
+        // check the box if athlete is in this discipline
+        if (athletesId.contains(athlete.getId())) {
+            checkBox.setSelected(true);
         }
     }
+}
 
     public void onAssignerClick(ActionEvent e) throws IOException {
-        String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();
-        System.out.println("SELECTED: " + selectedDisciplineName);
-        DisciplineSportive selectedDiscipline = DISCIPLINE_GESTIONNAIRE.getDisciplineSportiveByName(selectedDisciplineName);
+        String selectedDisciplineName = SELECTED_DISCIPLINE.getNom();
 
+        // remove all existing athletes from the discipline
+        List<Integer> athletesId = new ArrayList<>(SELECTED_DISCIPLINE.getAthletesId());
+        for (Integer athleteId : athletesId) {
+            DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportif(SELECTED_DISCIPLINE.getId(), athleteId);
+        }
+
+        // add the selected athletes to the discipline
         for (CheckBox checkBox : athleteChecks) {
             if (checkBox.isSelected()) {
                 String athleteName = checkBox.getText();
                 Athlete selectedAthlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
-                ajoutAthlete(selectedDiscipline.getId(), selectedAthlete.getId());
+                DISCIPLINE_GESTIONNAIRE.addAthleteToDisciplineSportif(SELECTED_DISCIPLINE.getId(), selectedAthlete.getId());
             }
         }
         loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);
     }
 
     public void onRemoveClick(ActionEvent e) throws IOException {
-        String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();
+        String selectedDisciplineName = SELECTED_DISCIPLINE.getNom();
         DisciplineSportive selectedDiscipline = DISCIPLINE_GESTIONNAIRE.getDisciplineSportiveByName(selectedDisciplineName);
 
         for (CheckBox checkBox : athleteChecks) {

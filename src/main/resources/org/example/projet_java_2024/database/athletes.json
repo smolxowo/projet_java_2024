@@ -4,7 +4,7 @@
   "sexe" : "M",
   "pays" : "Jamaica",
   "age" : 34,
-  "nbParticipation" : 3
+  "nbParticipation" : 5
 }, {
   "id" : 2,
   "nom" : "Rafael Nadal",
@@ -26,11 +26,4 @@
   "pays" : "Suisse",
   "age" : 35,
   "nbParticipation" : 0
-}, {
-  "id" : 5,
-  "nom" : "ds",
-  "sexe" : "ds",
-  "pays" : "ds",
-  "age" : 3,
-  "nbParticipation" : 4545
 } ]

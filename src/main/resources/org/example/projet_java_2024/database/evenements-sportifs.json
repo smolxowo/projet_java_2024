@@ -1,11 +1,11 @@
-[
-	{
-		"id": 1,
-		"nom": "Updated Event",
-		"disciplineSportifId": 1,
-		"athletesId": [1, 2, 3]
-	},
-	{
-		"id": 2, "nom": "course", "disciplineSportifId": 1, "athletesId": []
-	}
-]
+[ {
+  "id" : 1,
+  "nom" : "Updated Event",
+  "disciplineSportifId" : 1,
+  "athletesId" : [ 1, 2, 3 ]
+}, {
+  "id" : 2,
+  "nom" : "course",
+  "disciplineSportifId" : 1,
+  "athletesId" : [ ]
+} ]
