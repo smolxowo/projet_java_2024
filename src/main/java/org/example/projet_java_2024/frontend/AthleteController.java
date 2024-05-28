@@ -8,8 +8,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.projet_java_2024.backend.Athlete;
-import org.example.projet_java_2024.frontend.SelectedAthlete;
-
 import java.io.IOException;
 
 public class AthleteController extends AccueilController {

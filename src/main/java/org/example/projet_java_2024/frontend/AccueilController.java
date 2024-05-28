@@ -8,12 +8,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
+import org.example.projet_java_2024.backend.Athlete;
 import org.example.projet_java_2024.backend.AthleteGestionnaire;
+import org.example.projet_java_2024.backend.DisciplineSportiveGestionnaire;
+import org.example.projet_java_2024.backend.EvenementSportifGestionnaire;
 
 import java.io.IOException;
 
 public class AccueilController {
     protected static AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
+    protected static DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
+    protected static EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
 
     @FXML protected Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 
@@ -61,66 +66,6 @@ public class AccueilController {
     @FXML
     public void onResultatsMenuButtonClick(ActionEvent e) throws IOException {
         loadScene("/org/example/projet_java_2024/frontend/ResultatsScene.fxml", "Résultats", e);
-    }
-
-    @FXML
-    public void onAddAthleteMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/AthleteAjoutScene.fxml", "Ajouter un athlète", e);
-    }
-
-    @FXML
-    public void onDeleteAthleteMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/DeleteAthleteScene.fxml", "Supprimer un athlète", e);
-    }
-
-    @FXML
-    public void onUpdateAthleteMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/UpdateAthleteScene.fxml", "Modifier un athlète", e);
-    }
-
-    @FXML
-    public void onAddDisciplineMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/AddDisciplineScene.fxml", "Ajouter une discipline", e);
-    }
-
-    @FXML
-    public void onDeleteDisciplineMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/DeleteDisciplineScene.fxml", "Supprimer une discipline", e);
-    }
-
-    @FXML
-    public void onAssignDisciplineMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/AssignDisciplineScene.fxml", "Assigner une discipline", e);
-    }
-
-    @FXML
-    public void onAddEventMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/AddEventScene.fxml", "Ajouter un évènement", e);
-    }
-
-    @FXML
-    public void onDeleteEventMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/DeleteEventScene.fxml", "Supprimer un évènement", e);
-    }
-
-    @FXML
-    public void onAssignEventMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/AssignEventScene.fxml", "Assigner un évènement", e);
-    }
-
-    @FXML
-    public void onAddResultatMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/AddResultatScene.fxml", "Ajouter un résultat", e);
-    }
-
-    @FXML
-    public void onDeleteResultatMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/DeleteResultatScene.fxml", "Supprimer un résultat", e);
-    }
-
-    @FXML
-    public void onClassementResultatMenuItemClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/ClassementResultatScene.fxml", "Classement des résultats", e);
     }
 }
 

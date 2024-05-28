@@ -1,5 +1,6 @@
 package org.example.projet_java_2024.frontend;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,32 +13,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisciplineController extends AccueilController {
-    private DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
+    @FXML
+    protected Button ajouter, assign, supprimer;
 
     @FXML
-    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    protected TableView<DisciplineSportive> disciplineTableView;
     @FXML
-    private Button ajouter, assign, supprimer;
-
-    @FXML
-    private TableView<DisciplineSportive> disciplineTableView;
-    @FXML
-    private TableColumn<DisciplineSportive, String> nomColumn, participantColumn;
+    protected TableColumn<DisciplineSportive, String> nomColumn, participantColumn;
 
 
     @FXML
     public void initialize() {
         // Initialisation des colonnes du TableView
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("Discipline"));
-        participantColumn.setCellValueFactory(new PropertyValueFactory<>("Participants"));
+        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
 
-        // Charger les athlètes dans le TableView
+        participantColumn.setCellValueFactory(cellData -> {
+            List<Integer> participantIds = cellData.getValue().getParticipantId();
+            List<String> participantNames = new ArrayList<>();
+            for (Integer id : participantIds) {
+                String name = athleteGestionnaire.getAthleteNameById(id);
+                participantNames.add(name);
+            }
+            return new SimpleStringProperty(String.join(", ", participantNames));
+        });        // Charger les athlètes dans le TableView
         loadDiscipline();
     }
 
-    private void loadDiscipline() {
+    protected void loadDiscipline() {
         disciplineTableView.getItems().clear();
-        disciplineTableView.getItems().addAll();
+        List<DisciplineSportive> disciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();
+        disciplineTableView.getItems().addAll(disciplines);
     }
 
     public int ajoutDiscipline(String nom) {
@@ -68,9 +73,10 @@ public class DisciplineController extends AccueilController {
     public void onSupprClick(ActionEvent e) throws IOException {
         DisciplineSportive selectedDiscipline = disciplineTableView.getSelectionModel().getSelectedItem();
         supprDiscipline(selectedDiscipline);
+        loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);
     }
 
     public void onAssignClick(ActionEvent e) throws IOException {
-        loadScene("/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml", "", e);
+        loadScene("/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml", "Ajouter ou supprimer des participants", e);
     }
 }

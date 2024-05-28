@@ -42,6 +42,15 @@ public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
         throw new IllegalArgumentException("Athlete not found: " + name);
     }
 
+    public String getAthleteNameById(int id) {
+    for (Athlete athlete : athletes) {
+        if (athlete.getId() == id) {
+            return athlete.getNom();
+        }
+    }
+    throw new IllegalArgumentException("Athlete not found: " + id);
+}
+
     public List<Athlete> getAthletesByProperty(String property, String value) {
         List<Athlete> result = new ArrayList<>();
         for (Athlete athlete : athletes) {
@@ -102,11 +111,12 @@ public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
         for (Athlete athlete : athletes) {
             if (athlete.getId() == id) {
                 athletes.remove(athlete);
+                saveToJSON();
                 return;
             }
         }
 
-        saveToJSON();
+
     }
 
     public int updateAthlete(int id, String nomAthlete, String sexe, String pays, int age, int nbParticipation) {

@@ -21,9 +21,6 @@ public class DisciplineAssignController extends DisciplineController {
     AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
 
     @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-
-    @FXML
     private ComboBox<String> disciplineSelect;
 
     @FXML

@@ -8,9 +8,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class DisciplineAjoutController extends AccueilController {
-    @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+public class DisciplineAjoutController extends DisciplineController {
 
     @FXML
     private Label nomLabel;
@@ -23,9 +21,8 @@ public class DisciplineAjoutController extends AccueilController {
     private Button effacer;
 
     public void onSoumettreClick(ActionEvent e) throws IOException {
-        DisciplineController disciplineController = new DisciplineController();
         //On ajoute une nouvelle Discipline
-        disciplineController.ajoutDiscipline(nomInput.getText());
+        ajoutDiscipline(nomInput.getText());
         loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline Sportive", e);
     }
 
