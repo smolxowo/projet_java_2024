@@ -20,7 +20,8 @@ public class AccueilController {
     protected static DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
     protected static EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
 
-    @FXML protected Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+    @FXML
+    protected Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 
     public void loadScene(String fxmlFile, String title, ActionEvent e) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));

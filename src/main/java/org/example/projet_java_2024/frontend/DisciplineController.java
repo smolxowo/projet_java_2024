@@ -21,33 +21,37 @@ public class DisciplineController extends AccueilController {
     @FXML
     protected TableColumn<DisciplineSportive, String> nomColumn, participantColumn;
 
-
     @FXML
     public void initialize() {
         // Initialisation des colonnes du TableView
-        nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        if (nomColumn != null && participantColumn != null) {
+            nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
+            participantColumn.setCellValueFactory(cellData -> {
+                List<Integer> participantIds = cellData.getValue().getParticipantId();
+                List<String> participantNames = new ArrayList<>();
+                for (Integer id : participantIds) {
+                    String name = athleteGestionnaire.getAthleteNameById(id);
+                    participantNames.add(name);
+                }
+                return new SimpleStringProperty(String.join(", ", participantNames));
+            });
+        }
 
-        participantColumn.setCellValueFactory(cellData -> {
-            List<Integer> participantIds = cellData.getValue().getParticipantId();
-            List<String> participantNames = new ArrayList<>();
-            for (Integer id : participantIds) {
-                String name = athleteGestionnaire.getAthleteNameById(id);
-                participantNames.add(name);
-            }
-            return new SimpleStringProperty(String.join(", ", participantNames));
-        });        // Charger les athlètes dans le TableView
+        // Charger les disciplines dans le TableView
         loadDiscipline();
     }
 
     protected void loadDiscipline() {
-        disciplineTableView.getItems().clear();
-        List<DisciplineSportive> disciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();
-        disciplineTableView.getItems().addAll(disciplines);
+        if (disciplineTableView != null) {
+            disciplineTableView.getItems().clear();
+            List<DisciplineSportive> disciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();
+            disciplineTableView.getItems().addAll(disciplines);
+        }
     }
 
     public int ajoutDiscipline(String nom) {
         List<Integer> participantId = new ArrayList<>();
-        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportive(nom,participantId);
+        int newDisciplineId = disciplineSportiveGestionnaire.addDisciplineSportive(nom, participantId);
         return newDisciplineId;
     }
 
@@ -65,17 +69,21 @@ public class DisciplineController extends AccueilController {
         return newParticipantId;
     }
 
-
+    @FXML
     public void onAjouterClick(ActionEvent e) throws IOException {
         loadScene("/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml", "Ajouter une discipline", e);
     }
 
+    @FXML
     public void onSupprClick(ActionEvent e) throws IOException {
         DisciplineSportive selectedDiscipline = disciplineTableView.getSelectionModel().getSelectedItem();
-        supprDiscipline(selectedDiscipline);
-        loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);
+        if (selectedDiscipline != null) {
+            supprDiscipline(selectedDiscipline);
+            loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);
+        }
     }
 
+    @FXML
     public void onAssignClick(ActionEvent e) throws IOException {
         loadScene("/org/example/projet_java_2024/frontend/DisciplineAssignScene.fxml", "Ajouter ou supprimer des participants", e);
     }
