@@ -7,24 +7,34 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 
-public class AthleteAjoutController extends AccueilController {
-    @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+public class AthleteAjoutController extends AthleteController {
+    @FXML private TextField nomInput;
+    @FXML private TextField sexeInput;
+    @FXML private TextField paysInput;
+    @FXML private TextField ageInput;
+    @FXML private TextField nbParticipInput;
 
-    @FXML
-    private Label nomLabel, sexeLabel, paysLabel, ageLabel, nbParticipLabel, successLabel;
-    @FXML
-    private TextField nomInput, sexeInput, paysInput, ageInput, nbParticipInput;
+    @FXML private Button soumettre;
+    @FXML private Button effacer;
 
-    @FXML
-    private Button soumettre;
-    @FXML
-    private Button effacer;
+    @FXML public void initialize() {
+        // Keep it empty to overwrite base class
+    }
 
     public void onSoumettreClick(ActionEvent e) throws IOException {
-        AthleteController athleteController = new AthleteController();
-        //On ajoute un nouvel Athlete
-        athleteController.ajoutAthlete(nomInput.getText(), sexeInput.getText(), paysInput.getText(), Integer.parseInt(ageInput.getText()),Integer.parseInt(nbParticipInput.getText()));
+        ajoutAthlete(
+                nomInput.getText(),
+                sexeInput.getText(),
+                paysInput.getText(),
+                Integer.parseInt(ageInput.getText()),
+                Integer.parseInt(nbParticipInput.getText())
+        );
+        // wait for 1 second
+//        try {
+//            Thread.sleep(1000);
+//        } catch (InterruptedException ex) {
+//            Thread.currentThread().interrupt();
+//        }
         loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
     }
 
@@ -34,6 +44,7 @@ public class AthleteAjoutController extends AccueilController {
         paysInput.clear();
         ageInput.clear();
         nbParticipInput.clear();
+        loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
     }
 
 }

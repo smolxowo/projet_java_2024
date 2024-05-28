@@ -72,7 +72,7 @@
                   <TableColumn fx:id="nomColumn" prefWidth="125.59996795654297" text="Nom" />
                   <TableColumn fx:id="sexeColumn" prefWidth="34.39996337890625" text="Sexe" />
                   <TableColumn fx:id="paysColumn" prefWidth="104.0" text="Pays" />
-                <TableColumn fx:id="ageColumn" prefWidth="40.800048828125" text="Age" />
+                  <TableColumn fx:id="ageColumn" prefWidth="40.800048828125" text="Age" />
                   <TableColumn fx:id="participationColumn" prefWidth="196.80001831054688" text="Nombre de participation" />
               </columns>
                <VBox.margin>
