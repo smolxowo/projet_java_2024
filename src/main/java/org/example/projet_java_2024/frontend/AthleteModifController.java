@@ -9,17 +9,7 @@ import java.io.IOException;
 
 public class AthleteModifController extends AthleteController{
     @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-
-    @FXML
-    private Label nomLabel, sexeLabel, paysLabel, ageLabel, nbParticipLabel, successLabel;
-    @FXML
     private TextField nomInput, sexeInput, paysInput, ageInput, nbParticipInput;
-
-    @FXML
-    private Button modifier;
-    @FXML
-    private Button annuler;
 
     public void initialize() {
         Athlete selectedAthlete = SELECTED_ATHLETE;
@@ -35,11 +25,11 @@ public class AthleteModifController extends AthleteController{
     }
 
     public void onModifierClick(ActionEvent e) throws IOException {
-        String nom = nomInput.getText();
-        String sexe = sexeInput.getText();
-        String pays = paysInput.getText();
-        String ageStr = ageInput.getText();
-        String nbParticipStr = nbParticipInput.getText();
+        String nom = nomInput.getText().trim();
+        String sexe = sexeInput.getText().trim();
+        String pays = paysInput.getText().trim();
+        String ageStr = ageInput.getText().trim();
+        String nbParticipStr = nbParticipInput.getText().trim();
 
         if (validateFields(nom, sexe, pays, ageStr, nbParticipStr)) {
             int age = Integer.parseInt(ageStr);

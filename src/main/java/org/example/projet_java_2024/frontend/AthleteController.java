@@ -11,8 +11,6 @@ import org.example.projet_java_2024.backend.Athlete;
 import java.io.IOException;
 
 public class AthleteController extends AccueilController {
-    @FXML protected Button ajouter, modifier, supprimer;
-
     @FXML
     protected TableView<Athlete> athleteTableView;
     @FXML

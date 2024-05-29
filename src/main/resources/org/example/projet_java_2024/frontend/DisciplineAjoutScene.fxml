@@ -87,7 +87,7 @@
                                     <Insets top="50.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="effacer" mnemonicParsing="false" onAction="#onEffacerClick" text="Effacer">
+                              <Button fx:id="effacer" mnemonicParsing="false" onAction="#onEffacerClick" text="Annuler">
                                  <HBox.margin>
                                     <Insets left="380.0" top="50.0" />
                                  </HBox.margin>

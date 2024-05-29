@@ -4,30 +4,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
-
 import java.io.IOException;
-import java.util.Objects;
 
 public class AthleteAjoutController extends AthleteController {
-    @FXML private TextField nomInput;
-    @FXML private TextField sexeInput;
-    @FXML private TextField paysInput;
-    @FXML private TextField ageInput;
-    @FXML private TextField nbParticipInput;
-
-    @FXML private Button soumettre;
-    @FXML private Button effacer;
+    @FXML private TextField nomInput, sexeInput, paysInput, ageInput, nbParticipInput;
 
     @FXML public void initialize() {
         // Keep it empty to overwrite base class
     }
 
     public void onSoumettreClick(ActionEvent e) throws IOException {
-        String nom = nomInput.getText();
-        String sexe = sexeInput.getText();
-        String pays = paysInput.getText();
-        String ageStr = ageInput.getText();
-        String nbParticipStr = nbParticipInput.getText();
+        String nom = nomInput.getText().trim();
+        String sexe = sexeInput.getText().trim();
+        String pays = paysInput.getText().trim();
+        String ageStr = ageInput.getText().trim();
+        String nbParticipStr = nbParticipInput.getText().trim();
 
         if (validateFields(nom, sexe, pays, ageStr, nbParticipStr)) {
             int age = Integer.parseInt(ageStr);

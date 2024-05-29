@@ -13,9 +13,6 @@ import java.util.List;
 
 public class DisciplineController extends AccueilController {
     @FXML
-    protected Button ajouter, assign, supprimer;
-
-    @FXML
     protected TableView<DisciplineSportive> disciplineTableView;
     @FXML
     protected TableColumn<DisciplineSportive, String> nomColumn, athleteColumn;
@@ -60,16 +57,6 @@ public class DisciplineController extends AccueilController {
         DISCIPLINE_GESTIONNAIRE.deleteDisciplineSportive(disciplineSportive.getId());
     }
 
-    public int ajoutAthlete(int disciplineSportiveId, int athleteId) {
-        int newAthleteId = DISCIPLINE_GESTIONNAIRE.addAthleteToDisciplineSportive(disciplineSportiveId, athleteId);
-        return newAthleteId;
-    }
-
-    public int removeAthlete(int disciplineSportiveId, int athleteId) {
-        int newAthleteId = DISCIPLINE_GESTIONNAIRE.removeAthleteFromDisciplineSportive(disciplineSportiveId, athleteId);
-        return newAthleteId;
-    }
-
     @FXML
     public void onAjouterClick(ActionEvent e) throws IOException {
         loadScene("/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml", "Ajouter une discipline", e);
@@ -97,5 +84,18 @@ public class DisciplineController extends AccueilController {
             alert.setContentText("Veuillez sélectionner une discipline pour ajouter ou supprimer des athlètes");
             alert.showAndWait();
         }
+    }
+
+    protected boolean validateFields(String nomDiscipline) {
+        if (nomDiscipline.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Champ vide");
+            alert.setContentText("Veuillez remplir le nom de la discipline");
+            alert.showAndWait();
+            return false;
+        }
+
+        return true;
     }
 }

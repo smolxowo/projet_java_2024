@@ -4,20 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2024_09_04__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2024_09_04__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2024_09_56__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2024_09_56__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2024_10_54__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_24_05_2024_10_54__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_05_2024_16_40__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_28_05_2024_16_40__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_05_2024_11_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_05_2024_11_35__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_05_2024_20_37__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_29_05_2024_20_37__Changes_.xml" afterDir="false" />
+    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="[Athlètes : validation des formulaires]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteAjoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteModifController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/AthleteModifController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAjoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteAjoutScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/AthleteAjoutScene.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/DisciplineAjoutScene.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -273,7 +269,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716918477342</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="[Athlètes : validation des formulaires]">
+      <option name="closed" value="true" />
+      <created>1717021943018</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717021943018</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[Athlètes : validation des formulaires]">
+      <option name="closed" value="true" />
+      <created>1717021961908</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717021961908</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +335,8 @@
     <MESSAGE value="Modification Athlete fonctionnel" />
     <MESSAGE value="Discipline quasi finit, ajouter ne fonctionne plus (aled)" />
     <MESSAGE value="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas" />
+    <MESSAGE value="[Athlètes : validation des formulaires]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Athlètes : validation des formulaires]" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

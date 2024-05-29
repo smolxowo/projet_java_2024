@@ -15,12 +15,9 @@ import java.util.List;
 
 public class DisciplineAssignController extends DisciplineController {
     @FXML
-    private Button assigner;
-
-    @FXML
     private VBox checkBoxContainer;
     @FXML
-    private List<CheckBox> athleteChecks = new ArrayList<>(); // Liste pour stocker vos CheckBox
+    private List<CheckBox> athleteChecks = new ArrayList<>(); // liste des checkboxes
 
     @FXML
     public void initialize() {
@@ -34,7 +31,7 @@ public class DisciplineAssignController extends DisciplineController {
             checkBoxContainer.getChildren().add(checkBox);
 
             // left margin for the eyes
-            VBox.setMargin(checkBox, new Insets(0, 0, 0, 10));
+            VBox.setMargin(checkBox, new Insets(10, 0, 0, 50));
 
             // check the box if athlete is in this discipline
             if (athletesId.contains(athlete.getId())) {
@@ -44,8 +41,6 @@ public class DisciplineAssignController extends DisciplineController {
     }
 
     public void onAssignerClick(ActionEvent e) throws IOException {
-        String selectedDisciplineName = SELECTED_DISCIPLINE.getNom();
-
         // remove all existing athletes from the discipline
         List<Integer> athletesId = new ArrayList<>(SELECTED_DISCIPLINE.getAthletesId());
         for (Integer athleteId : athletesId) {
@@ -64,9 +59,3 @@ public class DisciplineAssignController extends DisciplineController {
         loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);
     }
 }
-
-
-
-
-
-
