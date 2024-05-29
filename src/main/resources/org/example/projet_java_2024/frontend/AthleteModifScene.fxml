@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projet_java_2024.frontend.AthleteModifController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/Style1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projet_java_2024.frontend.AthleteModifController">
     <children>
         <GridPane prefHeight="120.0" prefWidth="900.0">
             <columnConstraints>
@@ -44,7 +44,7 @@
         </GridPane>
         <VBox layoutY="120.0" prefHeight="580.0" prefWidth="900.0">
             <children>
-                <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0" spacing="50.0" style="-fx-background-color: #D6C278;">
+                <HBox fx:id="backgroundheader" alignment="CENTER" prefHeight="50.0" prefWidth="200.0" spacing="50.0" stylesheets="@../css/Style1.css">
                     <children>
                         <Button fx:id="accueilMenuButton" mnemonicParsing="false" onAction="#onAccueilMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Accueil" />
                         <Button fx:id="athleteMenuButton" graphicTextGap="90.0" mnemonicParsing="false" onAction="#onAthleteMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Athlètes" textAlignment="CENTER">

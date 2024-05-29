@@ -1,0 +1,55 @@
+#accueilMenuButton{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #0081C8;
+    -fx-border-width: 4px;
+}
+
+#athleteMenuButton{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #FCB131;
+    -fx-border-width: 4px;
+}
+#disciplineMenuButton{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: black;
+    -fx-border-width: 4px;
+}
+#eventMenuButton{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #00A651;
+    -fx-border-width: 4px;
+}
+
+#resultatsMenuButton{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-color: #EE334E;
+    -fx-border-width: 4px;
+}
+#backgroundheader{
+    -fx-background-color: #cba42c;
+}
+#background2{
+    -fx-background-color: #1d9cd9;
+}
+
+#soumettre, #effacer, #annuler, #modifier, #supprimer, #ajouter{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+}
