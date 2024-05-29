@@ -47,7 +47,7 @@
     -fx-background-color: #1d9cd9;
 }
 
-#soumettre, #effacer, #annuler, #modifier, #supprimer, #ajouter, #assign, #assigner{
+#soumettre, #effacer, #annuler, #modifier, #supprimer, #ajouter, #assign, #assigner, #classement, #ajouterResultat{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
     -fx-background-color: #ffffff;
     -fx-border-radius: 20px;
@@ -58,7 +58,7 @@
 #title{
     -fx-font: italic 45px fantasy;
 }
-#disciplineSelect{
+#disciplineSelect, #athleteSelect, #eventSelect, #medailleSelect{
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
     -fx-background-color: #ffffff;
     -fx-border-color: #e9ecef;
