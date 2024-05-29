@@ -1,10 +1,8 @@
-[
-	{
-		"id": 1,
-		"athleteId": 2,
-		"evenementSportifId": 1,
-		"score": 333,
-		"date": "2024-05-12 22:22:22",
-		"medaille": "Updated Medaille"
-	}
-]
+[ {
+  "id" : 1,
+  "athleteId" : 3,
+  "evenementSportifId" : 2,
+  "score" : 333,
+  "date" : "2024-05-12 22:22:22",
+  "medaille" : "Or"
+} ]

@@ -57,16 +57,6 @@
                         <Insets left="20.0" />
                     </padding>
                 </HBox>
-                <HBox fx:id="background2" alignment="CENTER" prefHeight="56.0" prefWidth="900.0" spacing="50.0">
-                    <children>
-                        <Button fx:id="ajouter" mnemonicParsing="false" onAction="#onAjouterClick" prefHeight="31.0" prefWidth="100.0" text="Ajouter" />
-                        <Button fx:id="assign" mnemonicParsing="false" onAction="#onAssignClick" prefHeight="31.0" prefWidth="100.0" text="Gérer" />
-                        <Button fx:id="supprimer" mnemonicParsing="false" onAction="#onSupprClick" prefHeight="31.0" prefWidth="100.0" text="Supprimer" />
-                    </children>
-                    <padding>
-                        <Insets left="20.0" />
-                    </padding>
-                </HBox>
             <HBox prefHeight="312.0" prefWidth="900.0">
                <children>
                   <VBox prefHeight="312.0" prefWidth="167.0">

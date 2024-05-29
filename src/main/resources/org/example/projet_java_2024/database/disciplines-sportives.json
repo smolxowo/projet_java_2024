@@ -6,4 +6,8 @@
   "id" : 2,
   "nom" : "Natation",
   "athletesId" : [ 1, 2, 3, 4 ]
+}, {
+  "id" : 3,
+  "nom" : "az",
+  "athletesId" : [ 1 ]
 } ]

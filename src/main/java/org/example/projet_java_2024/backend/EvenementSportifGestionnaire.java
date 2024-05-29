@@ -39,6 +39,25 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
         throw new IllegalArgumentException("Discipline Sportive not found: " + name);
     }
 
+    public List<EvenementSportif> getEvenementsSportifsByAthleteId(int athleteId) {
+        List<EvenementSportif> athleteEvents = new ArrayList<>();
+        for (EvenementSportif event : evenementsSportifs) {
+            if (event.getAthletesId().contains(athleteId)) {
+                athleteEvents.add(event);
+            }
+        }
+        return athleteEvents;
+    }
+
+    public String getEvenementSportifNamebyID(int id) {
+    for (EvenementSportif evenementSportif : evenementsSportifs) {
+        if (evenementSportif.getId() == id) {
+            return evenementSportif.getNom();
+        }
+    }
+    throw new IllegalArgumentException("Evenement Sportif not found: " + id);
+}
+
     public int addEvenementSportif(String nom, int disciplineSportiveId) {
         int nextId = getNextId();
         EvenementSportif evenementSportif = new EvenementSportif(

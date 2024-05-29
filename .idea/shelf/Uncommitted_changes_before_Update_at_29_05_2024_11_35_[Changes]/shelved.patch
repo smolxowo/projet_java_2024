@@ -1,0 +1,226 @@
+Index: src/main/java/org/example/projet_java_2024/frontend/EventController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024.frontend;\r\n\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.control.cell.PropertyValueFactory;\r\nimport org.example.projet_java_2024.backend.DisciplineSportive;\r\nimport org.example.projet_java_2024.backend.EvenementSportif;\r\nimport org.example.projet_java_2024.backend.EvenementSportifGestionnaire;\r\n\r\nimport java.io.IOException;\r\n\r\npublic class EventController extends AccueilController {\r\n    private EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();\r\n\r\n    @FXML\r\n    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;\r\n    @FXML\r\n    private Button ajouter, assign, supprimer;\r\n\r\n    @FXML\r\n    private TableView<EvenementSportif> eventTableView;\r\n    @FXML\r\n    private TableColumn<EvenementSportif, String> eventColumn, participantColumn;\r\n    @FXML\r\n    private TableColumn<DisciplineSportive, String> disciplineColumn;\r\n\r\n    @FXML\r\n    public void initialize() {\r\n        // Initialisation des colonnes du TableView\r\n        disciplineColumn.setCellValueFactory(new PropertyValueFactory<>(\"Discipline\"));\r\n        eventColumn.setCellValueFactory(new PropertyValueFactory<>(\"Evènement\"));\r\n        participantColumn.setCellValueFactory(new PropertyValueFactory<>(\"Participants\"));\r\n\r\n        // Charger les athlètes dans le TableView\r\n        loadDiscipline();\r\n    }\r\n\r\n    private void loadDiscipline() {\r\n        eventTableView.getItems().clear();\r\n        eventTableView.getItems().addAll();\r\n    }\r\n\r\n\r\n    public int ajoutEvent(String nom, int disciplineSportiveId){\r\n        int newEventId = evenementSportifGestionnaire.addEvenementSportif(nom, disciplineSportiveId);\r\n        return newEventId;\r\n    }\r\n\r\n    public void supprEvent(EvenementSportif evenementSportif) {\r\n        evenementSportifGestionnaire.deleteEvenementSportif(evenementSportif.getId());\r\n    }\r\n\r\n    public int ajoutParticipant(int evenementSportifId, int participantId) {\r\n        int newParticipantId = evenementSportifGestionnaire.addParticipantToEvenementSportif(evenementSportifId, participantId);\r\n        return newParticipantId;\r\n    }\r\n\r\n    public int removeParticipant(int evenementSportifId, int participantId) {\r\n        int newParticipantId = evenementSportifGestionnaire.removeParticipantFromEvenementSportif(evenementSportifId, participantId);\r\n        return newParticipantId;\r\n    }\r\n\r\n    public void onAjouterClick(ActionEvent e) throws IOException {\r\n        loadScene(\"/org/example/projet_java_2024/frontend/EventAjoutScene.fxml\", \"Ajouter un évènement\", e);\r\n    }\r\n\r\n    public void onSupprClick(ActionEvent e) throws IOException {\r\n        EvenementSportif selectedEvent = eventTableView.getSelectionModel().getSelectedItem();\r\n        supprEvent(selectedEvent);\r\n    }\r\n\r\n    public void onAssignClick(ActionEvent e) throws IOException {\r\n        loadScene(\"/org/example/projet_java_2024/frontend/EventAssignScene.fxml\", \"Assigner un évènement\", e);\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/frontend/EventController.java b/src/main/java/org/example/projet_java_2024/frontend/EventController.java
+--- a/src/main/java/org/example/projet_java_2024/frontend/EventController.java	(revision ec0604aa0e8e797caca71ce5d5301f560d016a6e)
++++ b/src/main/java/org/example/projet_java_2024/frontend/EventController.java	(date 1716920299604)
+@@ -1,5 +1,6 @@
+ package org.example.projet_java_2024.frontend;
+ 
++import javafx.beans.property.SimpleStringProperty;
+ import javafx.event.ActionEvent;
+ import javafx.fxml.FXML;
+ import javafx.scene.control.*;
+@@ -9,12 +10,10 @@
+ import org.example.projet_java_2024.backend.EvenementSportifGestionnaire;
+ 
+ import java.io.IOException;
++import java.util.ArrayList;
++import java.util.List;
+ 
+ public class EventController extends AccueilController {
+-    private EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
+-
+-    @FXML
+-    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+     @FXML
+     private Button ajouter, assign, supprimer;
+ 
+@@ -28,9 +27,17 @@
+     @FXML
+     public void initialize() {
+         // Initialisation des colonnes du TableView
+-        disciplineColumn.setCellValueFactory(new PropertyValueFactory<>("Discipline"));
+-        eventColumn.setCellValueFactory(new PropertyValueFactory<>("Evènement"));
+-        participantColumn.setCellValueFactory(new PropertyValueFactory<>("Participants"));
++        disciplineColumn.setCellValueFactory(new PropertyValueFactory<>("discipline"));
++        eventColumn.setCellValueFactory(new PropertyValueFactory<>("event"));
++        participantColumn.setCellValueFactory(cellData -> {
++            List<Integer> participantIds = cellData.getValue().getParticipantsId();
++            List<String> participantNames = new ArrayList<>();
++            for (Integer id : participantIds) {
++                String name = athleteGestionnaire.getAthleteNameById(id);
++                participantNames.add(name);
++            }
++            return new SimpleStringProperty(String.join(", ", participantNames));
++        });
+ 
+         // Charger les athlètes dans le TableView
+         loadDiscipline();
+@@ -38,9 +45,9 @@
+ 
+     private void loadDiscipline() {
+         eventTableView.getItems().clear();
+-        eventTableView.getItems().addAll();
++        List<EvenementSportif> events = evenementSportifGestionnaire.getAllEvenementsSportifs();
++        eventTableView.getItems().addAll(events);
+     }
+-
+ 
+     public int ajoutEvent(String nom, int disciplineSportiveId){
+         int newEventId = evenementSportifGestionnaire.addEvenementSportif(nom, disciplineSportiveId);
+@@ -68,6 +75,7 @@
+     public void onSupprClick(ActionEvent e) throws IOException {
+         EvenementSportif selectedEvent = eventTableView.getSelectionModel().getSelectedItem();
+         supprEvent(selectedEvent);
++        loadScene("/org/example/projet_java_2024/frontend/EventScene.fxml", "Ajouter un évènement", e);
+     }
+ 
+     public void onAssignClick(ActionEvent e) throws IOException {
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_22\" default=\"true\" project-jdk-name=\"openjdk-21\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision ec0604aa0e8e797caca71ce5d5301f560d016a6e)
++++ b/.idea/misc.xml	(date 1716975288116)
+@@ -7,8 +7,9 @@
+         <option value="$PROJECT_DIR$/pom.xml" />
+       </list>
+     </option>
++    <option name="workspaceImportForciblyTurnedOn" value="true" />
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_22" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="openjdk-21" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024.frontend;\r\n\r\nimport javafx.event.ActionEvent;\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.control.ComboBox;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.control.TextField;\r\nimport org.example.projet_java_2024.backend.DisciplineSportive;\r\nimport org.example.projet_java_2024.backend.DisciplineSportiveGestionnaire;\r\n\r\nimport java.io.IOException;\r\nimport java.util.List;\r\n\r\npublic class EventAjoutController extends EventController{\r\n    //Faire un select de discipline et un input du nom\r\n    DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();\r\n    @FXML\r\n    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;\r\n    @FXML\r\n    private Button ajouter, assign, supprimer;\r\n\r\n    @FXML\r\n    private Label nomLabel;\r\n    @FXML\r\n    private TextField nomInput;\r\n\r\n    @FXML\r\n    private Button soumettre;\r\n\r\n    @FXML\r\n    private ComboBox<String> disciplineSelect;\r\n\r\n    @FXML\r\n    public void initialize() {\r\n        List<DisciplineSportive> allDisciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();\r\n        for (DisciplineSportive discipline : allDisciplines) {\r\n            disciplineSelect.getItems().add(discipline.getNom());\r\n        }\r\n    }\r\n\r\n    public void onSoumettreClick(ActionEvent e) throws IOException {\r\n        String nom = nomInput.getText();\r\n        String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();\r\n        DisciplineSportive selectedDiscipline = disciplineSportiveGestionnaire.getDisciplineSportiveByName(selectedDisciplineName);\r\n        ajoutEvent(nom, selectedDiscipline.getId());\r\n        loadScene(\"/org/example/projet_java_2024/frontend/EventScene.fxml\", \"Evènement\", e);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java b/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java
+--- a/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java	(revision ec0604aa0e8e797caca71ce5d5301f560d016a6e)
++++ b/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java	(date 1716919894642)
+@@ -13,10 +13,6 @@
+ import java.util.List;
+ 
+ public class EventAjoutController extends EventController{
+-    //Faire un select de discipline et un input du nom
+-    DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
+-    @FXML
+-    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+     @FXML
+     private Button ajouter, assign, supprimer;
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6fcb5b4b-653e-4b07-8af2-d8339e786f4a\" name=\"Changes\" comment=\"Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;smolxowo&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/smolxowo/projet_java_2024&quot;,\r\n    &quot;accountId&quot;: &quot;5514e30a-6b53-43bc-bfca-88d8a08680da&quot;\r\n  }\r\n}</component>\r\n  <component name=\"MacroExpansionManager\">\r\n    <option name=\"directoryName\" value=\"g651ff75\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2fYtUmcEwZU4lDCK3CvAirxnnfI\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.HelloApplication.executor\": \"Run\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/BRdie/Desktop/ISEP/A1/Algorithmique/TP9\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon\": \"\",\r\n    \"settings.editor.selected.configurable\": \"preferences.pluginManager\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\BRdie\\Desktop\\ISEP\\A1\\Algorithmique\\projet_java_2024\\src\\main\\resources\\org\\example\\projet_java_2024\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\BRdie\\Desktop\\ISEP\\A1\\Algorithmique\\projet_java_2024\\src\\main\\resources\\org\\example\\projet_java_2024\\frontend\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"HelloApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.projet_java_2024.HelloApplication\" />\r\n      <module name=\"projet_java_2024\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.example.projet_java_2024.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.HelloApplication\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79\" />\r\n        <option value=\"bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6fcb5b4b-653e-4b07-8af2-d8339e786f4a\" name=\"Changes\" comment=\"\" />\r\n      <created>1713989858730</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1713989858730</updated>\r\n      <workItem from=\"1715525483183\" duration=\"27000\" />\r\n      <workItem from=\"1715525520090\" duration=\"620000\" />\r\n      <workItem from=\"1716901171703\" duration=\"143000\" />\r\n      <workItem from=\"1716901414436\" duration=\"3562000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"1er commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713990041596</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713990041596</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"1er commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713990201792</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713990201792</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Implémentation UML tentative 1\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714119248038</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714119248038</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Implémentation UML tentat\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714125761554</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714125761554</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Implémentation UML v3\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715352234154</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715352234154</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Adding lombok for automatic getter/setter\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715525890728</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715525890728</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"lombok in module file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715525974206</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715525974206</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"AccueilScene changement\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715933144757</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715933144757</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"AccueilScene changement\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715933914154</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715933914154</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Update module-info.java + AthleteAjoutController + AthleteController (affichage et ajout fonctionnel)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716464963080</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716464963080</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Tentative pour le header + ajout des autres controller (AthleteAjout marche plus mais Athlete fonctionne aled)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716478832379</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716478832379</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Réparation de la fonction load pour faire marcher AthleteAjoutController\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716533351102</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716533351103</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Ajouter/Supprimer/Modifier Athlete v56779\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716541879731</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716541879731</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Ajouter/Supprimer Discipline\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716543991937</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716543991937</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Vue athlete actualisée\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716904854931</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716904854931</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Modification Athlete fonctionnel\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716910738402</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716910738402</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"Discipline quasi finit, ajouter ne fonctionne plus (aled)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716916794771</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716916794771</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716918477342</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716918477342</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"19\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\"*.bat\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"CUSTOM_BOOLEAN_PROPERTIES\">\r\n                <map>\r\n                  <entry key=\"Show.Git.Branches\" value=\"true\" />\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"1er commit\" />\r\n    <MESSAGE value=\"Implémentation UML tentative 1\" />\r\n    <MESSAGE value=\"Implémentation UML tentat\" />\r\n    <MESSAGE value=\"Implémentation UML v3\" />\r\n    <MESSAGE value=\"Adding lombok for automatic getter/setter\" />\r\n    <MESSAGE value=\"lombok in module file\" />\r\n    <MESSAGE value=\"Update du module-info.java + AthleteAjoutController (fonctionnel) + AthleteController (affichage des données fonctionnel)\" />\r\n    <MESSAGE value=\"AccueilScene changement\" />\r\n    <MESSAGE value=\"Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/org/example/projet_java_2024/frontend/AthleteController.java&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/athletes.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/participants.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/resultats.json\" />\r\n    <MESSAGE value=\"Update module-info.java + AthleteAjoutController + AthleteController (affichage et ajout fonctionnel)\" />\r\n    <MESSAGE value=\"Tentative pour le header + ajout des autres controller (AthleteAjout marche plus mais Athlete fonctionne aled)\" />\r\n    <MESSAGE value=\"Réparation de la fonction load pour faire marcher AthleteAjoutController\" />\r\n    <MESSAGE value=\"Ajouter/Supprimer/Modifier Athlete v56779\" />\r\n    <MESSAGE value=\"Ajouter/Supprimer Discipline\" />\r\n    <MESSAGE value=\"Vue athlete actualisée\" />\r\n    <MESSAGE value=\"Modification Athlete fonctionnel\" />\r\n    <MESSAGE value=\"Discipline quasi finit, ajouter ne fonctionne plus (aled)\" />\r\n    <MESSAGE value=\"Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.IndexOutOfBoundsException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision ec0604aa0e8e797caca71ce5d5301f560d016a6e)
++++ b/.idea/workspace.xml	(date 1716920621831)
+@@ -4,10 +4,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas">
++    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Discipline finit (enfin)">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/DisciplineSportiveGestionnaire.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -263,7 +265,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1716918477342</updated>
+     </task>
+-    <option name="localTasksCounter" value="19" />
++    <task id="LOCAL-00019" summary="Discipline finit (enfin)">
++      <option name="closed" value="true" />
++      <created>1716919376304</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1716919376304</updated>
++    </task>
++    <option name="localTasksCounter" value="20" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -308,7 +318,8 @@
+     <MESSAGE value="Modification Athlete fonctionnel" />
+     <MESSAGE value="Discipline quasi finit, ajouter ne fonctionne plus (aled)" />
+     <MESSAGE value="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas" />
++    <MESSAGE value="Discipline finit (enfin)" />
++    <option name="LAST_COMMIT_MESSAGE" value="Discipline finit (enfin)" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024.frontend;\r\n\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.Button;\r\nimport javafx.scene.control.CheckBox;\r\nimport javafx.scene.control.ComboBox;\r\nimport javafx.scene.layout.VBox;\r\nimport org.example.projet_java_2024.backend.*;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class EventAssignController {\r\n    //Faire une checklist des participants et un select des disciplines puis évènements\r\n    DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();\r\n    AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();\r\n    EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();\r\n\r\n    @FXML\r\n    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;\r\n\r\n    @FXML\r\n    private ComboBox<String> disciplineSelect, eventSelect;\r\n\r\n    @FXML\r\n    private Button assigner;\r\n    @FXML\r\n    private Button remove;\r\n\r\n    @FXML\r\n    private VBox checkBoxContainer;\r\n\r\n    @FXML\r\n    private List<CheckBox> participantChecks = new ArrayList<>(); // Liste pour stocker vos CheckBox\r\n\r\n    @FXML\r\n    public void initialize() {\r\n        List<DisciplineSportive> allDisciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();\r\n        for (DisciplineSportive discipline : allDisciplines) {\r\n            disciplineSelect.getItems().add(discipline.getNom());\r\n        }\r\n        List<EvenementSportif> allEvents = evenementSportifGestionnaire.getAllEvenementsSportifs();\r\n        for (EvenementSportif event : allEvents) {\r\n            eventSelect.getItems().add(event.getNom());\r\n        }\r\n        List<Athlete> allAthletes = athleteGestionnaire.getAllAthletes();\r\n        for (Athlete athlete : allAthletes) {\r\n            CheckBox checkBox = new CheckBox(athlete.getNom());\r\n            participantChecks.add(checkBox); // Ajoute chaque CheckBox à la liste\r\n            checkBoxContainer.getChildren().add(checkBox); // Ajoute la CheckBox à la VBox\r\n        }\r\n    }\r\n\r\n    public void onAssignerClick() {\r\n        String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();\r\n        DisciplineSportive selectedDiscipline = disciplineSportiveGestionnaire.getDisciplineSportiveByName(selectedDisciplineName);\r\n        String selectedEventName = eventSelect.getSelectionModel().getSelectedItem();\r\n        EvenementSportif selectedEvent = evenementSportifGestionnaire.getEvenementSportifByName(selectedEventName);\r\n\r\n        for (CheckBox checkBox : participantChecks) {\r\n            if (checkBox.isSelected()) {\r\n                String athleteName = checkBox.getText();\r\n                Athlete selectedAthlete = athleteGestionnaire.getAthleteByName(athleteName);\r\n                evenementSportifGestionnaire.addParticipantToEvenementSportif(selectedEvent.getId(), selectedAthlete.getId());\r\n            }\r\n        }\r\n    }\r\n\r\n    public void onRemoveClick() {\r\n        String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();\r\n        DisciplineSportive selectedDiscipline = disciplineSportiveGestionnaire.getDisciplineSportiveByName(selectedDisciplineName);\r\n        String selectedEventName = eventSelect.getSelectionModel().getSelectedItem();\r\n        EvenementSportif selectedEvent = evenementSportifGestionnaire.getEvenementSportifByName(selectedEventName);\r\n\r\n        for (CheckBox checkBox : participantChecks) {\r\n            if (checkBox.isSelected()) {\r\n                String athleteName = checkBox.getText();\r\n                Athlete selectedAthlete = athleteGestionnaire.getAthleteByName(athleteName);\r\n                evenementSportifGestionnaire.removeParticipantFromEvenementSportif(selectedEvent.getId(), selectedAthlete.getId());\r\n            }\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java b/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java
+--- a/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java	(revision ec0604aa0e8e797caca71ce5d5301f560d016a6e)
++++ b/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java	(date 1716919894646)
+@@ -10,15 +10,8 @@
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+-public class EventAssignController {
++public class EventAssignController extends EventController{
+     //Faire une checklist des participants et un select des disciplines puis évènements
+-    DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
+-    AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
+-    EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
+-
+-    @FXML
+-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
+-
+     @FXML
+     private ComboBox<String> disciplineSelect, eventSelect;
+ 
+Index: src/main/resources/org/example/projet_java_2024/database/athletes.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[{\"id\":1,\"nom\":\"Usain Bolt\",\"sexe\":\"M\",\"pays\":\"Jamaica\",\"age\":34,\"nbParticipation\":3},{\"id\":2,\"nom\":\"bob\",\"sexe\":\"m\",\"pays\":\"france\",\"age\":4,\"nbParticipation\":8},{\"id\":3,\"nom\":\"bob\",\"sexe\":\"m\",\"pays\":\"france\",\"age\":4,\"nbParticipation\":8},{\"id\":6,\"nom\":\"Rafael Nadal\",\"sexe\":\"M\",\"pays\":\"Espagne\",\"age\":39,\"nbParticipation\":0},{\"id\":7,\"nom\":\"Roger Federer\",\"sexe\":\"M\",\"pays\":\"Suisse\",\"age\":40,\"nbParticipation\":0},{\"id\":8,\"nom\":\"M\",\"sexe\":\"M\",\"pays\":\"Fr\",\"age\":30,\"nbParticipation\":0},{\"id\":9,\"nom\":\"Wawrinka\",\"sexe\":\"M\",\"pays\":\"Suisse\",\"age\":35,\"nbParticipation\":0},{\"id\":10,\"nom\":\"ezcs\",\"sexe\":\"e\",\"pays\":\"e\",\"age\":3,\"nbParticipation\":3},{\"id\":10,\"nom\":\"e\",\"sexe\":\"e\",\"pays\":\"e\",\"age\":3,\"nbParticipation\":3}]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/example/projet_java_2024/database/athletes.json b/src/main/resources/org/example/projet_java_2024/database/athletes.json
+--- a/src/main/resources/org/example/projet_java_2024/database/athletes.json	(revision ec0604aa0e8e797caca71ce5d5301f560d016a6e)
++++ b/src/main/resources/org/example/projet_java_2024/database/athletes.json	(date 1716920564150)
+@@ -1,1 +1,1 @@
+-[{"id":1,"nom":"Usain Bolt","sexe":"M","pays":"Jamaica","age":34,"nbParticipation":3},{"id":2,"nom":"bob","sexe":"m","pays":"france","age":4,"nbParticipation":8},{"id":3,"nom":"bob","sexe":"m","pays":"france","age":4,"nbParticipation":8},{"id":6,"nom":"Rafael Nadal","sexe":"M","pays":"Espagne","age":39,"nbParticipation":0},{"id":7,"nom":"Roger Federer","sexe":"M","pays":"Suisse","age":40,"nbParticipation":0},{"id":8,"nom":"M","sexe":"M","pays":"Fr","age":30,"nbParticipation":0},{"id":9,"nom":"Wawrinka","sexe":"M","pays":"Suisse","age":35,"nbParticipation":0},{"id":10,"nom":"ezcs","sexe":"e","pays":"e","age":3,"nbParticipation":3},{"id":10,"nom":"e","sexe":"e","pays":"e","age":3,"nbParticipation":3}]
+\ No newline at end of file
++[{"id":1,"nom":"Usain Bolt","sexe":"M","pays":"Jamaica","age":34,"nbParticipation":3},{"id":2,"nom":"bob","sexe":"m","pays":"france","age":4,"nbParticipation":8},{"id":3,"nom":"bob","sexe":"m","pays":"france","age":4,"nbParticipation":8},{"id":6,"nom":"Rafael Nadal","sexe":"M","pays":"Espagne","age":39,"nbParticipation":0},{"id":7,"nom":"Roger Federer","sexe":"M","pays":"Suisse","age":40,"nbParticipation":0},{"id":8,"nom":"M","sexe":"M","pays":"Fr","age":30,"nbParticipation":0},{"id":9,"nom":"Wawrinka","sexe":"M","pays":"Suisse","age":35,"nbParticipation":0},{"id":10,"nom":"e","sexe":"e","pays":"eES4DRVGYJ","age":3,"nbParticipation":3}]
+\ No newline at end of file
+Index: src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>[{\"id\":2,\"nom\":\"Judo\",\"participantId\":[6]},{\"id\":3,\"nom\":\"Natation\",\"participantId\":[2,6,9,10]}]
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json b/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json
+--- a/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json	(revision ec0604aa0e8e797caca71ce5d5301f560d016a6e)
++++ b/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json	(date 1716920666161)
+@@ -1,1 +1,1 @@
+-[{"id":2,"nom":"Judo","participantId":[6]},{"id":3,"nom":"Natation","participantId":[2,6,9,10]}]
+\ No newline at end of file
++[{"id":2,"nom":"Judo","participantId":[6]},{"id":3,"nom":"Skate","participantId":[1]}]
+\ No newline at end of file

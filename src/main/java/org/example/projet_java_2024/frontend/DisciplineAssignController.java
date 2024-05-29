@@ -24,24 +24,24 @@ public class DisciplineAssignController extends DisciplineController {
 
     @FXML
     public void initialize() {
-    List<Athlete> allAthletes = ATHLETE_GESTIONNAIRE.getAllAthletes();
-    // get athletes for the selected discipline
-    List<Integer> athletesId = SELECTED_DISCIPLINE.getAthletesId();
+        List<Athlete> allAthletes = ATHLETE_GESTIONNAIRE.getAllAthletes();
+        // get athletes for the selected discipline
+        List<Integer> athletesId = SELECTED_DISCIPLINE.getAthletesId();
 
-    for (Athlete athlete : allAthletes) {
-        CheckBox checkBox = new CheckBox(athlete.getNom());
-        athleteChecks.add(checkBox);
-        checkBoxContainer.getChildren().add(checkBox);
+        for (Athlete athlete : allAthletes) {
+            CheckBox checkBox = new CheckBox(athlete.getNom());
+            athleteChecks.add(checkBox);
+            checkBoxContainer.getChildren().add(checkBox);
 
-        // left margin for the eyes
-        VBox.setMargin(checkBox, new Insets(0, 0, 0, 10));
+            // left margin for the eyes
+            VBox.setMargin(checkBox, new Insets(0, 0, 0, 10));
 
-        // check the box if athlete is in this discipline
-        if (athletesId.contains(athlete.getId())) {
-            checkBox.setSelected(true);
+            // check the box if athlete is in this discipline
+            if (athletesId.contains(athlete.getId())) {
+                checkBox.setSelected(true);
+            }
         }
     }
-}
 
     public void onAssignerClick(ActionEvent e) throws IOException {
         String selectedDisciplineName = SELECTED_DISCIPLINE.getNom();

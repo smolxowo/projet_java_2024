@@ -13,12 +13,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class EventAjoutController extends EventController{
-    //Faire un select de discipline et un input du nom
-    DisciplineSportiveGestionnaire disciplineSportiveGestionnaire = new DisciplineSportiveGestionnaire();
-    @FXML
-    private Button accueilMenuButton, athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
-    @FXML
-    private Button ajouter, assign, supprimer;
 
     @FXML
     private Label nomLabel;
@@ -33,7 +27,7 @@ public class EventAjoutController extends EventController{
 
     @FXML
     public void initialize() {
-        List<DisciplineSportive> allDisciplines = disciplineSportiveGestionnaire.getAllDisciplinesSportives();
+        List<DisciplineSportive> allDisciplines = DISCIPLINE_GESTIONNAIRE.getAllDisciplinesSportives();
         for (DisciplineSportive discipline : allDisciplines) {
             disciplineSelect.getItems().add(discipline.getNom());
         }
@@ -42,7 +36,7 @@ public class EventAjoutController extends EventController{
     public void onSoumettreClick(ActionEvent e) throws IOException {
         String nom = nomInput.getText();
         String selectedDisciplineName = disciplineSelect.getSelectionModel().getSelectedItem();
-        DisciplineSportive selectedDiscipline = disciplineSportiveGestionnaire.getDisciplineSportiveByName(selectedDisciplineName);
+        DisciplineSportive selectedDiscipline = DISCIPLINE_GESTIONNAIRE.getDisciplineSportiveByName(selectedDisciplineName);
         ajoutEvent(nom, selectedDiscipline.getId());
         loadScene("/org/example/projet_java_2024/frontend/EventScene.fxml", "Evènement", e);
     }

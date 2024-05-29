@@ -18,9 +18,6 @@ import static org.example.projet_java_2024.frontend.AccueilController.ATHLETE_GE
 
 public class EventAssignController extends EventController {
     @FXML
-    private ComboBox<String> disciplineSelect, eventSelect;
-
-    @FXML
     private Button assigner;
     @FXML
     private Button remove;

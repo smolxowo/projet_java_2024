@@ -12,13 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class ResultatAjoutController extends ResultatController {
-    AthleteGestionnaire athleteGestionnaire = new AthleteGestionnaire();
-    EvenementSportifGestionnaire evenementSportifGestionnaire = new EvenementSportifGestionnaire();
-    @FXML
-    private Button athleteMenuButton, disciplineMenuButton, eventMenuButton, resultatsMenuButton;
 
-    @FXML
-    private Button ajouter, supprimer, classement;
     @FXML
     private ComboBox<String> athleteSelect, eventSelect, medailleSelect;
 
@@ -32,30 +26,34 @@ public class ResultatAjoutController extends ResultatController {
     @FXML
     public void initialize() {
         // Initialisation des ComboBox
-        List<Athlete> allAthlete = athleteGestionnaire.getAllAthletes();
-        for (Athlete athlete : allAthlete) {
+        List<Athlete> athletes = ATHLETE_GESTIONNAIRE.getAllAthletes();
+        for (Athlete athlete : athletes) {
             athleteSelect.getItems().add(athlete.getNom());
         }
 
-        List<EvenementSportif> allEvenementsSportifs = evenementSportifGestionnaire.getAllEvenementsSportifs();
-        for (EvenementSportif event : allEvenementsSportifs) {
-            eventSelect.getItems().add(event.getNom());
-        }
-
+        athleteSelect.getSelectionModel().selectedItemProperty().addListener((options, oldValue, newValue) -> {
+            Athlete selectedAthlete = ATHLETE_GESTIONNAIRE.getAthleteByName(newValue);
+            List<EvenementSportif> athleteEvents = EVENEMENT_GESTIONNAIRE.getEvenementsSportifsByAthleteId(selectedAthlete.getId());
+            eventSelect.getItems().clear();
+            for (EvenementSportif event : athleteEvents) {
+                eventSelect.getItems().add(event.getNom());
+            }
+        });
         medailleSelect.getItems().addAll("Or", "Argent", "Bronze", "Aucune");
     }
 
     public void onAjouterResultatClick(ActionEvent e) throws IOException {
         String athleteName = athleteSelect.getSelectionModel().getSelectedItem();
-        Athlete athlete = athleteGestionnaire.getAthleteByName(athleteName);
+        Athlete athlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
 
         String eventName = eventSelect.getSelectionModel().getSelectedItem();
-        EvenementSportif event = evenementSportifGestionnaire.getEvenementSportifByName(eventName);
+        EvenementSportif event = EVENEMENT_GESTIONNAIRE.getEvenementSportifByName(eventName);
 
         int score = Integer.parseInt(scoreField.getText());
         String date = dateField.getText();
         String medaille = medailleSelect.getSelectionModel().getSelectedItem();
 
         ajoutResultat(athlete.getId(), event.getId(), score, date, medaille);
+        loadScene("/org/example/projet_java_2024/frontend/ResultatScene.fxml", "Résultat", e);
     }
 }

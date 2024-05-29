@@ -11,7 +11,7 @@
   "sexe" : "M",
   "pays" : "Espagne",
   "age" : 39,
-  "nbParticipation" : 0
+  "nbParticipation" : 2
 }, {
   "id" : 3,
   "nom" : "Roger Federer",
@@ -25,5 +25,5 @@
   "sexe" : "M",
   "pays" : "Suisse",
   "age" : 35,
-  "nbParticipation" : 0
+  "nbParticipation" : 6
 } ]

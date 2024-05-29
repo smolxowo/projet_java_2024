@@ -46,13 +46,13 @@ public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
     }
 
     public String getAthleteNameById(int id) {
-    for (Athlete athlete : athletes) {
-        if (athlete.getId() == id) {
-            return athlete.getNom();
+        for (Athlete athlete : athletes) {
+            if (athlete.getId() == id) {
+                return athlete.getNom();
+            }
         }
+        throw new IllegalArgumentException("Athlete not found: " + id);
     }
-    throw new IllegalArgumentException("Athlete not found: " + id);
-}
 
     public List<Athlete> getAthletesByProperty(String property, String value) {
         List<Athlete> result = new ArrayList<>();
