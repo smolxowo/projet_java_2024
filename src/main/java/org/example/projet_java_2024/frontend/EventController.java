@@ -13,9 +13,6 @@ import java.util.List;
 
 public class EventController extends AccueilController {
     @FXML
-    private Button ajouter, assign, supprimer;
-
-    @FXML
     protected TableView<EvenementSportif> eventTableView;
     @FXML
     protected TableColumn<EvenementSportif, String> eventColumn, athleteColumn;
@@ -95,5 +92,18 @@ public class EventController extends AccueilController {
         } else {
             loadScene("/org/example/projet_java_2024/frontend/EventAssignScene.fxml", "Assigner un évènement", e);
         }
+    }
+
+    protected boolean validateFields(String nomEvenement) {
+        if (nomEvenement.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Champ vide");
+            alert.setContentText("Veuillez remplir le nom de l'évènement");
+            alert.showAndWait();
+            return false;
+        }
+
+        return true;
     }
 }

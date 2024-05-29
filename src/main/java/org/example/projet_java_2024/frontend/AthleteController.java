@@ -60,8 +60,18 @@ public class AthleteController extends AccueilController {
 
     public void onSupprClick(ActionEvent e) throws IOException {
         Athlete selectedAthlete = athleteTableView.getSelectionModel().getSelectedItem();
-        supprAthlete(selectedAthlete);
-        loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
+
+        if (selectedAthlete == null) {
+            // Afficher un message d'erreur
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de sélection");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner un athlète à supprimer.");
+            alert.showAndWait();
+        } else {
+            supprAthlete(selectedAthlete);
+            loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
+        }
     }
 
     public void onModifClick(ActionEvent e) throws IOException {

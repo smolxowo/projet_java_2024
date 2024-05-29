@@ -65,7 +65,13 @@ public class DisciplineController extends AccueilController {
     @FXML
     public void onSupprClick(ActionEvent e) throws IOException {
         DisciplineSportive selectedDiscipline = disciplineTableView.getSelectionModel().getSelectedItem();
-        if (selectedDiscipline != null) {
+        if (selectedDiscipline == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Aucune discipline sélectionnée");
+            alert.setContentText("Veuillez sélectionner une discipline à supprimer");
+            alert.showAndWait();
+        } else {
             supprDiscipline(selectedDiscipline);
             loadScene("/org/example/projet_java_2024/frontend/DisciplineScene.fxml", "Discipline", e);
         }

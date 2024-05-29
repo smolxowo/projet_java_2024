@@ -3,9 +3,7 @@ package org.example.projet_java_2024.frontend;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import org.example.projet_java_2024.backend.*;
 
@@ -13,15 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.projet_java_2024.frontend.AccueilController.*;
-import static org.example.projet_java_2024.frontend.AccueilController.ATHLETE_GESTIONNAIRE;
-
 public class EventAssignController extends EventController {
-    @FXML
-    private Button assigner;
-    @FXML
-    private Button remove;
-
     @FXML
     private VBox checkBoxContainer;
 
