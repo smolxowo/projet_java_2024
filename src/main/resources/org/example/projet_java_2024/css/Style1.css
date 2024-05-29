@@ -52,8 +52,17 @@
     -fx-background-color: #ffffff;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
+
 }
 
 #title{
     -fx-font: italic 45px fantasy;
+}
+#disciplineSelect{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 2px;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 8px;
 }

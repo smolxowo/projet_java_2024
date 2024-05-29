@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projet_java_2024.frontend.EventAjoutController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/Style1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projet_java_2024.frontend.EventAjoutController">
     <children>
         <GridPane prefHeight="120.0" prefWidth="900.0">
             <columnConstraints>
@@ -27,7 +27,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="CENTER" prefHeight="53.0" prefWidth="700.0" text="Gestionnaire JO" GridPane.columnIndex="1">
+                <Label fx:id="title" alignment="CENTER" prefHeight="53.0" prefWidth="700.0" text="Gestionnaire JO" GridPane.columnIndex="1">
                     <font>
                         <Font name="Candara" size="36.0" />
                     </font>
@@ -45,7 +45,7 @@
         </GridPane>
         <VBox layoutY="120.0" prefHeight="580.0" prefWidth="900.0">
             <children>
-                <HBox alignment="CENTER" prefHeight="72.0" prefWidth="900.0" spacing="50.0" style="-fx-background-color: #D6C278;">
+                <HBox fx:id="backgroundheader" alignment="CENTER" prefHeight="72.0" prefWidth="900.0" spacing="50.0">
                     <children>
                         <Button fx:id="accueilMenuButton" mnemonicParsing="false" onAction="#onAccueilMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Accueil" />
                         <Button fx:id="athleteMenuButton" mnemonicParsing="false" onAction="#onAthleteMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Athlètes" />
@@ -57,7 +57,7 @@
                         <Insets left="20.0" />
                     </padding>
                 </HBox>
-                <HBox alignment="CENTER" prefHeight="56.0" prefWidth="900.0" spacing="50.0" style="-fx-background-color: #000;">
+                <HBox fx:id="background2" alignment="CENTER" prefHeight="56.0" prefWidth="900.0" spacing="50.0">
                     <children>
                         <Button fx:id="ajouter" mnemonicParsing="false" onAction="#onAjouterClick" prefHeight="31.0" prefWidth="100.0" text="Ajouter" />
                         <Button fx:id="assign" mnemonicParsing="false" onAction="#onAssignClick" prefHeight="31.0" prefWidth="100.0" text="Gérer" />
@@ -67,18 +67,43 @@
                         <Insets left="20.0" />
                     </padding>
                 </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="312.0" prefWidth="900.0">
                <children>
-                  <Label fx:id="nomLabel" text="Nom" />
-                  <TextField fx:id="nomInput" />
+                  <VBox prefHeight="312.0" prefWidth="167.0">
+                     <children>
+                        <Label fx:id="nomLabel" text="Nom">
+                           <VBox.margin>
+                              <Insets left="90.0" top="62.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="312.0" prefWidth="754.0">
+                     <children>
+                        <TextField fx:id="nomInput">
+                           <VBox.margin>
+                              <Insets right="130.0" top="60.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ComboBox fx:id="disciplineSelect" prefWidth="150.0" promptText="Discipline">
+                                 <HBox.margin>
+                                    <Insets top="40.0" />
+                                 </HBox.margin>
+                              </ComboBox>
+                              <Button fx:id="soumettre" mnemonicParsing="false" onAction="#onSoumettreClick" text="Soumettre">
+                                 <HBox.margin>
+                                    <Insets left="380.0" top="40.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <ComboBox fx:id="disciplineSelect" prefWidth="150.0" promptText="Discipline" />
-                  <Button fx:id="soumettre" mnemonicParsing="false" onAction="#onSoumettreClick" text="Soumettre" />
-               </children>
-            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
             </children>
         </VBox>
     </children>
