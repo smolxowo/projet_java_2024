@@ -11,5 +11,5 @@ public class Athlete {
     private String sexe;
     private String pays;
     private int age;
-    private int nbParticipation;        //le nombre de participations aux JO précédents
+    private int nbParticipation; // Le nombre de participations aux JO précédents
 }

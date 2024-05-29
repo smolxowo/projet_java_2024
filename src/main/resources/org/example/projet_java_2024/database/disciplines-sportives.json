@@ -6,8 +6,4 @@
   "id" : 2,
   "nom" : "Natation",
   "athletesId" : [ 1, 2 ]
-}, {
-  "id" : 3,
-  "nom" : "Az",
-  "athletesId" : [ ]
 } ]

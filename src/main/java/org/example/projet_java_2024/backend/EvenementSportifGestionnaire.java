@@ -3,7 +3,10 @@ package org.example.projet_java_2024.backend;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import static org.example.projet_java_2024.frontend.AccueilController.RESULTAT_GESTIONNAIRE;
 
 public class EvenementSportifGestionnaire extends DatabaseGestionnaire<EvenementSportif> {
     private final List<EvenementSportif> evenementsSportifs;
@@ -15,7 +18,8 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
 
     @Override
     protected TypeReference<List<EvenementSportif>> getTypeReference() {
-        return new TypeReference<List<EvenementSportif>>() {};
+        return new TypeReference<List<EvenementSportif>>() {
+        };
     }
 
     public List<EvenementSportif> getAllEvenementsSportifs() {
@@ -30,6 +34,7 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
         }
         throw new IllegalArgumentException("Evenement Sportif not found: " + id);
     }
+
     public EvenementSportif getEvenementSportifByName(String name) {
         for (EvenementSportif evenementSportif : evenementsSportifs) {
             if (evenementSportif.getNom().equals(name)) {
@@ -50,13 +55,13 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
     }
 
     public String getEvenementSportifNamebyID(int id) {
-    for (EvenementSportif evenementSportif : evenementsSportifs) {
-        if (evenementSportif.getId() == id) {
-            return evenementSportif.getNom();
+        for (EvenementSportif evenementSportif : evenementsSportifs) {
+            if (evenementSportif.getId() == id) {
+                return evenementSportif.getNom();
+            }
         }
+        throw new IllegalArgumentException("Evenement Sportif not found: " + id);
     }
-    throw new IllegalArgumentException("Evenement Sportif not found: " + id);
-}
 
     public int addEvenementSportif(String nom, int disciplineSportiveId) {
         int nextId = getNextId();
@@ -71,15 +76,33 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
         return evenementSportif.getId();
     }
 
-    public void deleteEvenementSportif(int id) {
-        for (EvenementSportif evenementSportif : evenementsSportifs) {
-            if (evenementSportif.getId() == id) {
-                evenementsSportifs.remove(evenementSportif);
-                saveToJSON();
-                return;
+    public void deleteEvenementSportif(int evenementId) {
+        // Cascade delete from Resultat
+        Iterator<Resultat> resultatIterator = RESULTAT_GESTIONNAIRE.getAllResultats().iterator();
+        while (resultatIterator.hasNext()) {
+            Resultat resultat = resultatIterator.next();
+            if (resultat.getEvenementSportifId() == evenementId) {
+                resultatIterator.remove();
+                RESULTAT_GESTIONNAIRE.deleteResultat(resultat.getId());
             }
         }
-        throw new IllegalArgumentException("Evenement Sportif not found: " + id);
+
+        // Collect the events to be removed
+        Iterator<EvenementSportif> evenementIterator = evenementsSportifs.iterator();
+        boolean found = false;
+        while (evenementIterator.hasNext()) {
+            EvenementSportif evenementSportif = evenementIterator.next();
+            if (evenementSportif.getId() == evenementId) {
+                evenementIterator.remove();
+                found = true;
+            }
+        }
+
+        saveToJSON();
+
+        if (!found) {
+            throw new IllegalArgumentException("Evenement Sportif not found: " + evenementId);
+        }
     }
 
     public int updateEvenementSportif(int id, String nom, int disciplineSportiveId) {

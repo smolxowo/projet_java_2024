@@ -2,7 +2,11 @@ package org.example.projet_java_2024.backend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import static org.example.projet_java_2024.frontend.AccueilController.EVENEMENT_GESTIONNAIRE;
 
 public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<DisciplineSportive> {
     private final List<DisciplineSportive> disciplinesSportives;
@@ -47,15 +51,27 @@ public class DisciplineSportiveGestionnaire extends DatabaseGestionnaire<Discipl
         return nextId;
     }
 
-    public void deleteDisciplineSportive(int id) {
-        for (DisciplineSportive disciplineSportive : disciplinesSportives) {
-            if (disciplineSportive.getId() == id) {
-                disciplinesSportives.remove(disciplineSportive);
-                saveToJSON();
-                return;
+    public void deleteDisciplineSportive(int disciplineId) {
+        // Collect IDs of events to be deleted
+        List<Integer> evenementIdsToDelete = new ArrayList<>();
+        for (EvenementSportif evenementSportif : EVENEMENT_GESTIONNAIRE.getAllEvenementsSportifs()) {
+            if (evenementSportif.getDisciplineSportiveId() == disciplineId) {
+                evenementIdsToDelete.add(evenementSportif.getId());
             }
         }
-        throw new IllegalArgumentException("Discipline Sportive not found: " + id);
+
+        // Delete events after collecting IDs
+        for (int evenementId : evenementIdsToDelete) {
+            EVENEMENT_GESTIONNAIRE.deleteEvenementSportif(evenementId);
+        }
+
+        boolean isRemoved = disciplinesSportives.removeIf(discipline -> discipline.getId() == disciplineId);
+
+        saveToJSON();
+
+        if (!isRemoved) {
+            throw new IllegalArgumentException("Discipline Sportive not found: " + disciplineId);
+        }
     }
 
     public int addAthleteToDisciplineSportive(int disciplineSportiveId, int athleteId) {

@@ -44,15 +44,17 @@ public class ResultatGestionnaire extends DatabaseGestionnaire<Resultat> {
         return resultat.getId();
     }
 
-    public void deleteResultat(int id) {
+    public void deleteResultat(int resultatId) {
+        // ** No cascade delete for end child
+
         for (Resultat resultat : resultats) {
-            if (resultat.getId() == id) {
+            if (resultat.getId() == resultatId) {
                 resultats.remove(resultat);
                 saveToJSON();
                 return;
             }
         }
-        throw new IllegalArgumentException("Resultat not found: " + id);
+        throw new IllegalArgumentException("Resultat not found: " + resultatId);
     }
 
     public int updateResultat(int id, int athleteId, int evenementSportifId, int score, String temps, String medaille) {

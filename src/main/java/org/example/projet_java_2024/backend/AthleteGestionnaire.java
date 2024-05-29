@@ -5,8 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.example.projet_java_2024.frontend.AccueilController.DISCIPLINE_GESTIONNAIRE;
-import static org.example.projet_java_2024.frontend.AccueilController.EVENEMENT_GESTIONNAIRE;
+import static org.example.projet_java_2024.frontend.AccueilController.*;
 
 public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
     private final List<Athlete> athletes;
@@ -123,6 +122,13 @@ public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
         // Cascade delete from EvenementSportif
         for (EvenementSportif evenementSportif : EVENEMENT_GESTIONNAIRE.getAllEvenementsSportifs()) {
             EVENEMENT_GESTIONNAIRE.removeAthleteFromEvenementSportif(evenementSportif.getId(), athleteId);
+        }
+
+        // Cascade delete from Resultat
+        for (Resultat resultat : RESULTAT_GESTIONNAIRE.getAllResultats()) {
+            if (resultat.getAthleteId() == athleteId) {
+                RESULTAT_GESTIONNAIRE.deleteResultat(resultat.getId());
+            }
         }
 
         for (Athlete athlete : athletes) {
