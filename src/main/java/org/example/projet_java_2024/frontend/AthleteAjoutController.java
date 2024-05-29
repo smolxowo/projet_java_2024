@@ -6,6 +6,7 @@ import javafx.scene.control.*;
 
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class AthleteAjoutController extends AthleteController {
     @FXML private TextField nomInput;
@@ -22,20 +23,18 @@ public class AthleteAjoutController extends AthleteController {
     }
 
     public void onSoumettreClick(ActionEvent e) throws IOException {
-        ajoutAthlete(
-                nomInput.getText(),
-                sexeInput.getText(),
-                paysInput.getText(),
-                Integer.parseInt(ageInput.getText()),
-                Integer.parseInt(nbParticipInput.getText())
-        );
-        // wait for 1 second
-//        try {
-//            Thread.sleep(1000);
-//        } catch (InterruptedException ex) {
-//            Thread.currentThread().interrupt();
-//        }
-        loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
+        String nom = nomInput.getText();
+        String sexe = sexeInput.getText();
+        String pays = paysInput.getText();
+        String ageStr = ageInput.getText();
+        String nbParticipStr = nbParticipInput.getText();
+
+        if (validateFields(nom, sexe, pays, ageStr, nbParticipStr)) {
+            int age = Integer.parseInt(ageStr);
+            int nbParticip = Integer.parseInt(nbParticipStr);
+            ajoutAthlete(nom, sexe, pays, age, nbParticip);
+            loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
+        }
     }
 
     public void onEffacerClick(ActionEvent e) throws IOException {
@@ -46,5 +45,4 @@ public class AthleteAjoutController extends AthleteController {
         nbParticipInput.clear();
         loadScene("/org/example/projet_java_2024/frontend/AthleteScene.fxml", "Athlete", e);
     }
-
 }

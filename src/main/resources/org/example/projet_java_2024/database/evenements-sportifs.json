@@ -13,14 +13,4 @@
   "nom" : "hello",
   "disciplineSportiveId" : 2,
   "athletesId" : [ 2, 4 ]
-}, {
-  "id" : 4,
-  "nom" : "vi",
-  "disciplineSportiveId" : 3,
-  "athletesId" : [ ]
-}, {
-  "id" : 5,
-  "nom" : "vo",
-  "disciplineSportiveId" : 3,
-  "athletesId" : [ ]
 } ]

@@ -80,4 +80,72 @@ public class AthleteController extends AccueilController {
             loadScene("/org/example/projet_java_2024/frontend/AthleteModifScene.fxml", "Modifier un athlète", e);
         }
     }
+
+    protected boolean validateFields(
+            String nom,
+            String sexe,
+            String pays,
+            String ageStr,
+            String nbParticipStr
+    ) {
+        int age;
+        try {
+            age = Integer.parseInt(ageStr);
+        } catch (NumberFormatException err) {
+            age = -1;
+        }
+        int nbParticip;
+        try {
+            nbParticip = Integer.parseInt(nbParticipStr);
+        } catch (NumberFormatException err) {
+            nbParticip = -1;
+        }
+
+        if (!nom.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Nom invalide");
+            alert.setContentText("Le nom doit être une chaîne de caractères alphabétiques.");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (!sexe.equals("M") && !sexe.equals("F")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Sexe invalide");
+            alert.setContentText("Le sexe doit être 'M' ou 'F'.");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (!pays.matches("^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Pays invalide");
+            alert.setContentText("Le pays doit être une chaîne de caractères alphabétiques.");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (age < 0 || age > 100) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Age invalide");
+            alert.setContentText("L'âge doit être compris entre 0 et 100.");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (nbParticip < 0 || nbParticip > 100) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Nombre de participations invalide");
+            alert.setContentText("Le nombre de participations doit être compris entre 0 et 100.");
+            alert.showAndWait();
+            return false;
+        }
+
+        return true;
+    }
 }
