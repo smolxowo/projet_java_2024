@@ -1,17 +1,17 @@
 package org.example.projet_java_2024.frontend;
 
-import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.projet_java_2024.backend.*;
 
-import java.io.IOException;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
 
 public class ResultatClassementController extends ResultatController {
     @FXML
@@ -21,54 +21,85 @@ public class ResultatClassementController extends ResultatController {
     private TableView<Resultat> resultatsTableViewPays, resultatsTableViewDiscipline;
 
     @FXML
-    private TableColumn<Resultat, String> athleteColumn, paysColumn, disciplineColumn;
+    private TableColumn<Resultat, String> athleteColumn, paysColumn, disciplineColumn, orDisciplineColumn, argentDisciplineColumn, bronzeDisciplineColumn;
 
     @FXML
     private TableColumn<Resultat, Integer> nbMedaillesColumn, orPaysColumn, argentPaysColumn, bronzePaysColumn;
 
+
     @FXML
-    public void initialize(){
-        paysColumn.setCellValueFactory(cellData -> {
-            int athleteId = cellData.getValue().getAthleteId();
-            String athleteCountry = ATHLETE_GESTIONNAIRE.getAthleteById(athleteId).getPays();
-            return new SimpleStringProperty(athleteCountry);
+    public void initialize() {
+        // Initialize the columns of the TableView
+        disciplineColumn.setCellValueFactory(cellData -> {
+            int eventId = cellData.getValue().getEvenementSportifId();
+            String eventName = EVENEMENT_GESTIONNAIRE.getEvenementSportifNamebyID(eventId);
+            return new SimpleStringProperty(eventName);
         });
+        athleteColumn.setCellValueFactory(cellData -> new SimpleStringProperty(ATHLETE_GESTIONNAIRE.getAthleteNameById(cellData.getValue().getAthleteId())));
+        paysColumn.setCellValueFactory(new PropertyValueFactory<>("pays"));
+        orPaysColumn.setCellValueFactory(new PropertyValueFactory<>("or"));
+        argentPaysColumn.setCellValueFactory(new PropertyValueFactory<>("argent"));
+        bronzePaysColumn.setCellValueFactory(new PropertyValueFactory<>("bronze"));
 
-        Map<String, Map<String, Integer>> medalCountByCountryAndType = RESULTAT_GESTIONNAIRE.getMedalCountByCountryAndType();
+        orDisciplineColumn.setCellValueFactory(new PropertyValueFactory<>("or"));
+        argentDisciplineColumn.setCellValueFactory(new PropertyValueFactory<>("argent"));
+        bronzeDisciplineColumn.setCellValueFactory(new PropertyValueFactory<>("bronze"));
 
-        // Assumons que les sous-colonnes sont nommées orColumn, argentColumn et bronzeColumn
-        orPaysColumn.setCellValueFactory(cellData -> {
-            int athleteId = cellData.getValue().getAthleteId();
-            String athleteCountry = ATHLETE_GESTIONNAIRE.getAthleteById(athleteId).getPays();
-            int goldCount = medalCountByCountryAndType.getOrDefault(athleteCountry, new HashMap<>()).getOrDefault("or", 0);
-            return new SimpleObjectProperty<>(goldCount);
-        });
+        nbMedaillesColumn.setCellValueFactory(cellData -> {
+            int id = cellData.getValue().getId();
+            String medaille = RESULTAT_GESTIONNAIRE.getMedailleById(id);
+            int or = 0, argent = 0, bronze = 0;
 
-        argentPaysColumn.setCellValueFactory(cellData -> {
-            int athleteId = cellData.getValue().getAthleteId();
-            String athleteCountry = ATHLETE_GESTIONNAIRE.getAthleteById(athleteId).getPays();
-            int silverCount = medalCountByCountryAndType.getOrDefault(athleteCountry, new HashMap<>()).getOrDefault("argent", 0);
-            return new SimpleObjectProperty<>(silverCount);
-        });
+            switch (medaille) {
+                case "or":
+                    or++;
+                    break;
+                case "argent":
+                    argent++;
+                    break;
+                case "bronze":
+                    bronze++;
+                    break;
+            }
 
-        bronzePaysColumn.setCellValueFactory(cellData -> {
-            int athleteId = cellData.getValue().getAthleteId();
-            String athleteCountry = ATHLETE_GESTIONNAIRE.getAthleteById(athleteId).getPays();
-            int bronzeCount = medalCountByCountryAndType.getOrDefault(athleteCountry, new HashMap<>()).getOrDefault("bronze", 0);
-            return new SimpleObjectProperty<>(bronzeCount);
+            return new SimpleIntegerProperty(or + argent + bronze).asObject();
         });
 
         loadResultatClassement();
     }
 
-    protected void loadResultatClassement(){
-        if (resultatsTableViewPays != null && resultatsTableViewDiscipline != null){
+    protected void loadResultatClassement() {
+        if (resultatsTableViewPays != null) {
             resultatsTableViewPays.getItems().clear();
-            resultatsTableViewDiscipline.getItems().clear();
+            Map<String, Map<String, Integer>> medalsByCountry = RESULTAT_GESTIONNAIRE.getMedalsByCountry();
 
-            List<Resultat> resultats = RESULTAT_GESTIONNAIRE.getAllResultats();
-            resultatsTableViewPays.getItems().addAll(resultats);
-            resultatsTableViewDiscipline.getItems().addAll(resultats);
+            for (Map.Entry<String, Map<String, Integer>> entry : medalsByCountry.entrySet()) {
+                String country = entry.getKey();
+                Map<String, Integer> medals = entry.getValue();
+
+                Resultat resultat = new Resultat();
+                RESULTAT_GESTIONNAIRE.setPays(resultat, country);
+
+                resultatsTableViewPays.getItems().add(resultat);
+            }
+        }
+
+        if (resultatsTableViewDiscipline != null) {
+            resultatsTableViewDiscipline.getItems().clear();
+            Map<String, List<String>> medalistsByDiscipline = RESULTAT_GESTIONNAIRE.getMedalistsByDiscipline();
+
+            for (Map.Entry<String, List<String>> entry : medalistsByDiscipline.entrySet()) {
+                String discipline = entry.getKey();
+                List<String> athletes = entry.getValue();
+
+                for (String athlete : athletes) {
+                    Resultat resultat = new Resultat();
+                    RESULTAT_GESTIONNAIRE.setDiscipline(resultat, discipline);
+                    RESULTAT_GESTIONNAIRE.setAthlete(resultat, athlete);
+
+                    resultatsTableViewDiscipline.getItems().add(resultat);
+                }
+            }
         }
     }
 }

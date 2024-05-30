@@ -93,9 +93,9 @@
                                   <TableColumn fx:id="disciplineColumn" prefWidth="75.0" text="Discipline" />
                                   <TableColumn fx:id="athleteColumn" prefWidth="75.0" text="Athlète">
                                        <columns>
-                                          <TableColumn prefWidth="75.0" text="Or" />
-                                          <TableColumn prefWidth="75.0" text="Argent" />
-                                          <TableColumn prefWidth="75.0" text="Bronze" />
+                                          <TableColumn fx:id="orDisciplineColumn" prefWidth="75.0" text="Or" />
+                                          <TableColumn fx:id="argentDisciplineColumn" prefWidth="75.0" text="Argent" />
+                                          <TableColumn fx:id="bronzeDisciplineColumn" prefWidth="75.0" text="Bronze" />
                                        </columns>
                                     </TableColumn>
                                 </columns>

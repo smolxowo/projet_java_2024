@@ -53,6 +53,15 @@ public class AthleteGestionnaire extends DatabaseGestionnaire<Athlete> {
         throw new IllegalArgumentException("Athlete not found: " + id);
     }
 
+    public int getAthleteIdByCountry(String country) {
+    for (Athlete athlete : athletes) {
+        if (athlete.getPays().equals(country)) {
+            return athlete.getId();
+        }
+    }
+    throw new IllegalArgumentException("No athlete from country: " + country);
+}
+
     public List<Athlete> getAthletesByProperty(String property, String value) {
         List<Athlete> result = new ArrayList<>();
         for (Athlete athlete : athletes) {

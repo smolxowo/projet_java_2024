@@ -1,0 +1,285 @@
+Index: src/main/java/org/example/projet_java_2024/frontend/ResultatClassementController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.example.projet_java_2024.frontend;\r\n\r\npublic class ResultatClassementController {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/example/projet_java_2024/frontend/ResultatClassementController.java b/src/main/java/org/example/projet_java_2024/frontend/ResultatClassementController.java
+--- a/src/main/java/org/example/projet_java_2024/frontend/ResultatClassementController.java	(revision d2257681563f78ef8bf1ede141e087e20939d5a1)
++++ b/src/main/java/org/example/projet_java_2024/frontend/ResultatClassementController.java	(date 1717013184852)
+@@ -1,4 +1,69 @@
+ package org.example.projet_java_2024.frontend;
+ 
+-public class ResultatClassementController {
+-}
++import javafx.beans.property.SimpleStringProperty;
++import javafx.event.ActionEvent;
++import javafx.fxml.FXML;
++import javafx.scene.control.*;
++import javafx.scene.control.cell.PropertyValueFactory;
++import org.example.projet_java_2024.backend.*;
++
++import java.io.IOException;
++import java.util.List;
++
++public class ResultatClassementController extends ResultatController {
++    @FXML
++    private Tab tabPays, tabDiscipline;
++
++    @FXML
++    private TableView<Resultat> resultatsTableViewPays, resultatsTableViewDiscipline;
++
++    @FXML
++    private TableColumn<Resultat, String> athleteColumn;
++
++    @FXML
++    private TableColumn<Resultat, Integer> nbMedaillesColumn;
++//
++//    @FXML
++//    public void initialize() {
++//        // Création des sous-colonnes pour la colonne "Athlète"
++//        TableColumn<Resultat, String> orColumnAthlete = new TableColumn<>("Or");
++//        TableColumn<Resultat, String> argentColumnAthlete = new TableColumn<>("Argent");
++//        TableColumn<Resultat, String> bronzeColumnAthlete = new TableColumn<>("Bronze");
++//
++//        // Définition des cellValueFactories pour les sous-colonnes de la colonne "Athlète"
++//        orColumnAthlete.setCellValueFactory(new PropertyValueFactory<>("orAthlete"));
++//        argentColumnAthlete.setCellValueFactory(new PropertyValueFactory<>("argentAthlete"));
++//        bronzeColumnAthlete.setCellValueFactory(new PropertyValueFactory<>("bronzeAthlete"));
++//
++//        // Ajout des sous-colonnes à la colonne "Athlète"
++//        athleteColumn.getColumns().add(orColumnAthlete);
++//        athleteColumn.getColumns().add(argentColumnAthlete);
++//        athleteColumn.getColumns().add(bronzeColumnAthlete);
++//
++//        // Création des sous-colonnes pour la colonne "Nombre de médailles"
++//        TableColumn<Resultat, Integer> orColumnMedailles = new TableColumn<>("Or");
++//        TableColumn<Resultat, Integer> argentColumnMedailles = new TableColumn<>("Argent");
++//        TableColumn<Resultat, Integer> bronzeColumnMedailles = new TableColumn<>("Bronze");
++//
++//        // Définition des cellValueFactories pour les sous-colonnes de la colonne "Nombre de médailles"
++//        orColumnMedailles.setCellValueFactory(new PropertyValueFactory<>("orMedailles"));
++//        argentColumnMedailles.setCellValueFactory(new PropertyValueFactory<>("argentMedailles"));
++//        bronzeColumnMedailles.setCellValueFactory(new PropertyValueFactory<>("bronzeMedailles"));
++//
++//        // Ajout des sous-colonnes à la colonne "Nombre de médailles"
++//        nbMedaillesColumn.getColumns().add(orColumnMedailles);
++//        nbMedaillesColumn.getColumns().add(argentColumnMedailles);
++//        nbMedaillesColumn.getColumns().add(bronzeColumnMedailles);
++//    }
++//
++//    protected void loadResultat() {
++//        if (resultatsTableViewPays != null && resultatsTableViewDiscipline != null) {
++//            resultatsTableViewPays.getItems().clear();
++//            resultatsTableViewDiscipline.getItems().clear();
++//            List<Resultat> resultats = RESULTAT_GESTIONNAIRE.getAllResultats();
++//            resultatsTableViewPays.getItems().addAll(resultats);
++//            resultatsTableViewDiscipline.getItems().addAll(resultats);
++//        }
++//    }
++
++}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"6fcb5b4b-653e-4b07-8af2-d8339e786f4a\" name=\"Changes\" comment=\"Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/AthleteGestionnaire.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/AthleteGestionnaire.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/resultats.json\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/resultats.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAjoutScene.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAjoutScene.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventScene.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventScene.fxml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatAjoutScene.fxml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatAjoutScene.fxml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"FxmlFile\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;smolxowo&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">\r\n    <option name=\"selectedUrlAndAccountId\">\r\n      <UrlAndAccount>\r\n        <option name=\"accountId\" value=\"3ed79730-7b74-4a34-aeec-5549a5630d97\" />\r\n        <option name=\"url\" value=\"https://github.com/smolxowo/projet_java_2024\" />\r\n      </UrlAndAccount>\r\n    </option>\r\n  </component>\r\n  <component name=\"MacroExpansionManager\">\r\n    <option name=\"directoryName\" value=\"g651ff75\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2fYtUmcEwZU4lDCK3CvAirxnnfI\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;Application.HelloApplication.executor&quot;: &quot;Run&quot;,\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/BRdie/Desktop/ISEP/A1/Algorithmique/TP9&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\r\n    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,\r\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\BRdie\\Desktop\\ISEP\\A1\\Algorithmique\\projet_java_2024\\src\\main\\resources\\org\\example\\projet_java_2024\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\BRdie\\Desktop\\ISEP\\A1\\Algorithmique\\projet_java_2024\\src\\main\\resources\\org\\example\\projet_java_2024\\frontend\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"HelloApplication\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.projet_java_2024.HelloApplication\" />\r\n      <module name=\"projet_java_2024\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"org.example.projet_java_2024.*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.HelloApplication\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"6fcb5b4b-653e-4b07-8af2-d8339e786f4a\" name=\"Changes\" comment=\"\" />\r\n      <created>1713989858730</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1713989858730</updated>\r\n      <workItem from=\"1715525483183\" duration=\"27000\" />\r\n      <workItem from=\"1715525520090\" duration=\"620000\" />\r\n      <workItem from=\"1716901171703\" duration=\"143000\" />\r\n      <workItem from=\"1716901414436\" duration=\"3562000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"1er commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713990041596</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713990041596</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"1er commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1713990201792</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1713990201792</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"Implémentation UML tentative 1\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714119248038</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714119248038</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"Implémentation UML tentat\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1714125761554</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1714125761554</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00005\" summary=\"Implémentation UML v3\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715352234154</created>\r\n      <option name=\"number\" value=\"00005\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715352234154</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00006\" summary=\"Adding lombok for automatic getter/setter\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715525890728</created>\r\n      <option name=\"number\" value=\"00006\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715525890728</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00007\" summary=\"lombok in module file\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715525974206</created>\r\n      <option name=\"number\" value=\"00007\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715525974206</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00008\" summary=\"AccueilScene changement\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715933144757</created>\r\n      <option name=\"number\" value=\"00008\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715933144757</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00009\" summary=\"AccueilScene changement\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1715933914154</created>\r\n      <option name=\"number\" value=\"00009\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1715933914154</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00010\" summary=\"Update module-info.java + AthleteAjoutController + AthleteController (affichage et ajout fonctionnel)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716464963080</created>\r\n      <option name=\"number\" value=\"00010\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716464963080</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00011\" summary=\"Tentative pour le header + ajout des autres controller (AthleteAjout marche plus mais Athlete fonctionne aled)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716478832379</created>\r\n      <option name=\"number\" value=\"00011\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716478832379</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00012\" summary=\"Réparation de la fonction load pour faire marcher AthleteAjoutController\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716533351102</created>\r\n      <option name=\"number\" value=\"00012\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00012\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716533351103</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00013\" summary=\"Ajouter/Supprimer/Modifier Athlete v56779\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716541879731</created>\r\n      <option name=\"number\" value=\"00013\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00013\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716541879731</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00014\" summary=\"Ajouter/Supprimer Discipline\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716543991937</created>\r\n      <option name=\"number\" value=\"00014\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00014\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716543991937</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00015\" summary=\"Vue athlete actualisée\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716904854931</created>\r\n      <option name=\"number\" value=\"00015\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00015\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716904854931</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00016\" summary=\"Modification Athlete fonctionnel\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716910738402</created>\r\n      <option name=\"number\" value=\"00016\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00016\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716910738402</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00017\" summary=\"Discipline quasi finit, ajouter ne fonctionne plus (aled)\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716916794771</created>\r\n      <option name=\"number\" value=\"00017\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00017\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716916794771</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00018\" summary=\"Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1716918477342</created>\r\n      <option name=\"number\" value=\"00018\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00018\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1716918477342</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"19\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"UnknownFeatures\">\r\n    <option featureType=\"com.intellij.fileTypeFactory\" implementationName=\"*.bat\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"CUSTOM_BOOLEAN_PROPERTIES\">\r\n                <map>\r\n                  <entry key=\"Show.Git.Branches\" value=\"true\" />\r\n                </map>\r\n              </option>\r\n              <option name=\"HIGHLIGHTERS\">\r\n                <map>\r\n                  <entry key=\"MERGE_COMMITS\" value=\"true\" />\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"1er commit\" />\r\n    <MESSAGE value=\"Implémentation UML tentative 1\" />\r\n    <MESSAGE value=\"Implémentation UML tentat\" />\r\n    <MESSAGE value=\"Implémentation UML v3\" />\r\n    <MESSAGE value=\"Adding lombok for automatic getter/setter\" />\r\n    <MESSAGE value=\"lombok in module file\" />\r\n    <MESSAGE value=\"Update du module-info.java + AthleteAjoutController (fonctionnel) + AthleteController (affichage des données fonctionnel)\" />\r\n    <MESSAGE value=\"AccueilScene changement\" />\r\n    <MESSAGE value=\"Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/org/example/projet_java_2024/frontend/AthleteController.java&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/athletes.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/participants.json&#10;#&#9;src/main/resources/org/example/projet_java_2024/database/resultats.json\" />\r\n    <MESSAGE value=\"Update module-info.java + AthleteAjoutController + AthleteController (affichage et ajout fonctionnel)\" />\r\n    <MESSAGE value=\"Tentative pour le header + ajout des autres controller (AthleteAjout marche plus mais Athlete fonctionne aled)\" />\r\n    <MESSAGE value=\"Réparation de la fonction load pour faire marcher AthleteAjoutController\" />\r\n    <MESSAGE value=\"Ajouter/Supprimer/Modifier Athlete v56779\" />\r\n    <MESSAGE value=\"Ajouter/Supprimer Discipline\" />\r\n    <MESSAGE value=\"Vue athlete actualisée\" />\r\n    <MESSAGE value=\"Modification Athlete fonctionnel\" />\r\n    <MESSAGE value=\"Discipline quasi finit, ajouter ne fonctionne plus (aled)\" />\r\n    <MESSAGE value=\"Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\">\r\n          <properties class=\"java.lang.IndexOutOfBoundsException\" package=\"java.lang\" />\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d2257681563f78ef8bf1ede141e087e20939d5a1)
++++ b/.idea/workspace.xml	(date 1717011460360)
+@@ -4,24 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas">
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="RésultatAjout refait pour que quand athlete choisi que event où lui participe apparait">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/AthleteGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/AthleteGestionnaire.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/backend/EvenementSportifGestionnaire.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/DisciplineAssignController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAjoutController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventAssignController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/EventController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/resultats.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/resultats.json" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAjoutScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventAjoutScene.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/EventScene.fxml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatAjoutScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatAjoutScene.fxml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatClassementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatClassementController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatClassementScene.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/frontend/ResultatClassementScene.fxml" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -277,7 +263,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1716918477342</updated>
+     </task>
+-    <option name="localTasksCounter" value="19" />
++    <task id="LOCAL-00019" summary="RésultatAjout refait pour que quand athlete choisi que event où lui participe apparait">
++      <option name="closed" value="true" />
++      <created>1717008087533</created>
++      <option name="number" value="00019" />
++      <option name="presentableId" value="LOCAL-00019" />
++      <option name="project" value="LOCAL" />
++      <updated>1717008087533</updated>
++    </task>
++    <option name="localTasksCounter" value="20" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -327,7 +321,9 @@
+     <MESSAGE value="Modification Athlete fonctionnel" />
+     <MESSAGE value="Discipline quasi finit, ajouter ne fonctionne plus (aled)" />
+     <MESSAGE value="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Discipline quasi finit v2, ajout fonctionne mtn mais gérer remove fonctionne pas" />
++    <MESSAGE value="Résultat Ajout refait pour que quand athlete choisi que event où lui participe apparait" />
++    <MESSAGE value="RésultatAjout refait pour que quand athlete choisi que event où lui participe apparait" />
++    <option name="LAST_COMMIT_MESSAGE" value="RésultatAjout refait pour que quand athlete choisi que event où lui participe apparait" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
+Index: src/main/resources/org/example/projet_java_2024/frontend/ResultatClassementScene.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import java.lang.*?>\r\n<?import java.util.*?>\r\n<?import javafx.scene.*?>\r\n<?import javafx.scene.control.*?>\r\n<?import javafx.scene.layout.*?>\r\n\r\n<AnchorPane xmlns=\"http://javafx.com/javafx\"\r\n            xmlns:fx=\"http://javafx.com/fxml\"\r\n            fx:controller=\"org.example.projet_java_2024.frontend.ResultatClassementController\"\r\n            prefHeight=\"400.0\" prefWidth=\"600.0\">\r\n\r\n</AnchorPane>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/org/example/projet_java_2024/frontend/ResultatClassementScene.fxml b/src/main/resources/org/example/projet_java_2024/frontend/ResultatClassementScene.fxml
+--- a/src/main/resources/org/example/projet_java_2024/frontend/ResultatClassementScene.fxml	(revision d2257681563f78ef8bf1ede141e087e20939d5a1)
++++ b/src/main/resources/org/example/projet_java_2024/frontend/ResultatClassementScene.fxml	(date 1717011646599)
+@@ -1,14 +1,115 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ 
+-<?import java.lang.*?>
+-<?import java.util.*?>
+-<?import javafx.scene.*?>
+-<?import javafx.scene.control.*?>
+-<?import javafx.scene.layout.*?>
++<?import javafx.geometry.Insets?>
++<?import javafx.scene.control.Button?>
++<?import javafx.scene.control.Label?>
++<?import javafx.scene.control.Tab?>
++<?import javafx.scene.control.TabPane?>
++<?import javafx.scene.control.TableColumn?>
++<?import javafx.scene.control.TableView?>
++<?import javafx.scene.image.Image?>
++<?import javafx.scene.image.ImageView?>
++<?import javafx.scene.layout.AnchorPane?>
++<?import javafx.scene.layout.ColumnConstraints?>
++<?import javafx.scene.layout.GridPane?>
++<?import javafx.scene.layout.HBox?>
++<?import javafx.scene.layout.RowConstraints?>
++<?import javafx.scene.layout.VBox?>
++<?import javafx.scene.text.Font?>
+ 
+-<AnchorPane xmlns="http://javafx.com/javafx"
+-            xmlns:fx="http://javafx.com/fxml"
+-            fx:controller="org.example.projet_java_2024.frontend.ResultatClassementController"
+-            prefHeight="400.0" prefWidth="600.0">
+-
++<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/Style1.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.projet_java_2024.frontend.ResultatClassementController">
++    <children>
++        <GridPane prefHeight="120.0" prefWidth="900.0">
++            <columnConstraints>
++                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="0.0" prefWidth="80.0" />
++                <ColumnConstraints hgrow="SOMETIMES" maxWidth="709.7999877929688" minWidth="10.0" prefWidth="695.3999938964844" />
++                <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" prefWidth="80.0" />
++            </columnConstraints>
++            <rowConstraints>
++                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
++            </rowConstraints>
++            <children>
++                <Label fx:id="title" alignment="CENTER" prefHeight="53.0" prefWidth="700.0" text="Gestionnaire JO" GridPane.columnIndex="1">
++                    <font>
++                        <Font name="Candara" size="36.0" />
++                    </font>
++                </Label>
++                <ImageView fitHeight="81.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
++                    <image>
++                        <Image url="@/logo_paris_JO.png" />
++                    </image>
++                </ImageView>
++                <ImageView fitHeight="81.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
++            </children>
++            <padding>
++                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
++            </padding>
++        </GridPane>
++        <VBox layoutY="120.0" prefHeight="580.0" prefWidth="900.0">
++            <children>
++                <HBox fx:id="backgroundheader" alignment="CENTER" prefHeight="72.0" prefWidth="900.0" spacing="50.0">
++                    <children>
++                        <Button fx:id="accueilMenuButton" mnemonicParsing="false" onAction="#onAccueilMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Accueil" />
++                        <Button fx:id="athleteMenuButton" mnemonicParsing="false" onAction="#onAthleteMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Athlètes" />
++                        <Button fx:id="disciplineMenuButton" mnemonicParsing="false" onAction="#onDisciplineMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Disciplines" />
++                        <Button fx:id="eventMenuButton" mnemonicParsing="false" onAction="#onEventMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Évènements" />
++                        <Button fx:id="resultatsMenuButton" mnemonicParsing="false" onAction="#onResultatsMenuButtonClick" prefHeight="31.0" prefWidth="100.0" text="Résultats" />
++                    </children>
++                    <padding>
++                        <Insets left="20.0" />
++                    </padding>
++                </HBox>
++            <TabPane prefHeight="510.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
++              <tabs>
++                <Tab fx:id="tabPays" closable="false" text="Pays">
++                  <content>
++                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
++                           <children>
++                              <TableView fx:id="resultatsTableViewPays" layoutX="25.0" layoutY="15.0" prefHeight="450.0" prefWidth="850.0">
++                                <columns>
++                                  <TableColumn prefWidth="75.0" text="Pays" />
++                                  <TableColumn prefWidth="75.0" text="Nombre de médailles">
++                                       <columns>
++                                          <TableColumn prefWidth="75.0" text="Or" />
++                                          <TableColumn prefWidth="75.0" text="Argent" />
++                                          <TableColumn prefWidth="75.0" text="Bronze" />
++                                       </columns>
++                                    </TableColumn>
++                                </columns>
++                                 <columnResizePolicy>
++                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
++                                 </columnResizePolicy>
++                              </TableView>
++                           </children>
++                        </AnchorPane>
++                  </content>
++                </Tab>
++                <Tab fx:id="tabDiscipline" closable="false" text="Discipline">
++                  <content>
++                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
++                           <children>
++                              <TableView fx:id="resultatsTableViewDiscipline" layoutX="24.0" layoutY="15.0" prefHeight="450.0" prefWidth="850.0">
++                                <columns>
++                                  <TableColumn prefWidth="75.0" text="Discipline" />
++                                  <TableColumn prefWidth="75.0" text="Athlète">
++                                       <columns>
++                                          <TableColumn prefWidth="75.0" text="Or" />
++                                          <TableColumn prefWidth="75.0" text="Argent" />
++                                          <TableColumn prefWidth="75.0" text="Bronze" />
++                                       </columns>
++                                    </TableColumn>
++                                </columns>
++                                 <columnResizePolicy>
++                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
++                                 </columnResizePolicy>
++                              </TableView>
++                           </children>
++                        </AnchorPane>
++                  </content>
++                </Tab>
++              </tabs>
++            </TabPane>
++            </children>
++        </VBox>
++    </children>
+ </AnchorPane>
