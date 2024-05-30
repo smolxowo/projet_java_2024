@@ -40,6 +40,7 @@ public class ResultatAjoutController extends ResultatController {
             }
         });
         medailleSelect.getItems().addAll("Or", "Argent", "Bronze", "Aucune");
+        dateField.setText("01-01-2024");
     }
 
     public void onAjouterResultatClick(ActionEvent e) throws IOException {

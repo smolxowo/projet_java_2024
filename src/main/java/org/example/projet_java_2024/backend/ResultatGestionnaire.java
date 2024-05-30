@@ -1,7 +1,12 @@
 package org.example.projet_java_2024.backend;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static org.example.projet_java_2024.frontend.AccueilController.ATHLETE_GESTIONNAIRE;
 
 public class ResultatGestionnaire extends DatabaseGestionnaire<Resultat> {
     private final List<Resultat> resultats;
@@ -70,5 +75,17 @@ public class ResultatGestionnaire extends DatabaseGestionnaire<Resultat> {
             }
         }
         throw new IllegalArgumentException("Resultat not found: " + id);
+    }
+
+    public Map<String, Map<String, Integer>> getMedalCountByCountryAndType() {
+        Map<String, Map<String, Integer>> medalCountByCountryAndType = new HashMap<>();
+        for (Resultat resultat : resultats) {
+            String country = ATHLETE_GESTIONNAIRE.getAthleteById(resultat.getAthleteId()).getPays();
+            String medalType = resultat.getMedaille();
+            Map<String, Integer> medalCountByType = medalCountByCountryAndType.getOrDefault(country, new HashMap<>());
+            medalCountByType.put(medalType, medalCountByType.getOrDefault(medalType, 0) + 1);
+            medalCountByCountryAndType.put(country, medalCountByType);
+        }
+        return medalCountByCountryAndType;
     }
 }
