@@ -31,7 +31,7 @@ public class ResultatController extends AccueilController{
         });
         eventColumn.setCellValueFactory(cellData -> {
             int eventId = cellData.getValue().getEvenementSportifId();
-            String eventName = EVENEMENT_GESTIONNAIRE.getEvenementSportifNamebyID(eventId);
+            String eventName = EVENEMENT_GESTIONNAIRE.getEvenementSportifNamebyId(eventId);
             return new SimpleStringProperty(eventName);
         });
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));

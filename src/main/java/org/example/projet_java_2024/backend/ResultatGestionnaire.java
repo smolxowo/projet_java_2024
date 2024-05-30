@@ -110,6 +110,12 @@ public class ResultatGestionnaire extends DatabaseGestionnaire<Resultat> {
         throw new IllegalArgumentException("Resultat not found: " + id);
     }
 
+    /*
+    Par exemple :
+    {
+    France: {Or: 2, Argent: 3, Bronze: 1}
+    }
+     */
     public Map<String, Map<String, Integer>> getMedalsByCountry() {
         Map<String, Map<String, Integer>> medalsByCountry = new HashMap<>();
 
@@ -117,30 +123,46 @@ public class ResultatGestionnaire extends DatabaseGestionnaire<Resultat> {
             String country = ATHLETE_GESTIONNAIRE.getAthleteById(resultat.getAthleteId()).getPays();
             String medal = resultat.getMedaille();
 
+            // Ajouter un nouveau pays
             if (!medalsByCountry.containsKey(country)) {
                 medalsByCountry.put(country, new HashMap<>());
             }
 
-            medalsByCountry.get(country).put(medal, medalsByCountry.get(country).getOrDefault(medal, 0) + 1);
+            // Ajouter une nouvelle médaille
+            medalsByCountry.get(country).put(
+                    medal,
+                    medalsByCountry.get(country).getOrDefault(medal, 0) + 1
+            );
         }
 
         return medalsByCountry;
     }
 
-    public Map<String, List<String>> getMedalistsByDiscipline() {
-        Map<String, List<String>> medalistsByDiscipline = new HashMap<>();
+    /*
+    Par exemple :
+    {
+    Discipline: {Or: 2, Argent: 3, Bronze: 1}
+    }
+     */
+    public Map<String, Map<String, Integer>> getMedalsByDiscipline() {
+        Map<String, Map<String, Integer>> medalsByDiscipline = new HashMap<>();
 
         for (Resultat resultat : resultats) {
             String discipline = EVENEMENT_GESTIONNAIRE.getEvenementSportifById(resultat.getEvenementSportifId()).getNom();
-            String athlete = ATHLETE_GESTIONNAIRE.getAthleteById(resultat.getAthleteId()).getNom();
+            String medal = resultat.getMedaille();
 
-            if (!medalistsByDiscipline.containsKey(discipline)) {
-                medalistsByDiscipline.put(discipline, new ArrayList<>());
+            // Ajouter une nouvelle discipline
+            if (!medalsByDiscipline.containsKey(discipline)) {
+                medalsByDiscipline.put(discipline, new HashMap<>());
             }
 
-            medalistsByDiscipline.get(discipline).add(athlete);
+            // Ajouter une nouvelle médaille
+            medalsByDiscipline.get(discipline).put(
+                    medal,
+                    medalsByDiscipline.get(discipline).getOrDefault(medal, 0) + 1
+            );
         }
 
-        return medalistsByDiscipline;
+        return medalsByDiscipline;
     }
 }

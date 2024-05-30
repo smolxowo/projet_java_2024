@@ -54,7 +54,7 @@ public class EvenementSportifGestionnaire extends DatabaseGestionnaire<Evenement
         return athleteEvents;
     }
 
-    public String getEvenementSportifNamebyID(int id) {
+    public String getEvenementSportifNamebyId(int id) {
         for (EvenementSportif evenementSportif : evenementsSportifs) {
             if (evenementSportif.getId() == id) {
                 return evenementSportif.getNom();

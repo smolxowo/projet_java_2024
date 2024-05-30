@@ -26,4 +26,11 @@
   "score" : 2413,
   "date" : "23",
   "medaille" : "Or"
+}, {
+  "id" : 5,
+  "athleteId" : 4,
+  "evenementSportifId" : 3,
+  "score" : 145,
+  "date" : "01-01-2024",
+  "medaille" : "Or"
 } ]
