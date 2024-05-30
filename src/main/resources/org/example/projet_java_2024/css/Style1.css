@@ -1,28 +1,29 @@
+/* Style1.css */
 .root {
     -fx-font-family: fantasy;
 }
 
-#accueilMenuButton{
+#accueilMenuButton {
     -fx-effect: dropshadow(three-pass-box, rgba(0,129,200,0.8), 3, 1, 0, 0);
     -fx-border-color: #0081C8;
 }
 
-#athleteMenuButton{
+#athleteMenuButton {
     -fx-effect: dropshadow(three-pass-box, rgba(252,177,49,0.8), 3, 1, 0, 0);
     -fx-border-color: #FCB131;
 }
 
-#disciplineMenuButton{
+#disciplineMenuButton {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 1, 0, 0);
     -fx-border-color: black;
 }
 
-#eventMenuButton{
+#eventMenuButton {
     -fx-effect: dropshadow(three-pass-box, rgba(0,166,81,0.8), 3, 1, 0, 0);
     -fx-border-color: #00A651;
 }
 
-#resultatsMenuButton{
+#resultatsMenuButton {
     -fx-effect: dropshadow(three-pass-box, rgba(238,51,78,0.8), 3, 1, 0, 0);
     -fx-border-color: #EE334E;
 }
@@ -35,42 +36,40 @@
     -fx-background-color: #ffffff;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-    }
+}
 
-#backgroundheader{
+#backgroundheader {
     -fx-background-color: #ffffff;
 }
 
-#athletebackground{
+#athletebackground {
     -fx-background-color: #FCB131;
 }
 
-#disciplinebackground{
+#disciplinebackground {
     -fx-background-color: #000000;
 }
 
-#eventbackground{
+#eventbackground {
     -fx-background-color: #00A651;
 }
 
-#resultatsbackground{
+#resultatsbackground {
     -fx-background-color: #EE334E;
 }
 
-
-#soumettre, #effacer, #annuler, #modifier, #supprimer, #ajouter, #assign, #assigner, #classement, #ajouterResultat{
+#soumettre, #effacer, #annuler, #modifier, #supprimer, #ajouter, #assign, #assigner, #classement, #ajouterResultat {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0.7, 0, 0);
     -fx-background-color: #ffffff;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-
 }
 
-#title{
+#title {
     -fx-font: italic 45px fantasy;
 }
 
-.label{
+.label {
     -fx-font: 15px fantasy;
 }
 
@@ -98,6 +97,28 @@
 .table-view .table-row-cell:selected {
     -fx-background-color: #D3D3D3;
 }
+
 .table-view:focused {
     -fx-background-color: none;
 }
+
+/* Changer la largeur et la couleur des onglets */
+.tab {
+    -fx-padding: 3px;
+    -fx-background-color: #ffffff; /* Couleur de l'arrière-plan des onglets */
+}
+
+.tab-pane:focused .tab-header-area .tab:selected .focus-indicator {
+    -fx-focus-color: transparent;
+}
+
+.tab-header-area .tab-label {
+    -fx-font-size: 13px; /* Taille de la police des onglets */
+    -fx-text-fill: #000000; /* Couleur du texte des onglets */
+}
+
+.tab-header-area .tab {
+    -fx-max-width: 400px; /* Largeur maximale des onglets */
+    -fx-pref-width: 400px; /* Largeur préférée des onglets */
+}
+
