@@ -105,11 +105,11 @@ public class ResultatController extends AccueilController{
             return false;
         }
 
-        if (scoreInt < 0 || scoreInt > 100) {
+        if (scoreInt < 0 || scoreInt > 100000) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText("Score invalide");
-            alert.setContentText("Le score doit être un nombre entier positif inférieur ou égal à 100");
+            alert.setContentText("Le score doit être un nombre entier positif inférieur ou égal à 100000");
             alert.showAndWait();
             return false;
         }

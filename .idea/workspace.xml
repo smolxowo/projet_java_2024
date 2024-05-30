@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="ajout du logo wjd">
+    <list default="true" id="6fcb5b4b-653e-4b07-8af2-d8339e786f4a" name="Changes" comment="Vérifier le formulaire d'ajout de Résultat">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatAjoutController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/projet_java_2024/frontend/ResultatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/athletes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/disciplines-sportives.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/evenements-sportifs.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/resultats.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/projet_java_2024/database/resultats.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -320,7 +322,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717081930054</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Vérifier le formulaire d'ajout de Résultat">
+      <option name="closed" value="true" />
+      <created>1717100775003</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1717100775003</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,7 +362,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="1er commit" />
     <MESSAGE value="Implémentation UML tentative 1" />
     <MESSAGE value="Implémentation UML tentat" />
     <MESSAGE value="Implémentation UML v3" />
@@ -377,7 +386,8 @@
     <MESSAGE value="classement oskour" />
     <MESSAGE value="ajout du logo" />
     <MESSAGE value="ajout du logo wjd" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout du logo wjd" />
+    <MESSAGE value="Vérifier le formulaire d'ajout de Résultat" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vérifier le formulaire d'ajout de Résultat" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

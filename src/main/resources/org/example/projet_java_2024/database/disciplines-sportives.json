@@ -1,9 +1,21 @@
 [ {
   "id" : 1,
-  "nom" : "Judo",
-  "athletesId" : [ 1 ]
+  "nom" : "Football",
+  "athletesId" : [ 1, 2 ]
 }, {
   "id" : 2,
-  "nom" : "Natation",
-  "athletesId" : [ 1, 2 ]
+  "nom" : "Basketball",
+  "athletesId" : [ 3, 4 ]
+}, {
+  "id" : 3,
+  "nom" : "Tennis",
+  "athletesId" : [ 5, 6 ]
+}, {
+  "id" : 4,
+  "nom" : "Gymnastique",
+  "athletesId" : [ 7, 8 ]
+}, {
+  "id" : 5,
+  "nom" : "Athlétisme",
+  "athletesId" : [ 9, 10 ]
 } ]
