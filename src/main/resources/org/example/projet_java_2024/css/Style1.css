@@ -1,54 +1,65 @@
+.root {
+    -fx-font-family: fantasy;
+}
+
 #accueilMenuButton{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-background-color: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,129,200,0.8), 3, 1, 0, 0);
     -fx-border-color: #0081C8;
-    -fx-border-width: 4px;
 }
 
 #athleteMenuButton{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-background-color: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(252,177,49,0.8), 3, 1, 0, 0);
     -fx-border-color: #FCB131;
-    -fx-border-width: 4px;
 }
+
 #disciplineMenuButton{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-background-color: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 1, 0, 0);
     -fx-border-color: black;
-    -fx-border-width: 4px;
 }
+
 #eventMenuButton{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
-    -fx-background-color: #ffffff;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,166,81,0.8), 3, 1, 0, 0);
     -fx-border-color: #00A651;
-    -fx-border-width: 4px;
 }
 
 #resultatsMenuButton{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(238,51,78,0.8), 3, 1, 0, 0);
+    -fx-border-color: #EE334E;
+}
+
+#accueilMenuButton, #athleteMenuButton, #disciplineMenuButton, #eventMenuButton, #resultatsMenuButton {
+    -fx-padding: 0;
+    -fx-margin: 0;
+    -fx-font-size: 13px;
+    -fx-border-width: 0;
     -fx-background-color: #ffffff;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-    -fx-border-color: #EE334E;
-    -fx-border-width: 4px;
-}
+    }
+
 #backgroundheader{
-    -fx-background-color: #D5C178;
-}
-#background2{
-    -fx-background-color: #1d9cd9;
+    -fx-background-color: #ffffff;
 }
 
+#athletebackground{
+    -fx-background-color: #FCB131;
+}
+
+#disciplinebackground{
+    -fx-background-color: #000000;
+}
+
+#eventbackground{
+    -fx-background-color: #00A651;
+}
+
+#resultatsbackground{
+    -fx-background-color: #EE334E;
+}
+
+
 #soumettre, #effacer, #annuler, #modifier, #supprimer, #ajouter, #assign, #assigner, #classement, #ajouterResultat{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0.7, 0, 0);
     -fx-background-color: #ffffff;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
@@ -58,8 +69,13 @@
 #title{
     -fx-font: italic 45px fantasy;
 }
-#disciplineSelect, #athleteSelect, #eventSelect, #medailleSelect{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+
+.label{
+    -fx-font: 15px fantasy;
+}
+
+#disciplineSelect, #athleteSelect, #eventSelect, #medailleSelect {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0.7, 0, 0);
     -fx-background-color: #ffffff;
     -fx-border-color: #e9ecef;
     -fx-border-width: 2px;
@@ -73,4 +89,15 @@
 
 .table-view .column-header .label {
     -fx-text-fill: #ffffff;
+}
+
+.table-view .table-cell {
+    -fx-font: 13px fantasy;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #D3D3D3;
+}
+.table-view:focused {
+    -fx-background-color: none;
 }

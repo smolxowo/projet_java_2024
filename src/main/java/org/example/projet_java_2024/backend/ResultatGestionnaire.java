@@ -30,43 +30,6 @@ public class ResultatGestionnaire extends DatabaseGestionnaire<Resultat> {
         return resultats;
     }
 
-    public Resultat getResultatById(int id) {
-        for (Resultat resultat : resultats) {
-            if (resultat.getId() == id) {
-                return resultat;
-            }
-        }
-        throw new IllegalArgumentException("Resultat not found: " + id);
-    }
-
-    public String getMedailleById(int id) {
-    for (Resultat resultat : resultats) {
-        if (resultat.getId() == id) {
-            return resultat.getMedaille();
-        }
-    }
-    throw new IllegalArgumentException("Resultat not found: " + id);
-}
-
-
-    public void setPays(Resultat resultat, String pays) {
-        Athlete athlete = ATHLETE_GESTIONNAIRE.getAthleteById(resultat.getAthleteId());
-        athlete.setPays(pays);
-        saveToJSON();
-    }
-
-    public void setDiscipline(Resultat resultat, String discipline) {
-        EvenementSportif event = EVENEMENT_GESTIONNAIRE.getEvenementSportifById(resultat.getEvenementSportifId());
-        event.setNom(discipline);
-        saveToJSON();
-    }
-
-    public void setAthlete(Resultat resultat, String athleteName) {
-        Athlete athlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
-        resultat.setAthleteId(athlete.getId());
-        saveToJSON();
-    }
-
     public int addResultat(int athleteId, int evenementSportifId, int score, String temps, String medaille) {
         int nextId = getNextId();
         Resultat resultat = new Resultat(
