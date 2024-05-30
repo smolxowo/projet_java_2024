@@ -35,7 +35,10 @@
                         <Image url="@/logo_paris_JO.png" />
                     </image>
                 </ImageView>
-                <ImageView fitHeight="81.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" />
+                <ImageView fitHeight="81.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                    <image>
+                        <Image url="@../../../../logo-wjd.png" />
+                    </image></ImageView>
             </children>
             <padding>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
