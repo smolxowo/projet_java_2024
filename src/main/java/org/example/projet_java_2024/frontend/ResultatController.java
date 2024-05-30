@@ -72,5 +72,66 @@ public class ResultatController extends AccueilController{
         supprResultat(selectedResultat);
         loadScene("/org/example/projet_java_2024/frontend/ResultatScene.fxml", "Résultat", e);
     }
-}
 
+    public boolean validateFields(String athleteName, String eventName, String score, String date) {
+        if (date.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Champs vides");
+            alert.setContentText("Veuillez remplir la date au format jj-mm-aaaa");
+            alert.showAndWait();
+            return false;
+        }
+
+        // Vérifier si la date est au format jj-mm-aaaa
+        if (!date.matches("\\d{2}-\\d{2}-\\d{4}")) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Date invalide");
+            alert.setContentText("La date doit être au format jj-mm-aaaa");
+            alert.showAndWait();
+            return false;
+        }
+
+        int scoreInt;
+        try {
+            scoreInt = Integer.parseInt(score);
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Score invalide");
+            alert.setContentText("Le score doit être un nombre entier");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (scoreInt < 0 || scoreInt > 100) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Score invalide");
+            alert.setContentText("Le score doit être un nombre entier positif inférieur ou égal à 100");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (athleteName == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Athlète non sélectionné");
+            alert.setContentText("Veuillez sélectionner un athlète");
+            alert.showAndWait();
+            return false;
+        }
+
+        if (eventName == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText("Événement non sélectionné");
+            alert.setContentText("Veuillez sélectionner un événement");
+            alert.showAndWait();
+            return false;
+        }
+
+        return true;
+    }
+}

@@ -45,16 +45,22 @@ public class ResultatAjoutController extends ResultatController {
 
     public void onAjouterResultatClick(ActionEvent e) throws IOException {
         String athleteName = athleteSelect.getSelectionModel().getSelectedItem();
-        Athlete athlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
-
         String eventName = eventSelect.getSelectionModel().getSelectedItem();
-        EvenementSportif event = EVENEMENT_GESTIONNAIRE.getEvenementSportifByName(eventName);
 
-        int score = Integer.parseInt(scoreField.getText());
-        String date = dateField.getText();
-        String medaille = medailleSelect.getSelectionModel().getSelectedItem();
+        if (validateFields(athleteName, eventName, scoreField.getText(), dateField.getText())) {
+            int score = Integer.parseInt(scoreField.getText());
+            String date = dateField.getText();
+            String medaille = medailleSelect.getSelectionModel().getSelectedItem();
 
-        ajoutResultat(athlete.getId(), event.getId(), score, date, medaille);
-        loadScene("/org/example/projet_java_2024/frontend/ResultatScene.fxml", "Résultat", e);
+            if (athleteName == null || eventName == null) {
+                return;
+            }
+
+            Athlete athlete = ATHLETE_GESTIONNAIRE.getAthleteByName(athleteName);
+            EvenementSportif event = EVENEMENT_GESTIONNAIRE.getEvenementSportifByName(eventName);
+
+            ajoutResultat(athlete.getId(), event.getId(), score, date, medaille);
+            loadScene("/org/example/projet_java_2024/frontend/ResultatScene.fxml", "Résultat", e);
+        }
     }
 }
